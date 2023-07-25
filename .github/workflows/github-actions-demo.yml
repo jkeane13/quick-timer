@@ -1,0 +1,14 @@
+name: Quick Timer application testing
+run-name: ${{ github.actor }} is testing the timer application 🚀
+on: [push]
+jobs:
+  Test-Quick-Timer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: 🔎 Run tests
+        run: |
+          make
+      - run: echo "🍏 This job's status is ${{ job.status }}."

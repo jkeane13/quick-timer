@@ -62,7 +62,7 @@ timer.sh 4:30
 
 Timer will run for 30 mins then execute a script
 ```
-timer 30 0 "./test.sh"
+timer.sh 30 0 "./test.sh"
 ```
 
 ---

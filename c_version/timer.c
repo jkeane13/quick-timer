@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 int main(void){
@@ -27,6 +28,9 @@ int main(void){
     }
 
     printf("\rTime's up!\n");
+    #if defined(__APPLE__)
+        system("afplay ../assets/duck_quack.mp3");
+    #endif
     return 0;
 }
 

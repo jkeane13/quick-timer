@@ -1,10 +1,10 @@
-# C version on timer
+# C version of quick timer
 
 ## Current Features
-- Prompts for seconds and does a silent countdown
+- Prompts for seconds, then sounds out an alarm when the timer is done
 
 ## Future planned features
-- Alarm Noise
+- Alarm Noise for Windows
 - Timer argument based on hours minutes and seconds, sequentially separated
   with spaces
 - Start a timer by clock finish time (eg. 4:30)
@@ -16,5 +16,4 @@
 - Windows compatibility. Only Mac terminal for now
 
 ## Installation
-
 Download the repo and run make to build the binary

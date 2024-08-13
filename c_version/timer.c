@@ -30,6 +30,9 @@ int main(void){
     printf("\rTime's up!\n");
     #if defined(__APPLE__)
         system("afplay ../assets/duck_quack.mp3");
+    #elif defined(__linux__)
+        // Used mpg123 for linux for sound, since it is easy to install and does the job
+        system("mpg123 ../assets/duck_quack.mp3 >/dev/null 2>&1");
     #endif
     return 0;
 }

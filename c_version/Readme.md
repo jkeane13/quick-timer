@@ -2,6 +2,8 @@
 
 ## Current Features
 - Prompts for seconds, then sounds out an alarm when the timer is done
+- Alerts will work for Mac and Linux. However Linux will need to have `mpg123`
+  installed to be able to play mp3 files
 
 ## Future planned features
 - Alarm Noise for Windows

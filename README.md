@@ -4,8 +4,6 @@ Quick and easy timer with an alarm
 
 **Note: Alarm noise will only work for Windows Linux WSL and Mac**
 
----
-
 ## Features
 - Start a timer based on hours minutes and seconds, sequentially separated
   with spaces
@@ -13,10 +11,8 @@ Quick and easy timer with an alarm
 - Start a timer by am/pm whole numbers (eg. 5pm)
 - A script can be run instead of an alarm, if it's location is the last
   argument
----
 
 ## Setup
-
 ### gdate requirement for Mac OS
 For this to work on Mac OS you will need gdate. The Mac OS date command's
 switches are different to that of Linux. gdate is part of the
@@ -31,8 +27,6 @@ Clone this repo to your desktop or download the `timer.sh` script
 
 You might want add an alias in your `.bashrc` or `.zshrc` file for quick
 access. (eg `alias timer=~/timer.sh`)
-
----
 
 ## Usage examples
 For seconds, 15 seconds
@@ -65,8 +59,12 @@ Timer will run for 30 mins then execute a script
 timer.sh 30 0 "./test.sh"
 ```
 
----
 ## End switches
 `--quiet` : application will not set off an alarm
 
 `--dry-run` : mainly for testing to determine if the end time is correct
+
+## C Version
+C version is in the works for better Mac/WSL efficiency and Windows compatibility.
+First iteration is in the `c_version` folder as a basic second countdown with
+silent alarm

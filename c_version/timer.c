@@ -7,9 +7,10 @@
 #define MAC_PLAYER "afplay"
 #define LINUX_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 100
+#define ALERT_TIMES 5
 
 void inputTimer(int *seconds);
-void alert();
+void alert(int times);
 
 int main(int argc, char *argv[]){
     int seconds = 0;
@@ -58,7 +59,7 @@ int main(int argc, char *argv[]){
     seconds--;
     }
 
-    alert();
+    alert(ALERT_TIMES);
 
     return 0;
 }
@@ -68,23 +69,26 @@ void inputTimer(int *seconds){
     scanf("%d", seconds);
 }
 
-void alert(){
+void alert(int times){
+    int i;
     char soundCommand[MAX_COMMAND_LENGTH];
 
     printf("\rTime's up!\n");
-    #if defined(__APPLE__)
-        strcpy (soundCommand, MAC_PLAYER);
-        strcat (soundCommand," ");
-        strcat (soundCommand,FILENAME);
-        system(soundCommand);
-    #elif defined(__linux__)
-        strcpy (soundCommand, LINUX_PLAYER);
-        strcat (soundCommand," ");
-        strcat (soundCommand,FILENAME);
-        strcat (soundCommand," >/dev/null 2>&1");
-        system(soundCommand);
-    #elif defined(_WIN32)
-        system("mpg123 assets\\duck_quack.mp3 >NUL 2>&1");
-    #endif
+    for (i = 0; i < times;i++ ){
+        #if defined(__APPLE__)
+            strcpy (soundCommand, MAC_PLAYER);
+            strcat (soundCommand," ");
+            strcat (soundCommand,FILENAME);
+            system(soundCommand);
+        #elif defined(__linux__)
+            strcpy (soundCommand, LINUX_PLAYER);
+            strcat (soundCommand," ");
+            strcat (soundCommand,FILENAME);
+            strcat (soundCommand," >/dev/null 2>&1");
+            system(soundCommand);
+        #elif defined(_WIN32)
+            system("mpg123 assets\\duck_quack.mp3 >NUL 2>&1");
+        #endif
+    }
 
 }

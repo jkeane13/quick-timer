@@ -10,14 +10,33 @@
 void inputTimer(int *seconds);
 void alert();
 
-int main(void){
-    int seconds;
+int main(int argc, char *argv[]){
+    int seconds = 0;
 
-    inputTimer(&seconds);
-    seconds = seconds;
+    if (argc <= 1){
+        printf("Usage: timer [hour minute second] or -p switch to prompt\n");
+        return 1;
+    }
+
+    if (argc == 2 || strcmp(argv[1],"-p") == 0 ){
+        seconds = atoi(argv[1]);
+        if (seconds == 0)
+            inputTimer(&seconds);
+    }
+
+    if (argc == 3){
+        seconds = atoi(argv[1]) * 60;
+        seconds += atoi(argv[2]);
+    }
+
+    if (argc == 4){
+        seconds = atoi(argv[1]) * 60 * 60;
+        seconds += atoi(argv[2]) * 60;
+        seconds += atoi(argv[3]);
+    }
 
     // clock() does not like being put into a function, mucks with CPU execution?
-    // May need to try gettimeofday function instead, if I want to put this into a fucntion.
+    // May need to try gettimeofday function instead, if I want to put this into a function.
     // Example: <sys/time.h> and gettimeofday()
 
     printf("\e[?25l"); // disable cursor
@@ -39,7 +58,6 @@ int main(void){
     printf("\33[2K\r"); // clear line
     }
 
-    printf("\rTime's up!\n");
     alert();
 
     return 0;

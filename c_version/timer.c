@@ -1,15 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
+#define FILENAME "../assets/duck_quack.mp3"
+#define MAC_PLAYER "afplay"
+#define LINUX_PLAYER "mpg123"
+
+void inputTimer(int *seconds);
+void runTimer(int seconds);
+void alert();
+
 int main(void){
+    int seconds;
 
-    int seconds = 0;
+    inputTimer(&seconds);
+    runTimer(seconds);
+    alert();
 
+    return 0;
+}
+
+void inputTimer(int *seconds){
     printf("Enter countdown time in seconds: ");
-    scanf("%d", &seconds);
-    printf("\e[?25l"); // disable cursor
+    scanf("%d", seconds);
+}
 
+void runTimer(int seconds){
+    printf("\e[?25l"); // disable cursor
     while(seconds > 0){
 
         int hours = seconds / 3600;
@@ -26,14 +44,21 @@ int main(void){
         seconds--;
         printf("\33[2K\r"); // clear line
     }
+}
+
+void alert(){
+    char soundPlayer[100];
 
     printf("\rTime's up!\n");
     #if defined(__APPLE__)
-        system("afplay ../assets/duck_quack.mp3");
+        strcpy (soundPlayer, MAC_PLAYER);
     #elif defined(__linux__)
-        // Used mpg123 for linux for sound, since it is easy to install and does the job
-        system("mpg123 ../assets/duck_quack.mp3 >/dev/null 2>&1");
+        strcpy (soundPlayer, LINUX_PLAYER);
     #endif
-    return 0;
-}
 
+    strcat (soundPlayer," ");
+    strcat (soundPlayer,FILENAME);
+    strcat (soundPlayer," >/dev/null 2>&1");
+    system(soundPlayer);
+
+}

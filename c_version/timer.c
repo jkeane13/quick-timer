@@ -8,14 +8,38 @@
 #define LINUX_PLAYER "mpg123"
 
 void inputTimer(int *seconds);
-void runTimer(int seconds);
 void alert();
 
 int main(void){
     int seconds;
 
     inputTimer(&seconds);
-    runTimer(seconds);
+    seconds = seconds;
+
+    // clock() does not like being put into a function, mucks with CPU execution?
+    // May need to try gettimeofday function instead, if I want to put this into a fucntion.
+    // Example: <sys/time.h> and gettimeofday()
+
+    printf("\e[?25l"); // disable cursor
+
+    while(seconds > 0){
+
+    int h = seconds / 3600;
+    int m = (seconds  % 3600) / 60;
+    int s = seconds  % 60;
+
+    printf ("\r%02d:%02d:%02d", h, m, s);
+
+    fflush(stdout);
+
+    clock_t stop = clock() + CLOCKS_PER_SEC;
+    while (clock() < stop) {}
+
+    seconds--;
+    printf("\33[2K\r"); // clear line
+    }
+
+    printf("\rTime's up!\n");
     alert();
 
     return 0;
@@ -24,26 +48,6 @@ int main(void){
 void inputTimer(int *seconds){
     printf("Enter countdown time in seconds: ");
     scanf("%d", seconds);
-}
-
-void runTimer(int seconds){
-    printf("\e[?25l"); // disable cursor
-    while(seconds > 0){
-
-        int hours = seconds / 3600;
-        int minutes = (seconds  % 3600) / 60;
-        seconds = seconds  % 60;
-
-        printf ("\r%02d:%02d:%02d", hours, minutes, seconds);
-
-        fflush(stdout);
-
-        clock_t stop = clock() + CLOCKS_PER_SEC;
-        while (clock() < stop) {}
-
-        seconds--;
-        printf("\33[2K\r"); // clear line
-    }
 }
 
 void alert(){
@@ -60,5 +64,4 @@ void alert(){
     strcat (soundPlayer,FILENAME);
     strcat (soundPlayer," >/dev/null 2>&1");
     system(soundPlayer);
-
 }

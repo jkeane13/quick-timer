@@ -58,7 +58,6 @@ int main(int argc, char *argv[]){
     printf("\33[2K\r"); // clear line
     }
 
-    printf("\rTime's up!\n");
     alert();
 
     return 0;

@@ -7,7 +7,6 @@
   installed to be able to play mp3 files
 
 ## Future planned features
-- Proper Usage
 - Start a timer by clock finish time (eg. 4:30)
 - Start a timer by am/pm whole numbers (eg. 5pm)
 - Silent countdown

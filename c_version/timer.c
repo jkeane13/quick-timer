@@ -11,12 +11,13 @@
 
 void inputTimer(int *seconds);
 void alert(int times);
+void usage();
 
 int main(int argc, char *argv[]){
     int seconds = 0;
 
     if (argc <= 1){
-        printf("Usage: timer [hour minute second] or -p switch to prompt\n");
+        usage();
         return 1;
     }
 
@@ -35,6 +36,11 @@ int main(int argc, char *argv[]){
         seconds = atoi(argv[1]) * 60 * 60;
         seconds += atoi(argv[2]) * 60;
         seconds += atoi(argv[3]);
+    }
+
+    if (argc > 4){
+        usage();
+        return 1;
     }
 
     // clock() does not like being put into a function, mucks with CPU execution?
@@ -74,7 +80,7 @@ void alert(int times){
     char soundCommand[MAX_COMMAND_LENGTH];
 
     printf("\rTime's up!\n");
-    for (i = 0; i < times;i++ ){
+    for (i = 0; i < times; i++){
         #if defined(__APPLE__)
             strcpy (soundCommand, MAC_PLAYER);
             strcat (soundCommand," ");
@@ -90,5 +96,17 @@ void alert(int times){
             system("mpg123 assets\\duck_quack.mp3 >NUL 2>&1");
         #endif
     }
-
 }
+
+void usage(void){
+    printf("usage: timer [number code] [switch]                \n"
+           "                                                   \n"
+           "Enter in time code in \'hour minute second\' format\n"
+           "                                                   \n"
+           "                                                   \n"
+           "-p              prompt time input                  \n"
+           "                                                   \n"
+           "Example: One hour, 2 minutes and 3 seconds timer   \n"
+           "timer 1 2 3                                        \n");
+}
+

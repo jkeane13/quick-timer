@@ -24,5 +24,5 @@ Use a gcc compiler to build the binary
 
 ### Alert notication
 In order to play the alert, the sound mp3 must be located in
-`assets\duck_quack.mp3`
+`assets/duck_quack.mp3`
 

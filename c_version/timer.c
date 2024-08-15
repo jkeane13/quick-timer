@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include<unistd.h>
+#include <unistd.h>
 #include <time.h>
 
 #define FILENAME "assets/duck_quack.mp3"
@@ -11,6 +11,7 @@
 #define ALERT_TIMES 1
 
 void inputTimer(int *seconds);
+void runTimer (int seconds);
 void alert(int times);
 void usage();
 
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]){
 
     if (argc == 2 || strcmp(argv[1],"-p") == 0 ){
         seconds = atoi(argv[1]);
-        if (seconds == 0)
+        if (seconds == 0) // atoi will return 0 for any string
             inputTimer(&seconds);
     }
 
@@ -44,12 +45,17 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-    // clock() does not like being put into a function, mucks with CPU execution?
-    // May need to try gettimeofday function instead, if I want to put this into a function.
-    // Example: <sys/time.h> and gettimeofday()
+   runTimer(seconds);
+   alert(ALERT_TIMES);
+}
 
+void inputTimer(int *seconds){
+    printf("Enter countdown time in seconds: ");
+    scanf("%d", seconds);
+}
+
+void runTimer(int seconds){
    printf("\e[?25l"); // disable cursor
-
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds; // calculate the end time
 
@@ -72,16 +78,8 @@ int main(int argc, char *argv[]){
        seconds--;
    }
 
-    alert(ALERT_TIMES);
 
-    return 0;
 }
-
-void inputTimer(int *seconds){
-    printf("Enter countdown time in seconds: ");
-    scanf("%d", seconds);
-}
-
 void alert(int times){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];

@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include<unistd.h>
 #include <time.h>
 
 #define FILENAME "assets/duck_quack.mp3"
 #define MAC_PLAYER "afplay"
 #define LINUX_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 100
-#define ALERT_TIMES 5
+#define ALERT_TIMES 1
 
 void inputTimer(int *seconds);
 void alert(int times);
@@ -47,23 +48,29 @@ int main(int argc, char *argv[]){
     // May need to try gettimeofday function instead, if I want to put this into a function.
     // Example: <sys/time.h> and gettimeofday()
 
-    printf("\e[?25l"); // disable cursor
+   printf("\e[?25l"); // disable cursor
 
-    while(seconds > 0){
+   struct tm *endTimeInfo;
+   time_t endTime = time(NULL) + seconds; // calculate the end time
 
-    int h = seconds / 3600;
-    int m = (seconds  % 3600) / 60;
-    int s = seconds  % 60;
+   endTimeInfo = localtime(&endTime);
+   printf("Timer ends at %.2d:%.2d\n",
+            endTimeInfo->tm_hour,
+            endTimeInfo->tm_min);
 
-    printf ("\r%02d:%02d:%02d", h, m, s);
+   int timeDifference =  endTime - time(NULL);
 
-    fflush(stdout);
+   while(timeDifference > 1){
+       timeDifference =  endTime - time(NULL);
+       int h = seconds / 3600;
+       int m = (seconds  % 3600) / 60;
+       int s = seconds  % 60;
 
-    clock_t stop = clock() + CLOCKS_PER_SEC;
-    while (clock() < stop) {}
-
-    seconds--;
-    }
+       printf ("\r%02d:%02d:%02d", h, m, s);
+       fflush(stdout);
+       sleep(1);
+       seconds--;
+   }
 
     alert(ALERT_TIMES);
 

@@ -9,7 +9,7 @@ build:
 	-o $(APP_NAME)
 
 test: build
-	./$(APP_NAME)
+	./$(APP_NAME) 3
 
 deploy: build
 	mv $(APP_NAME) ${HOME}/.local/bin/

@@ -55,7 +55,6 @@ void inputTimer(int *seconds){
 }
 
 void runTimer(int seconds){
-   printf("\e[?25l"); // disable cursor
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds; // calculate the end time
 

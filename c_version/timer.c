@@ -11,7 +11,8 @@
 #define ALERT_TIMES 1
 
 int checkArgument(char* input);
-int promptTimer(char *input);
+int promptTimer(char* input);
+int convertToSeconds(char* input);
 void runTimer (int seconds);
 void alert(int times);
 void usage();
@@ -50,10 +51,47 @@ int main(int argc, char *argv[]){
 
 int checkArgument(char* input){
     int seconds = atoi(input);
-    if (strcmp(input,"-p") == 0 )
+
+    if (strcmp(input,"-p") == 0 ){
         seconds = promptTimer(input);
-    else
-        seconds = atoi(input);
+    }
+
+    if (strchr(input, ':') != NULL)
+        seconds = convertToSeconds(input);
+
+    return seconds;
+}
+
+int convertToSeconds(char* input){
+    if (strlen(input) != 5){
+        printf("Format needs to be 00:00\n");
+        exit(1);
+    }
+    int seconds;
+    char hourInput[] = {input[0], input[1], '\0'};
+    char minInput[] = {input[3], input[4], '\0'};
+    struct tm *nowTime;
+    time_t currentTime = time(NULL);
+
+    nowTime = localtime(&currentTime);
+
+    int hour_int = atoi(hourInput);
+
+    int minute_int = atoi(minInput);
+
+    if (nowTime->tm_hour > hour_int)
+        hour_int = 24 + hour_int;
+
+    int min_difference = minute_int - nowTime->tm_min;
+
+    if (min_difference < 0){
+        min_difference += 60;
+        hour_int--;
+    }
+
+    int hour_difference =  hour_int - nowTime->tm_hour;
+
+    seconds = hour_difference * 60 * 60 + min_difference * 60;
 
     return seconds;
 }

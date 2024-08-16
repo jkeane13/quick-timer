@@ -10,7 +10,8 @@
 #define MAX_COMMAND_LENGTH 100
 #define ALERT_TIMES 1
 
-void inputTimer(int *seconds);
+int checkArgument(char* input);
+int promptTimer(char *input);
 void runTimer (int seconds);
 void alert(int times);
 void usage();
@@ -23,10 +24,8 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-    if (argc == 2 || strcmp(argv[1],"-p") == 0 ){
-        seconds = atoi(argv[1]);
-        if (seconds == 0) // atoi will return 0 for any string
-            inputTimer(&seconds);
+    if (argc == 2){
+        seconds = checkArgument(argv[1]);
     }
 
     if (argc == 3){
@@ -49,9 +48,21 @@ int main(int argc, char *argv[]){
    alert(ALERT_TIMES);
 }
 
-void inputTimer(int *seconds){
+int checkArgument(char* input){
+    int seconds = atoi(input);
+    if (strcmp(input,"-p") == 0 )
+        seconds = promptTimer(input);
+    else
+        seconds = atoi(input);
+
+    return seconds;
+}
+
+int promptTimer(char* input){
+    int seconds;
     printf("Enter countdown time in seconds: ");
-    scanf("%d", seconds);
+    scanf("%d", &seconds);
+    return seconds;
 }
 
 void runTimer(int seconds){

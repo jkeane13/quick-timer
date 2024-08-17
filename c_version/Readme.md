@@ -1,14 +1,15 @@
 # C version of quick timer
 
 ## Current Features
-- Prompts for seconds and can accept argument in the format of hours, minutes
+- Prompts for seconds
+- Arguments can accept formated of hours, minutes in 24 hours or am/pm
   and seconds. Then sounds out an alarm when the timer is done
 - For alerts for Windows and Linux to work, you will need to have `mpg123`
   installed to be able to play mp3 files
 
 ## Future planned features
-- Start a timer by clock finish time (eg. 4:30)
-- Start a timer by am/pm whole numbers (eg. 5pm)
+- Prompt will include am/pm entries
+- Timer can be started by am/pm double digit numbers (eg. 12pm, instead of just 1-9)
 - Silent countdown
 - Quiet switch --quiet
 - Dry run mode

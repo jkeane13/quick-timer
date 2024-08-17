@@ -21,6 +21,7 @@ void convert12to24(char* timeInput);
 
 int main(int argc, char *argv[]){
     int seconds = 0;
+    char input[6];
 
     if (argc <= 1){
         usage();
@@ -28,7 +29,8 @@ int main(int argc, char *argv[]){
     }
 
     if (argc == 2){
-        seconds = checkArgument(argv[1]);
+        strcpy(input,argv[1]);
+        seconds = checkArgument(input);
     }
 
     if (argc == 3){
@@ -52,8 +54,7 @@ int main(int argc, char *argv[]){
 }
 
 void convert12to24(char* timeInput){
-    // Example use
-    /* convert12to24("9pm"); // Only does 1-9 am and pm for now */
+    // Only does 1-9 am and pm for now */
     int timeInputLength = strlen(timeInput);
 
     char defaultFormat[6];
@@ -75,8 +76,7 @@ void convert12to24(char* timeInput){
         strcpy(defaultFormat, convertPMToString);
     }
     strcat(defaultFormat, ":00");
-
-    printf("24 timer : %s\n", defaultFormat);
+    strcpy(timeInput,defaultFormat);
 }
 
 int checkArgument(char* input){
@@ -84,6 +84,10 @@ int checkArgument(char* input){
 
     if (strcmp(input,"-p") == 0 ){
         seconds = promptTimer(input);
+    }
+    if (strchr(input, 'm') != NULL){
+        convert12to24(input);
+        seconds = convertToSeconds(input);
     }
 
     if (strchr(input, ':') != NULL)
@@ -94,7 +98,7 @@ int checkArgument(char* input){
 
 int convertToSeconds(char* input){
     if (strlen(input) != 5){
-        printf("Format needs to be 00:00\n");
+        printf("Format needs to be 00:00, or single digit am or pm\n");
         exit(1);
     }
     int seconds;

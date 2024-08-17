@@ -17,6 +17,8 @@ void runTimer (int seconds);
 void alert(int times);
 void usage();
 
+void convert12to24(char* timeInput);
+
 int main(int argc, char *argv[]){
     int seconds = 0;
 
@@ -45,8 +47,36 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-   runTimer(seconds);
-   alert(ALERT_TIMES);
+    runTimer(seconds);
+    alert(ALERT_TIMES);
+}
+
+void convert12to24(char* timeInput){
+    // Example use
+    /* convert12to24("9pm"); // Only does 1-9 am and pm for now */
+    int timeInputLength = strlen(timeInput);
+
+    char defaultFormat[6];
+    char secondLastChar = timeInput[timeInputLength-2];
+    char lastChar = timeInput[timeInputLength-1];
+
+    if (timeInputLength == 3 & secondLastChar == 'a'){
+        strcpy(defaultFormat, "0");
+        strncat(defaultFormat, &timeInput[0], 1);
+    }
+
+    int convertToPM;
+    char convertPMToString[3];
+    if (timeInputLength == 3 & secondLastChar == 'p'){
+        int time_int = timeInput[0] - '0';
+        convertToPM = time_int + 12;
+        sprintf(convertPMToString,"%d",convertToPM);
+
+        strcpy(defaultFormat, convertPMToString);
+    }
+    strcat(defaultFormat, ":00");
+
+    printf("24 timer : %s\n", defaultFormat);
 }
 
 int checkArgument(char* input){
@@ -125,9 +155,8 @@ void runTimer(int seconds){
        sleep(1);
        seconds--;
    }
-
-
 }
+
 void alert(int times){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];

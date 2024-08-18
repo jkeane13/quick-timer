@@ -18,6 +18,7 @@ void alert(int times);
 void usage();
 
 void convert12to24(char* timeInput);
+void convert24to12(char* timeInput24);
 
 int main(int argc, char *argv[]){
     int seconds = 0;
@@ -51,6 +52,10 @@ int main(int argc, char *argv[]){
 
     runTimer(seconds);
     alert(ALERT_TIMES);
+}
+
+void convert24to12(char* time24){
+   printf("AM/PM time: %s",time24);
 }
 
 void convert12to24(char* timeInput){
@@ -151,34 +156,32 @@ int promptTimer(char* input){
     return seconds;
 }
 
-void convertIntToDoubleString(int number, char stringNumber[]){
-    if (number < 10){
-        stringNumber[0] = '0';
-        stringNumber[1] = number + '0';
-        stringNumber[2] = '\0';
-    } else{
-        sprintf(stringNumber, "%d", number);
-    }
-}
-
 void runTimer(int seconds){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds; // calculate the end time
 
    endTimeInfo = localtime(&endTime);
-
-   char minString[3];
-   char hourString[3];
    char time24String[6];
-
-   convertIntToDoubleString(endTimeInfo->tm_min, minString);
-   convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
-
-   strcpy(time24String,hourString);
+   char timeHourString[3];
+   char timeMinuteString[3];
+   char zeroChar = '0';
+   if (endTimeInfo->tm_hour < 10){
+       sprintf(timeHourString,"%d",endTimeInfo->tm_hour);
+       strcpy(time24String,timeHourString);
+   }else{
+       strncat(timeHourString, &zeroChar, 1);
+       sprintf(timeHourString,"%d",endTimeInfo->tm_hour);
+       strcat(time24String,timeHourString);
+   }
    strcat(time24String,":");
-   strcat(time24String,minString);
+       exit(1);
+   sprintf(timeMinuteString,"%d",endTimeInfo->tm_min);
+   strcat(time24String,timeMinuteString);
+   printf("24 Time: %s\n",time24String);
 
-   printf("Timer ends at %s\n", time24String);
+   printf("Timer ends at %.2d:%.2d\n",
+            endTimeInfo->tm_hour,
+            endTimeInfo->tm_min);
 
    int timeDifference =  endTime - time(NULL);
 

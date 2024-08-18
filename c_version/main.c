@@ -10,27 +10,24 @@ void usage();
 
 int main(int argc, char *argv[]){
     int seconds = 0;
-    char* input = argv[1];
     if (argc <= 1){
         usage();
         return 1;
     }
 
-    if (argc == 2){
-        seconds = checkArgument(input);
-    }
-
-    if (argc == 3){
-        seconds = convertArgsToSeconds("", argv[1], argv[2]);
-    }
-
-    if (argc == 4){
-        seconds = convertArgsToSeconds(argv[1], argv[2], argv[3]);
-    }
-
-    if (argc > 4){
-        usage();
-        return 1;
+    switch (argc){
+        case 2:
+            seconds = convertHoursMinsToSeconds("", "", argv[1]);
+            break;
+        case 3:
+            seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
+            break;
+        case 4:
+            seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
+            break;
+        default:
+            usage();
+            return 1;
     }
 
     runTimer(seconds);

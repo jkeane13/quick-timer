@@ -14,15 +14,19 @@
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
 void alert(int times, bool quiet);
 void convert12to24(char* timeInput);
 
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
+int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString){
     int hours = atoi(hoursString) * 60 * 60;
     int minute = atoi(minutesString) * 60;
     int seconds = atoi(secondsString);
+
+    if (hours == 0 | minute == 0){
+       seconds = checkArgument(secondsString);
+    }
 
     return seconds = hours + minute + seconds;
 }
@@ -67,19 +71,19 @@ void convert12to24(char* timeInput){
 }
 
 int checkArgument(char* input){
+    printf("Input: %s\n", input);
     int seconds;
 
     if (strcmp(input,"-p") == 0 ){
         seconds = promptTimer();
-    }else if (strchr(input, 'm') != NULL){
+    }else if (strchr(input, 'm') != 0){
         convert12to24(input);
         seconds = convertToSeconds(input);
-    }else if (strchr(input, ':') != NULL)
+    }else if (strchr(input, ':') != 0){
         seconds = convertToSeconds(input);
-    else{
+    }else{
         seconds = atoi(input);
     }
-
     return seconds;
 }
 

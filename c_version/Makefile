@@ -5,7 +5,7 @@ CC = gcc
 APP_NAME = timer
 
 build:
-	$(CC) $(APP_NAME).c \
+	$(CC) main.c $(APP_NAME).c \
 	-o $(APP_NAME)
 
 test: build

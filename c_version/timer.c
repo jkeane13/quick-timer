@@ -4,14 +4,12 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <time.h>
+#include "timer.h"
 
 #define FILENAME "assets/duck_quack.mp3"
 #define MAC_PLAYER "afplay"
 #define LINUX_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 100
-#define ALERT_TIMES 1
-#define QUIET false
-#define NOISY true
 
 int checkArgument(char* input);
 int promptTimer();
@@ -19,38 +17,7 @@ int convertToSeconds(char* input);
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
 void alert(int times, bool quiet);
-void usage();
-
 void convert12to24(char* timeInput);
-
-int main(int argc, char *argv[]){
-    int seconds = 0;
-    char* input = argv[1];
-    if (argc <= 1){
-        usage();
-        return 1;
-    }
-
-    if (argc == 2){
-        seconds = checkArgument(input);
-    }
-
-    if (argc == 3){
-        seconds = convertArgsToSeconds("", argv[1], argv[2]);
-    }
-
-    if (argc == 4){
-        seconds = convertArgsToSeconds(argv[1], argv[2], argv[3]);
-    }
-
-    if (argc > 4){
-        usage();
-        return 1;
-    }
-
-    runTimer(seconds);
-    alert(ALERT_TIMES, NOISY);
-}
 
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
     int hours = atoi(hoursString) * 60 * 60;
@@ -203,12 +170,12 @@ void runTimer(int seconds){
    }
 }
 
-void alert(int times, bool isQuiet){
+void alert(int times, bool play){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];
 
     printf("\rTime's up!\n");
-    if (isQuiet == QUIET)
+    if (play == false)
         exit(0);
 
     for (i = 0; i < times; i++){
@@ -227,17 +194,5 @@ void alert(int times, bool isQuiet){
             system("mpg123 assets\\duck_quack.mp3 >NUL 2>&1");
         #endif
     }
-}
-
-void usage(void){
-    printf("usage: timer [number code] [switch]                \n"
-           "                                                   \n"
-           "Enter in time code in \'hour minute second\' format\n"
-           "                                                   \n"
-           "                                                   \n"
-           "-p              prompt time input                  \n"
-           "                                                   \n"
-           "Example: One hour, 2 minutes and 3 seconds timer   \n"
-           "timer 1 2 3                                        \n");
 }
 

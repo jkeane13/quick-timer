@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <time.h>
 
 #define FILENAME "assets/duck_quack.mp3"
@@ -9,13 +10,15 @@
 #define LINUX_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 100
 #define ALERT_TIMES 1
+#define QUIET false
+#define NOISY true
 
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
-void alert(int times);
+void alert(int times, bool quiet);
 void usage();
 
 void convert12to24(char* timeInput);
@@ -23,7 +26,6 @@ void convert12to24(char* timeInput);
 int main(int argc, char *argv[]){
     int seconds = 0;
     char* input = argv[1];
-
     if (argc <= 1){
         usage();
         return 1;
@@ -47,7 +49,7 @@ int main(int argc, char *argv[]){
     }
 
     runTimer(seconds);
-    alert(ALERT_TIMES);
+    alert(ALERT_TIMES, NOISY);
 }
 
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
@@ -201,11 +203,14 @@ void runTimer(int seconds){
    }
 }
 
-void alert(int times){
+void alert(int times, bool isQuiet){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];
 
     printf("\rTime's up!\n");
+    if (isQuiet == QUIET)
+        exit(0);
+
     for (i = 0; i < times; i++){
         #if defined(__APPLE__)
             strcpy (soundCommand, MAC_PLAYER);

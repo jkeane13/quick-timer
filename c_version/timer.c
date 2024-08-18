@@ -13,6 +13,7 @@
 int checkArgument(char* input);
 int promptTimer(char* input);
 int convertToSeconds(char* input);
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
 void alert(int times);
 void usage();
@@ -21,7 +22,7 @@ void convert12to24(char* timeInput);
 
 int main(int argc, char *argv[]){
     int seconds = 0;
-    char input[6];
+    char* input = argv[1];
 
     if (argc <= 1){
         usage();
@@ -29,19 +30,15 @@ int main(int argc, char *argv[]){
     }
 
     if (argc == 2){
-        strcpy(input,argv[1]);
         seconds = checkArgument(input);
     }
 
     if (argc == 3){
-        seconds = atoi(argv[1]) * 60;
-        seconds += atoi(argv[2]);
+        seconds = convertArgsToSeconds("", argv[1], argv[2]);
     }
 
     if (argc == 4){
-        seconds = atoi(argv[1]) * 60 * 60;
-        seconds += atoi(argv[2]) * 60;
-        seconds += atoi(argv[3]);
+        seconds = convertArgsToSeconds(argv[1], argv[2], argv[3]);
     }
 
     if (argc > 4){
@@ -51,6 +48,14 @@ int main(int argc, char *argv[]){
 
     runTimer(seconds);
     alert(ALERT_TIMES);
+}
+
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
+    int hours = atoi(hoursString) * 60 * 60;
+    int minute = atoi(minutesString) * 60;
+    int seconds = atoi(secondsString);
+
+    return seconds = hours + minute + seconds;
 }
 
 void convert12to24(char* timeInput){

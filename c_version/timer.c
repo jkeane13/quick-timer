@@ -26,7 +26,7 @@ void convert12to24(char* timeInput);
 int main(int argc, char *argv[]){
     int seconds = 0;
     char* input = argv[1];
-if (argc <= 1){
+    if (argc <= 1){
         usage();
         return 1;
     }

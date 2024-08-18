@@ -49,7 +49,6 @@ void convert12to24(char* timeInput){
     }
 
     if (timeInputLength == 4 & secondLastChar == 'a'){
-        printf("AM double\n");
         strcpy(defaultFormat, "1");
         strncat(defaultFormat, &timeInput[1], 1);
     }

@@ -8,12 +8,13 @@
   installed to be able to play mp3 files
 
 ## Future planned features
-- Prompt will include am/pm entries
 - Silent countdown
 - Quiet switch --quiet
 - Dry run mode
 - Windows deployer of the application
 - Better Linux deployment
+- Fix bug with all time at current hour
+- Testing different times (after quiet and dry run mode installed)
 
 ## Installation
 ### Linux and Mac

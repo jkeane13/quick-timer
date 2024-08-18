@@ -71,7 +71,6 @@ void convert12to24(char* timeInput){
 }
 
 int checkArgument(char* input){
-    printf("Input: %s\n", input);
     int seconds;
 
     if (strcmp(input,"-p") == 0 ){
@@ -141,7 +140,7 @@ void convertIntToDoubleString(int number, char stringNumber[]){
 
 void runTimer(int seconds){
    struct tm *endTimeInfo;
-   time_t endTime = time(NULL) + seconds; // calculate the end time
+   time_t endTime = time(NULL) + seconds;
 
    endTimeInfo = localtime(&endTime);
 

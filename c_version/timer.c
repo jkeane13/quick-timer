@@ -54,8 +54,9 @@ int main(int argc, char *argv[]){
 }
 
 void convert12to24(char* timeInput){
-    // Only does 1-9 am and pm for now */
     int timeInputLength = strlen(timeInput);
+    char convertPMToString[3];
+    int convertToPM;
 
     char defaultFormat[6];
     char secondLastChar = timeInput[timeInputLength-2];
@@ -66,13 +67,26 @@ void convert12to24(char* timeInput){
         strncat(defaultFormat, &timeInput[0], 1);
     }
 
-    int convertToPM;
-    char convertPMToString[3];
     if (timeInputLength == 3 & secondLastChar == 'p'){
         int time_int = timeInput[0] - '0';
         convertToPM = time_int + 12;
         sprintf(convertPMToString,"%d",convertToPM);
+        strcpy(defaultFormat, convertPMToString);
+    }
 
+    if (timeInputLength == 4 & secondLastChar == 'a'){
+        printf("AM double\n");
+        strcpy(defaultFormat, "1");
+        strncat(defaultFormat, &timeInput[1], 1);
+    }
+
+    if (timeInputLength == 4 & secondLastChar == 'p'){
+        char hourString[3];
+        int prefix_int = atoi(hourString);
+        strncat(hourString, &timeInput[0], 1);
+        strncat(hourString, &timeInput[1], 1);
+        convertToPM = prefix_int + 12;
+        sprintf(convertPMToString,"%d",convertToPM);
         strcpy(defaultFormat, convertPMToString);
     }
     strcat(defaultFormat, ":00");

@@ -9,7 +9,6 @@
 
 ## Future planned features
 - Prompt will include am/pm entries
-- Timer can be started by am/pm double digit numbers (eg. 12pm, instead of just 1-9)
 - Silent countdown
 - Quiet switch --quiet
 - Dry run mode

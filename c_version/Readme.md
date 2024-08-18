@@ -8,8 +8,7 @@
   installed to be able to play mp3 files
 
 ## Future planned features
-- Silent countdown
-- Quiet switch --quiet
+- Quiet switch (--quiet)
 - Dry run mode
 - Windows deployer of the application
 - Better Linux deployment

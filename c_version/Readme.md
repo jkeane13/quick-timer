@@ -13,7 +13,7 @@
 - Dry run mode
 - Windows deployer of the application
 - Better Linux deployment
-- Fix bug with all time at current hour
+- Fix bug with adding time in the same hour (eg 5pm in the hour of 5 will be instant)
 - Testing different times (after quiet and dry run mode installed)
 
 ## Installation

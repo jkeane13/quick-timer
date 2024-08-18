@@ -11,7 +11,7 @@
 #define ALERT_TIMES 1
 
 int checkArgument(char* input);
-int promptTimer(char* input);
+int promptTimer();
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
@@ -99,18 +99,18 @@ void convert12to24(char* timeInput){
 }
 
 int checkArgument(char* input){
-    int seconds = atoi(input);
+    int seconds;
 
     if (strcmp(input,"-p") == 0 ){
-        seconds = promptTimer(input);
-    }
-    if (strchr(input, 'm') != NULL){
+        seconds = promptTimer();
+    }else if (strchr(input, 'm') != NULL){
         convert12to24(input);
         seconds = convertToSeconds(input);
-    }
-
-    if (strchr(input, ':') != NULL)
+    }else if (strchr(input, ':') != NULL)
         seconds = convertToSeconds(input);
+    else{
+        seconds = atoi(input);
+    }
 
     return seconds;
 }
@@ -149,10 +149,11 @@ int convertToSeconds(char* input){
     return seconds;
 }
 
-int promptTimer(char* input){
-    int seconds;
-    printf("Enter countdown time in seconds: ");
-    scanf("%d", &seconds);
+int promptTimer(){
+    char entry[10];
+    printf("Enter seconds or time: ");
+    scanf("%s", entry);
+    int seconds = checkArgument(entry);
     return seconds;
 }
 

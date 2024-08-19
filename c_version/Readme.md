@@ -20,6 +20,7 @@ In order to play the alert, the sound mp3 must be located in
 
 ## Todo List
 ### Future planned features
+- Play 12 hour time for Timer ends output
 - Windows deployer
 - Better linux deployment
 - Function testing framework

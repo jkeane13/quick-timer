@@ -152,8 +152,6 @@ void convert12to24(char* timeInput){
     }
 
     strcpy(timeInput,clock24Time);
-
-    printf("24 Time: %s\n", timeInput);
 }
 
 int checkArgument(char* input){

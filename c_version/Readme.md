@@ -28,3 +28,8 @@ In order to play the alert, the sound mp3 must be located in
 - Performance testing framework
 - Alternative alert to use beeps if sound file doesn't exit
 
+## Buggy Input Times to Fix
+- Any double digit 12-23
+- Any hour digit in the same hour. Eg - 8:34 won't work if it is 8:28
+- Any 00:00 - 00:59
+- 12:00am, 12:00pm

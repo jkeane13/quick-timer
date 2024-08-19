@@ -6,7 +6,8 @@ int promptTimer();
 int convertToSeconds(char* input);
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
-void alert(int times, bool quiet);
+void alert(int times, bool quietMode);
+void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 #endif
 

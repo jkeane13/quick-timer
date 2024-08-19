@@ -16,8 +16,19 @@ int promptTimer();
 int convertToSeconds(char* input);
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds);
-void alert(int times, bool quiet);
+void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
+void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
+
+void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
+    if (strcmp(argument, "--quiet") == 0){
+        *quietMode = true;
+    }
+    if (strcmp(argument, "--dry-run") == 0){
+        *quietMode = true;
+        *dryRun = true;
+    }
+}
 
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString){
     int hours = atoi(hoursString) * 60 * 60;
@@ -248,12 +259,12 @@ void runTimer(int seconds){
    }
 }
 
-void alert(int times, bool play){
+void alert(int times, bool quietMode){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];
 
     printf("\rTime's up!\n");
-    if (play == false)
+    if (quietMode == true)
         exit(0);
 
     for (i = 0; i < times; i++){

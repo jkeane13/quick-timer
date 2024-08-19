@@ -3,11 +3,12 @@
 #include "timer.h"
 
 #define ALERT_TIMES 1
-#define NOISY true
 
 void usage();
 
 int main(int argc, char *argv[]){
+    bool quietMode = false;
+    bool dryRun = false;
     int seconds = 0;
     if (argc <= 1){
         usage();
@@ -19,18 +20,34 @@ int main(int argc, char *argv[]){
             seconds = convertHoursMinsToSeconds("", "", argv[1]);
             break;
         case 3:
-            seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
+            checkforEndSwitch(argv[2], &quietMode, &dryRun);
+            if (quietMode == true || dryRun == true)
+                seconds = convertHoursMinsToSeconds("", "", argv[1]);
+            else
+                seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
             break;
         case 4:
-            seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
+            checkforEndSwitch(argv[3], &quietMode, &dryRun);
+            if (quietMode == true || dryRun == true)
+                seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
+            else
+                seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
+            break;
+        case 5:
+            checkforEndSwitch(argv[4], &quietMode, &dryRun);
+            if (quietMode == true || dryRun == true)
+                seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
+            else{
+                usage();
+                return 1;
+            }
             break;
         default:
             usage();
             return 1;
     }
-
     runTimer(seconds);
-    alert(ALERT_TIMES, NOISY);
+    alert(ALERT_TIMES, quietMode);
 }
 
 void usage(void){

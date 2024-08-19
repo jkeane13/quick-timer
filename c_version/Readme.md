@@ -20,7 +20,6 @@ In order to play the alert, the sound mp3 must be located in
 ## Todo List
 ### Future planned features
 - Better argument reading in main
-- Quiet switch `--quiet`
 - Dry run mode `--dry-run`
 - Windows deployer
 - Better linux deployment

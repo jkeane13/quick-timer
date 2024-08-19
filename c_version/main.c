@@ -57,6 +57,7 @@ void usage(void){
            "                                                   \n"
            "                                                   \n"
            "-p              prompt time input                  \n"
+           "--quiet         Doesn't play the alert             \n"
            "                                                   \n"
            "Example: One hour, 2 minutes and 3 seconds timer   \n"
            "timer 1 2 3                                        \n");

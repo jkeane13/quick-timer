@@ -41,6 +41,18 @@ void convert12to24(char* timeInput){
     int prefix_int;
     char clock24Time[6];
     char secondLastChar = timeInput[timeInputLength-2];
+    char thirdLastChar = timeInput[timeInputLength-3];
+
+    // *:**
+    if (timeInputLength == 4 & thirdLastChar == ':'){
+        strcpy(clock24Time, "0");
+        strcat(clock24Time, timeInput);
+    }
+
+    //12:** (am for now, need to go to the next one, if timer is run after 12pm)
+    if (timeInputLength == 5 & timeInput[0] == '1' &timeInput[1] == '2'){
+        strcat(clock24Time, timeInput);
+    }
 
     // *am
     if (timeInputLength == 3 & secondLastChar == 'a'){
@@ -142,6 +154,7 @@ int checkArgument(char* input){
         convert12to24(input);
         seconds = convertToSeconds(input);
     }else if (strchr(input, ':') != 0){
+        convert12to24(input);
         seconds = convertToSeconds(input);
     }else{
         seconds = atoi(input);
@@ -150,7 +163,7 @@ int checkArgument(char* input){
 }
 
 int convertToSeconds(char* input){
-    if (strlen(input) != 5){
+    if (strlen(input) > 5){
         printf("Format needs to be 00:00, or single digit am or pm\n");
         exit(1);
     }

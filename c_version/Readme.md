@@ -19,7 +19,6 @@ In order to play the alert, the sound mp3 must be located in
 
 ## Todo List
 ### Future planned features
-- Accept 00:00am and 00:00pm times
 - Better argument reading in main
 - Quiet switch `--quiet`
 - Dry run mode `--dry-run`
@@ -32,8 +31,7 @@ In order to play the alert, the sound mp3 must be located in
 - Alternative alert to use beeps if sound file doesn't exit
 
 ### Bugs
-- Adding time in the same hour (eg `5pm` alert will be instant )
-- 12am and 12pm will go to the first 12 hour mark
+- Go to the next 12:30 or 00:30 if it is past 12pm in the current time
 
 ### Clean up
 - Rename alert to make noise for better clarity

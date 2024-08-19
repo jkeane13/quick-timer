@@ -3,6 +3,7 @@
 ## Current Features
 - Prompts for time with the `-p` switch
 - Arguments can be am/pm, hours, minutes and seconds and 24 hour
+- Has a `--quiet` switch to not make a noise at the end of the timer
 - For alerts for Windows and Linux to work, you will need to have `mpg123`
   installed to be able to play mp3 files
 
@@ -19,22 +20,11 @@ In order to play the alert, the sound mp3 must be located in
 
 ## Todo List
 ### Future planned features
-- Better argument reading in main
-- Dry run mode `--dry-run`
+- Play 12 hour time for Timer ends output
 - Windows deployer
 - Better linux deployment
 - Function testing framework
 - Output testing framework
 - Performance testing framework
-- Accept 0:00 arguments
 - Alternative alert to use beeps if sound file doesn't exit
 
-### Bugs
-- Go to the next 12:30 or 00:30 if it is past 12pm in the current time
-
-### Clean up
-- Rename alert to make noise for better clarity
-- Player and filename parameter for alert for reuse
-- Separate timer and alert in its own file for resuse
-- Update usage
-- Clean up output limitation error

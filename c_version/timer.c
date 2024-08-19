@@ -15,7 +15,7 @@ int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
-void runTimer (int seconds);
+void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
@@ -225,7 +225,7 @@ void convertIntToDoubleString(int number, char stringNumber[]){
     }
 }
 
-void runTimer(int seconds){
+void runTimer (int seconds, bool dryRunMode){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
 
@@ -243,19 +243,20 @@ void runTimer(int seconds){
    strcat(time24String,minString);
 
    printf("Timer ends at %s\n", time24String);
+   if (dryRunMode == false){
+       int timeDifference =  endTime - time(NULL);
 
-   int timeDifference =  endTime - time(NULL);
+       while(timeDifference > 1){
+           timeDifference =  endTime - time(NULL);
+           int h = seconds / 3600;
+           int m = (seconds  % 3600) / 60;
+           int s = seconds  % 60;
 
-   while(timeDifference > 1){
-       timeDifference =  endTime - time(NULL);
-       int h = seconds / 3600;
-       int m = (seconds  % 3600) / 60;
-       int s = seconds  % 60;
-
-       printf ("\r%02d:%02d:%02d", h, m, s);
-       fflush(stdout);
-       sleep(1);
-       seconds--;
+           printf ("\r%02d:%02d:%02d", h, m, s);
+           fflush(stdout);
+           sleep(1);
+           seconds--;
+       }
    }
 }
 

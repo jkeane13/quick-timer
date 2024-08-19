@@ -8,7 +8,7 @@ void usage();
 
 int main(int argc, char *argv[]){
     bool quietMode = false;
-    bool dryRun = false;
+    bool dryRunMode = false;
     int seconds = 0;
     if (argc <= 1){
         usage();
@@ -20,22 +20,22 @@ int main(int argc, char *argv[]){
             seconds = convertHoursMinsToSeconds("", "", argv[1]);
             break;
         case 3:
-            checkforEndSwitch(argv[2], &quietMode, &dryRun);
-            if (quietMode == true || dryRun == true)
+            checkforEndSwitch(argv[2], &quietMode, &dryRunMode);
+            if (quietMode == true || dryRunMode == true)
                 seconds = convertHoursMinsToSeconds("", "", argv[1]);
             else
                 seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
             break;
         case 4:
-            checkforEndSwitch(argv[3], &quietMode, &dryRun);
-            if (quietMode == true || dryRun == true)
+            checkforEndSwitch(argv[3], &quietMode, &dryRunMode);
+            if (quietMode == true || dryRunMode == true)
                 seconds = convertHoursMinsToSeconds("", argv[1], argv[2]);
             else
                 seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
             break;
         case 5:
-            checkforEndSwitch(argv[4], &quietMode, &dryRun);
-            if (quietMode == true || dryRun == true)
+            checkforEndSwitch(argv[4], &quietMode, &dryRunMode);
+            if (quietMode == true || dryRunMode == true)
                 seconds = convertHoursMinsToSeconds(argv[1], argv[2], argv[3]);
             else{
                 usage();
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
             usage();
             return 1;
     }
-    runTimer(seconds);
+    runTimer(seconds, dryRunMode);
     alert(ALERT_TIMES, quietMode);
 }
 

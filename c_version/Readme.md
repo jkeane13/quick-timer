@@ -20,10 +20,9 @@ In order to play the alert, the sound mp3 must be located in
 
 ## Todo List
 ### Future planned features
-- Play 12 hour time for Timer ends output
+- Output 12 hour time when Timer ends
 - Windows deployer
-- Better linux deployment
-- Performance testing framework
+- Able to open a file at the end of a timer, via a switch
 - Alternative alert to use beeps if sound file doesn't exist
 
 ## Buggy Input Times to Fix

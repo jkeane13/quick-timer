@@ -11,8 +11,8 @@
 #define MAX_STRING 100
 
 int tests_run = 0;
-int expect;
 int result;
+int expect;
 bool resultBool;
 bool expectBool;
 
@@ -58,26 +58,56 @@ static char * correctDrySwitch() {
      return 0;
  }
 
- static char * all_tests() {
-     mu_run_test(hourMinsSeconds);
-     mu_run_test(correctQuietSwitch);
-     mu_run_test(correctDrySwitch);
-     return 0;
- }
+static char * argsSecToSeconds() {
+    printf("Convert 50 seconds string argument to seconds...\t\t\t");
+    expect = 50;
+    result = convertArgsToSeconds("","", "50");
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+    return 0;
+}
 
- int main(int argc, char **argv) {
-     printf("Running function tests...\n");
-     char *result = all_tests();
-     if (result != 0) {
-         printf("%s\n", result);
-     }
-     else {
-         printf("ALL FUNCTION TESTS PASSED\n");
-     }
-     printf("Tests run: %d\n", tests_run);
+static char * argsMinSecToSeconds() {
+    printf("Convert 2 minutes and 50 second string argument to seconds...\t\t");
+    expect = 170;
+    result = convertArgsToSeconds("","2", "50");
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+    return 0;
+}
 
-     return result != 0;
- }
+static char * argsHourMinSecToSeconds() {
+    printf("Convert 1 hour, 2 minutes and 50 seconds string argument to seconds...\t");
+    expect = 3770;
+    result = convertArgsToSeconds("1","2", "50");
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * all_tests() {
+    mu_run_test(hourMinsSeconds);
+    mu_run_test(correctQuietSwitch);
+    mu_run_test(correctDrySwitch);
+    mu_run_test(argsSecToSeconds);
+    mu_run_test(argsMinSecToSeconds);
+    mu_run_test(argsHourMinSecToSeconds);
+    return 0;
+}
+
+int main(int argc, char **argv) {
+    printf("Running function tests...\n");
+    char *result = all_tests();
+    if (result != 0) {
+        printf("%s\n", result);
+    }
+    else {
+        printf("ALL FUNCTION TESTS PASSED\n");
+    }
+    printf("Tests run: %d\n", tests_run);
+
+    return result != 0;
+}
 
 void assertInt(int expect, int result){
      if (result != expect){

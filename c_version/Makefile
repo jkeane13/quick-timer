@@ -14,8 +14,6 @@ test: build
 	@echo
 	@echo Output Testing:
 	./$(APP_NAME) 1 2 3 --dry-run
-	./$(APP_NAME) 4:30am --dry-run
-	./$(APP_NAME) 5:30pm --dry-run
 
 deploy: build
 	mv $(APP_NAME) ${HOME}/.local/bin/

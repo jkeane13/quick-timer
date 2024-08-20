@@ -11,6 +11,8 @@ test: build
 	@echo Function Testing:
 	@$(CC) $(APP_NAME)_test.c $(APP_NAME).c -o ./$(APP_NAME)_test
 	@./$(APP_NAME)_test
+
+test-full: build test
 	@echo
 	@echo Output Testing:
 	./$(APP_NAME) 1 2 3 --dry-run

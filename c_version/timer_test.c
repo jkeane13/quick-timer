@@ -102,6 +102,30 @@ static char * convertSingleHourTime7to24() {
     return 0;
 }
 
+static char * convertDoubleHourTime10to24() {
+    printf("Convert Double Hour Time String of 10:00 to 10:00 24 clock...\t\t");
+    strcpy(inputString, "10:00");
+    strcpy(expectString, "10:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertDoubleHourTime21to24() {
+    printf("Convert Double Hour Time String of 21:00 to 21:00 24 clock...\t\t");
+    strcpy(inputString, "21:00");
+    strcpy(expectString, "21:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * convertSingleHourAmTime7to24() {
     printf("Convert Single Hour Time String of 7am to 07:00 24 clock...\t\t");
     strcpy(inputString, "7pm");
@@ -158,6 +182,8 @@ static char * all_tests() {
     mu_run_test(argsMinSecToSeconds);
     mu_run_test(argsHourMinSecToSeconds);
     mu_run_test(convertSingleHourTime7to24);
+    mu_run_test(convertDoubleHourTime10to24);
+    mu_run_test(convertDoubleHourTime21to24);
     mu_run_test(convertSingleHourAmTime7to24);
     mu_run_test(convertSingleHourPmTime7to24);
     mu_run_test(convertHourMinAmTime7to24);
@@ -181,7 +207,7 @@ int main(int argc, char **argv) {
 
 void assertInt(int expect, int result){
      if (result != expect){
-         printf(RED "[ FAIL] expected %d, ", expect);
+         printf(RED "[ FAIL ] expected %d, ", expect);
          printf("got %d\n", result);
          printf(RESET);
      }else
@@ -191,7 +217,7 @@ void assertInt(int expect, int result){
 
 void assertBool(bool expect, bool result){
      if (result != expect){
-         printf(RED "[ FAIL] expected %s, ", expect ? "true" : "false");
+         printf(RED "[ FAIL ] expected %s, ", expect ? "true" : "false");
          printf("got %s\n", result ? "true": "false");
          printf(RESET);
      }else
@@ -201,7 +227,7 @@ void assertBool(bool expect, bool result){
 
 void assertString(char* expect, char* result){
      if (strcmp(expect,result) != 0){
-         printf(RED "[ FAIL] expected %s, ", expect);
+         printf(RED "[ FAIL ] expected %s, ", expect);
          printf("got %s\n", result);
          printf(RESET);
      }else

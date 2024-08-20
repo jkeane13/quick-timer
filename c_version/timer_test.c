@@ -9,15 +9,15 @@
 #define RESET   "\x1B[0m"
 
 int tests_run = 0;
-double value = 10;
 int expect;
+int result;
 
 void assertStats(int expect, int result);
 
  static char * hourMinsSeconds() {
      printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
      expect = 10921;
-     int result = convertHoursMinsToSecondsInt(3, 2, 1);
+     result = convertHoursMinsToSecondsInt(3, 2, 1);
      assertStats(expect, result);
      mu_assert("", result == expect);
      return 0;
@@ -30,7 +30,6 @@ void assertStats(int expect, int result);
 
  int main(int argc, char **argv) {
      printf("Running function tests...\n");
-     printf("Value to %.0lf\n", value);
      char *result = all_tests();
      if (result != 0) {
          printf("%s\n", result);

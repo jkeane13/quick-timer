@@ -9,7 +9,12 @@ build:
 	-o $(APP_NAME)
 
 test: build
-	./$(APP_NAME) 3
+	echo Function Testing:
+	$(CC) $(APP_NAME)_test.c $(APP_NAME).c -o ./$(APP_NAME)_test
+	./$(APP_NAME)_test
+	echo
+	echo Output Testing:
+	./$(APP_NAME) 3 --dry-run
 
 deploy: build
 	mv $(APP_NAME) ${HOME}/.local/bin/

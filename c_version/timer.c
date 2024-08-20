@@ -14,6 +14,7 @@
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
+int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds);
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
@@ -28,6 +29,13 @@ void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
         *quietMode = true;
         *dryRun = true;
     }
+}
+
+int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds){
+    hours = hours  * 60 * 60;
+    minutes = minutes * 60;
+
+    return seconds = hours + minutes + seconds;
 }
 
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString){

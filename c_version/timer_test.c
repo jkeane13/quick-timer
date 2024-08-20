@@ -52,7 +52,7 @@ static char * correctDrySwitch() {
  static char * hourMinsSeconds() {
      printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
      expect = 10921;
-     result = convertHoursMinsToSecondsInt(3, 2, 1);
+     result = convertHoursMinsToSeconds(3, 2, 1);
      assertInt(expect, result);
      mu_assert("", result == expect);
      return 0;

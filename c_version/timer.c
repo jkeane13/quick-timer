@@ -15,7 +15,7 @@ int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
 int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds);
-int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
@@ -38,7 +38,7 @@ int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds){
     return seconds = hours + minutes + seconds;
 }
 
-int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString){
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
     int hours = atoi(hoursString);
     int minutes = atoi(minutesString);
     int seconds = atoi(secondsString);

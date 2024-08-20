@@ -4,7 +4,7 @@
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
-int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds);
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);

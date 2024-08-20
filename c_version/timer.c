@@ -140,22 +140,31 @@ void convert12to24(char* timeInput){
 
     // **:**am
     if (timeInputLength == 7 & secondLastChar == 'a'){
-        strcpy(clock24Time, "1");
-        strncat(clock24Time, &timeInput[1], 1);
-        strncat(clock24Time, &timeInput[2], 1);
+        if(timeInput[0] == '1' & timeInput[1] == '2'){
+            strcpy(clock24Time, "00:");
+        }
+        else{
+            strcpy(clock24Time, "");
+            strncat(clock24Time, &timeInput[1], 1);
+            strncat(clock24Time, &timeInput[2], 1);
+        }
         strncat(clock24Time, &timeInput[3], 1);
         strncat(clock24Time, &timeInput[4], 1);
     }
 
     // **:**pm
     if (timeInputLength == 7 & secondLastChar == 'p'){
-        strncat(hourString, &timeInput[0], 1);
-        strncat(hourString, &timeInput[1], 1);
-        int prefix_int = atoi(hourString);
-        convertToPM = prefix_int + 12;
-        sprintf(convertPMToString,"%d",convertToPM);
-        strcpy(clock24Time, convertPMToString);
-        strncat(clock24Time, &timeInput[2], 1);
+        if(timeInput[0] == '1' & timeInput[1] == '2'){
+            strcpy(clock24Time, "12:");
+        }else{
+            strncat(hourString, &timeInput[0], 1);
+            strncat(hourString, &timeInput[1], 1);
+            int prefix_int = atoi(hourString);
+            convertToPM = prefix_int + 12;
+            sprintf(convertPMToString,"%d",convertToPM);
+            strcpy(clock24Time, convertPMToString);
+            strncat(clock24Time, &timeInput[2], 1);
+        }
         strncat(clock24Time, &timeInput[3], 1);
         strncat(clock24Time, &timeInput[4], 1);
     }

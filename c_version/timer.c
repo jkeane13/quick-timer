@@ -39,15 +39,16 @@ int convertHoursMinsToSecondsInt(int hours, int minutes, int seconds){
 }
 
 int convertHoursMinsToSeconds(char* hoursString, char* minutesString, char* secondsString){
-    int hours = atoi(hoursString) * 60 * 60;
-    int minute = atoi(minutesString) * 60;
+    int hours = atoi(hoursString);
+    int minutes = atoi(minutesString);
     int seconds = atoi(secondsString);
 
-    if (hours == 0 | minute == 0){
+    if (hours == 0 | minutes == 0){
        seconds = checkArgument(secondsString);
     }
+    seconds = convertHoursMinsToSecondsInt(hours, minutes, seconds);
 
-    return seconds = hours + minute + seconds;
+    return seconds;
 }
 
 void convert12to24(char* timeInput){

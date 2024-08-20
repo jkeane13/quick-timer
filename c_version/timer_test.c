@@ -174,10 +174,34 @@ static char * convertHourMinAmTime7to24() {
     return 0;
 }
 
+static char * convertHourMinAmTime12to24() {
+    printf("Convert Double 12th Hour Time String of 12:30am to 00:30 24 clock...\t");
+    strcpy(inputString, "12:30am");
+    strcpy(expectString, "00:30");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * convertHourMinPmTime7to24() {
-    printf("Convert Single Hour Time String of 7:30pm to 19:30 24 clock...\t\t");
+    printf("Convert Double Hour Time String of 7:30pm to 19:30 24 clock...\t\t");
     strcpy(inputString, "7:30pm");
     strcpy(expectString, "19:30");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertHourMinPmTime12to24() {
+    printf("Convert Double 12th Hour Time String of 12:30pm to 12:30 24 clock...\t");
+    strcpy(inputString, "12:30pm");
+    strcpy(expectString, "12:30");
     convert12to24(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -200,7 +224,9 @@ static char * all_tests() {
     mu_run_test(convertSingleHourAmTime7to24);
     mu_run_test(convertSingleHourPmTime7to24);
     mu_run_test(convertHourMinAmTime7to24);
+    mu_run_test(convertHourMinAmTime12to24);
     mu_run_test(convertHourMinPmTime7to24);
+    mu_run_test(convertHourMinPmTime12to24);
     return 0;
 }
 
@@ -211,7 +237,7 @@ int main(int argc, char **argv) {
         printf("%s\n", result);
     }
     else {
-        printf("ALL FUNCTION TESTS PASSED\n");
+        printf("");
     }
     printf("Tests run: %d\n", tests_run);
 

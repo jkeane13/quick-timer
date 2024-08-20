@@ -28,3 +28,4 @@ In order to play the alert, the sound mp3 must be located in
 
 ## Buggy Input Times to Fix
 - Any hour digit in the same hour. Eg - 8:34 won't work if it is 8:28
+- 12am and 12pm inputs

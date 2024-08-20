@@ -12,18 +12,14 @@ int tests_run = 0;
 double value = 10;
 int expect;
 
+void assertStats(int expect, int result);
+
  static char * hourMinsSeconds() {
-     printf("Convert Hours Mins Seconds to Seconds...\t\t");
+     printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
      expect = 10921;
      int result = convertHoursMinsToSecondsInt(3, 2, 1);
-     if (result != expect){
-         printf(RED "[ FAIL] expected %d: ", expect);
-         printf("got %d\n", result);
-         printf(RESET);
-     }else
-        printf(GREEN "[ PASS ]\n");
-         printf(RESET);
-     mu_assert("Fail", result == expect);
+     assertStats(expect, result);
+     mu_assert("", result == expect);
      return 0;
  }
 
@@ -46,3 +42,14 @@ int expect;
 
      return result != 0;
  }
+
+void assertStats(int expect, int result){
+     if (result != expect){
+         printf(RED "[ FAIL] expected %d: ", expect);
+         printf("got %d\n", result);
+         printf(RESET);
+     }else
+        printf(GREEN "[ PASS ]\n");
+         printf(RESET);
+
+}

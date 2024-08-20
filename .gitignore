@@ -1,2 +1,5 @@
 timer
 ./timer
+timer_test
+./timer_test
+../timer_test

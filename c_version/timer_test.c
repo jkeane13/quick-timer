@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
 #include "minunit.h"
 #include "timer.h"
 #define RED     "\x1B[31m"
@@ -15,9 +16,13 @@ int result;
 int expect;
 bool resultBool;
 bool expectBool;
+char inputString[MAX_STRING];
+char resultString[MAX_STRING];
+char expectString[MAX_STRING];
 
 void assertInt(int expect, int result);
 void assertBool(bool expect, bool result);
+void assertString(char *expect, char* result);
 
 static char * correctQuietSwitch() {
      printf("Correct quiet switch entered...\t\t\t\t\t\t");
@@ -85,6 +90,66 @@ static char * argsHourMinSecToSeconds() {
     return 0;
 }
 
+static char * convertSingleHourTime7to24() {
+    printf("Convert Single Hour Time String of 7:00 to 07:00 24 clock...\t\t");
+    strcpy(inputString, "7:00");
+    strcpy(expectString, "07:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertSingleHourAmTime7to24() {
+    printf("Convert Single Hour Time String of 7am to 07:00 24 clock...\t\t");
+    strcpy(inputString, "7pm");
+    strcpy(expectString, "19:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertSingleHourPmTime7to24() {
+    printf("Convert Single Hour Time String of 7pm to 19:00 24 clock...\t\t");
+    strcpy(inputString, "7pm");
+    strcpy(expectString, "19:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertHourMinAmTime7to24() {
+    printf("Convert Single Hour Time String of 7:30am to 07:30 24 clock...\t\t");
+    strcpy(inputString, "7:30am");
+    strcpy(expectString, "07:30");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertHourMinPmTime7to24() {
+    printf("Convert Single Hour Time String of 7:30pm to 19:30 24 clock...\t\t");
+    strcpy(inputString, "7:30pm");
+    strcpy(expectString, "19:30");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * all_tests() {
     mu_run_test(hourMinsSeconds);
     mu_run_test(correctQuietSwitch);
@@ -92,6 +157,11 @@ static char * all_tests() {
     mu_run_test(argsSecToSeconds);
     mu_run_test(argsMinSecToSeconds);
     mu_run_test(argsHourMinSecToSeconds);
+    mu_run_test(convertSingleHourTime7to24);
+    mu_run_test(convertSingleHourAmTime7to24);
+    mu_run_test(convertSingleHourPmTime7to24);
+    mu_run_test(convertHourMinAmTime7to24);
+    mu_run_test(convertHourMinPmTime7to24);
     return 0;
 }
 
@@ -111,7 +181,7 @@ int main(int argc, char **argv) {
 
 void assertInt(int expect, int result){
      if (result != expect){
-         printf(RED "[ FAIL] expected %d: ", expect);
+         printf(RED "[ FAIL] expected %d, ", expect);
          printf("got %d\n", result);
          printf(RESET);
      }else
@@ -121,8 +191,18 @@ void assertInt(int expect, int result){
 
 void assertBool(bool expect, bool result){
      if (result != expect){
-         printf(RED "[ FAIL] expected %s: ", expect ? "true" : "false");
+         printf(RED "[ FAIL] expected %s, ", expect ? "true" : "false");
          printf("got %s\n", result ? "true": "false");
+         printf(RESET);
+     }else
+        printf(GREEN "[ PASS ]\n");
+         printf(RESET);
+}
+
+void assertString(char* expect, char* result){
+     if (strcmp(expect,result) != 0){
+         printf(RED "[ FAIL] expected %s, ", expect);
+         printf("got %s\n", result);
          printf(RESET);
      }else
         printf(GREEN "[ PASS ]\n");

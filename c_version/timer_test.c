@@ -114,6 +114,18 @@ static char * convertDoubleHourTime10to24() {
     return 0;
 }
 
+static char * convertDoubleHourTime21to24() {
+    printf("Convert Double Hour Time String of 21:00 to 21:00 24 clock...\t\t");
+    strcpy(inputString, "21:00");
+    strcpy(expectString, "21:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * convertSingleHourAmTime7to24() {
     printf("Convert Single Hour Time String of 7am to 07:00 24 clock...\t\t");
     strcpy(inputString, "7pm");
@@ -171,6 +183,7 @@ static char * all_tests() {
     mu_run_test(argsHourMinSecToSeconds);
     mu_run_test(convertSingleHourTime7to24);
     mu_run_test(convertDoubleHourTime10to24);
+    mu_run_test(convertDoubleHourTime21to24);
     mu_run_test(convertSingleHourAmTime7to24);
     mu_run_test(convertSingleHourPmTime7to24);
     mu_run_test(convertHourMinAmTime7to24);

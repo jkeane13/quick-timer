@@ -69,6 +69,11 @@ void convert12to24(char* timeInput){
         strcat(clock24Time, timeInput);
     }
 
+    // **:**
+    if (timeInputLength == 5 & thirdLastChar == ':'){
+        strcpy(clock24Time,timeInput);
+    }
+
     //12:** (am for now, need to go to the next one, if timer is run after 12pm)
     if (timeInputLength == 5 & timeInput[0] == '1' &timeInput[1] == '2'){
         strcat(clock24Time, timeInput);

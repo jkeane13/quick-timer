@@ -19,6 +19,7 @@ int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsSt
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
+void convert24ClockTo12(char* clockTime);
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
@@ -251,6 +252,7 @@ void runTimer (int seconds, bool dryRunMode){
    char minString[3];
    char hourString[3];
    char time24String[6];
+   char time12String[10];
 
    convertIntToDoubleString(endTimeInfo->tm_min, minString);
    convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
@@ -259,7 +261,11 @@ void runTimer (int seconds, bool dryRunMode){
    strcat(time24String,":");
    strcat(time24String,minString);
 
-   printf("Timer ends at %s\n", time24String);
+   strcpy(time12String,time24String);
+
+   convert24ClockTo12(time12String);
+
+   printf("Timer ends at %s\n", time12String);
    if (dryRunMode == false){
        int timeDifference =  endTime - time(NULL);
 
@@ -275,6 +281,43 @@ void runTimer (int seconds, bool dryRunMode){
            seconds--;
        }
    }
+}
+
+void convert24ClockTo12(char* clockTime){
+    char timerSuffix[4];
+
+    int lastCharPostition = strlen(clockTime) - 1;
+    int secondLastCharPostition = strlen(clockTime) - 2;
+
+    char hourString[] = {clockTime[0], clockTime[1],'\0'};
+    char minString[] = {clockTime[secondLastCharPostition], clockTime[lastCharPostition],'\0'};
+    char separator = ':';
+    int hour;
+    int minute;;
+
+    hour = atoi(hourString);
+
+    if (hour < 12){
+        strcpy(timerSuffix," am");
+    }else{
+        hour -= 12;
+        strcpy(timerSuffix," pm");
+    }
+
+    if (hour == 0){
+        hour +=12;
+    }
+
+    sprintf(hourString, "%d", hour);
+    strcpy(clockTime, hourString);
+    minute = atoi(minString);
+
+    if (minute > 0){
+        strncat(clockTime, &separator,1);
+        strcat(clockTime, minString);
+    }
+
+    strcat(clockTime, timerSuffix);
 }
 
 void alert(int times, bool quietMode){

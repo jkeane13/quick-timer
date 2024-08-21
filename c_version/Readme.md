@@ -18,12 +18,17 @@ Use a C compiler to build the binary
 In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
-## Todo List
-### Future planned features
-- Output 12 hour time when Timer ends
+##  Todo list
+Criticality is based on priority
+### Bugs
+- Timer goes off if hour is set to the same hour, even with a minute change Eg
+  8:34 won't work if it is 8:28
+- "am" and "pm" inputs will not work with there is a space between the time and
+  suffix (eg "12 pm, instead of 12pm")
+
+### Features
+- Bump the time up to 12 hours in am or pm is not specified.
+  (Eg 1:30 timer at 3:30pm will go off at 1:30am)
 - Able to open a file at the end of a timer, via a switch
 - Alternative alert to use beeps if sound file doesn't exist
 
-## Buggy Input Times to Fix
-- Timer goes off if hour is set to the same hour, even with a minute change Eg
-  8:34 won't work if it is 8:28

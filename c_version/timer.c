@@ -92,19 +92,20 @@ void convert12to24(char* timeInput){
 
     // **am
     if (timeInputLength == 4 & secondLastChar == 'a'){
+        strcpy(hourString,"");
         strncat(hourString, &timeInput[0], 1);
         strncat(hourString, &timeInput[1], 1);
-        if (strcmp(hourString,"12") != 0){
-            strcpy(clock24Time, "1");
-            strncat(clock24Time, &timeInput[1], 1);
-        }else {
+        if (strcmp(hourString,"12") == 0){
             strcpy(clock24Time, "00");
+        }else {
+            strcpy(clock24Time, hourString);
         }
         strcat(clock24Time, ":00");
     }
 
     // 1*pm
     if (timeInputLength == 4 & secondLastChar == 'p'){
+        strcpy(hourString,"");
         strncat(hourString, &timeInput[0], 1);
         strncat(hourString, &timeInput[1], 1);
         prefix_int = atoi(hourString);

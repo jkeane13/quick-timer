@@ -234,6 +234,18 @@ static char * convertHourMinPmTime12to24() {
     return 0;
 }
 
+static char * convert24HourClockto12Hour7pm() {
+    printf("Convert 24 Clock 19:00 to 7 pm clock...\t\t\t\t\t");
+    strcpy(inputString, "19:00");
+    strcpy(expectString, "7 pm");
+    convert24ClockTo12(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * all_tests() {
     mu_run_test(hourMinsSeconds);
     mu_run_test(correctQuietSwitch);
@@ -252,6 +264,7 @@ static char * all_tests() {
     mu_run_test(convertHourMinAmTime7to24);
     mu_run_test(convertHourMinAmTime12to24);
     mu_run_test(convertHourMinPmTime7to24);
+    mu_run_test(convert24HourClockto12Hour7pm);
 
     return 0;
 }

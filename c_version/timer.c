@@ -19,6 +19,7 @@ int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsSt
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
+void convert24ClockTo12(char* clock24Time);
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
@@ -259,6 +260,8 @@ void runTimer (int seconds, bool dryRunMode){
    strcat(time24String,":");
    strcat(time24String,minString);
 
+   convert24ClockTo12(time24String);
+
    printf("Timer ends at %s\n", time24String);
    if (dryRunMode == false){
        int timeDifference =  endTime - time(NULL);
@@ -275,6 +278,10 @@ void runTimer (int seconds, bool dryRunMode){
            seconds--;
        }
    }
+}
+
+void convert24ClockTo12(char* clock24Time){
+
 }
 
 void alert(int times, bool quietMode){

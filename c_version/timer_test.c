@@ -140,8 +140,32 @@ static char * convertDoubleHourTime21to24() {
 
 static char * convertSingleHourAmTime7to24() {
     printf("Convert Single Hour Time String of 7am to 07:00 24 clock...\t\t");
-    strcpy(inputString, "7pm");
-    strcpy(expectString, "19:00");
+    strcpy(inputString, "7am");
+    strcpy(expectString, "07:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertHourAmTime12to24() {
+    printf("Convert Single Hour Time String of 12am to 12:00 24 clock...\t\t");
+    strcpy(inputString, "12am");
+    strcpy(expectString, "00:00");
+    convert12to24(inputString);
+    strcpy(resultString, inputString);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * convertHourPmTime12to24() {
+    printf("Convert Single Hour Time String of 12pm to 12:00 24 clock...\t\t");
+    strcpy(inputString, "12pm");
+    strcpy(expectString, "12:00");
     convert12to24(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -218,6 +242,8 @@ static char * all_tests() {
     mu_run_test(argsMinSecToSeconds);
     mu_run_test(argsHourMinSecToSeconds);
     mu_run_test(convertSingleHourTime7to24);
+    mu_run_test(convertHourAmTime12to24);
+    mu_run_test(convertHourPmTime12to24);
     mu_run_test(convertDoubleHourTime10to24);
     mu_run_test(convert12HourTime12to24);
     mu_run_test(convertDoubleHourTime21to24);
@@ -226,7 +252,7 @@ static char * all_tests() {
     mu_run_test(convertHourMinAmTime7to24);
     mu_run_test(convertHourMinAmTime12to24);
     mu_run_test(convertHourMinPmTime7to24);
-    mu_run_test(convertHourMinPmTime12to24);
+
     return 0;
 }
 
@@ -235,9 +261,6 @@ int main(int argc, char **argv) {
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);
-    }
-    else {
-        printf("");
     }
     printf("Tests run: %d\n", tests_run);
 

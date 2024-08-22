@@ -11,16 +11,17 @@
 #define LINUX_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 100
 
+void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
+int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
+int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
-int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 void runTimer (int seconds, bool dryRunMode);
 void alert(int times, bool quietMode);
 void convert12to24(char* timeInput);
 void convert24ClockTo12(char* clockTime);
-void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
     if (strcmp(argument, "--quiet") == 0){
@@ -174,6 +175,7 @@ void convert12to24(char* timeInput){
     strcpy(timeInput,clock24Time);
 }
 
+// Not Tested
 int checkArgument(char* input){
     int seconds;
 
@@ -191,6 +193,7 @@ int checkArgument(char* input){
     return seconds;
 }
 
+// Not Tested
 int convertToSeconds(char* input){
     if (strlen(input) > 5){
         printf("Format needs to be 00:00, or single digit am or pm\n");
@@ -225,6 +228,7 @@ int convertToSeconds(char* input){
     return seconds;
 }
 
+// Not Tested
 int promptTimer(){
     char entry[10];
     printf("Enter seconds or time: ");
@@ -233,6 +237,7 @@ int promptTimer(){
     return seconds;
 }
 
+// Not Tested
 void convertIntToDoubleString(int number, char stringNumber[]){
     if (number < 10){
         stringNumber[0] = '0';
@@ -243,6 +248,7 @@ void convertIntToDoubleString(int number, char stringNumber[]){
     }
 }
 
+//Not Tested
 void runTimer (int seconds, bool dryRunMode){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
@@ -320,6 +326,7 @@ void convert24ClockTo12(char* clockTime){
     strcat(clockTime, timerSuffix);
 }
 
+// Not Tested
 void alert(int times, bool quietMode){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];

@@ -21,6 +21,8 @@ In order to play the alert, the sound mp3 must be located in
 ##  Todo list
 Criticality is based on priority
 ### Bugs
+- `timer 50 0` seems to be not reading the last parameter and setting to 50
+  seconds
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
 - "am" and "pm" inputs will not work with there is a space between the time and

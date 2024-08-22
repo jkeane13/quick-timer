@@ -34,4 +34,4 @@ Criticality is based on priority
 
 ### Quality of Life
 - Test every function in some way
-- Subdivide timer function to smaller files to reuse and easier reading
+- Subdivide timer function to smaller files for reuse and easier reading

@@ -19,6 +19,7 @@ test-full: build test
 
 deploy: build
 	mv $(APP_NAME) ${HOME}/.local/bin/
+	cp -f ../media/duck_quack.mp3 ${HOME}/.local/media/
 
 clean:
 	rm -f ./$(APP_NAME)

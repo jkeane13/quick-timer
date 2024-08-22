@@ -22,13 +22,14 @@ In order to play the alert, the sound mp3 must be located in
 Criticality is based on priority
 ### Bugs
 - `timer 50 0` seems to be not reading the last parameter and setting to 50
-  seconds
+  seconds when using the `-p` switch
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
 - "am" and "pm" inputs will not work with there is a space between the time and
   suffix (eg "12 pm, instead of 12pm")
 
 ### Features
+- x:00pm timer for xpm time and remove spacing between am/pm for timer ends
 - Bump the time up to 12 hours in am or pm is not specified.
   (Eg 1:30 timer at 3:30pm will go off at 1:30am)
 - Able to open a file at the end of a timer, via a switch

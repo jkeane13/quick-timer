@@ -7,7 +7,7 @@
 #include "../include/timer.h"
 
 #define HOME_FOLDER_UNIX "~"
-#define HOME_FOLDER_WINDOWS "{$HOME}"
+#define HOME_FOLDER_WINDOWS "\%userprofile\%"
 #define UNIX_FILENAME ".local/assets/duck_quack.mp3"
 #define WIN_FILENAME ".local\\assets\\duck_quack.mp3"
 #define MAC_PLAYER "afplay"
@@ -338,7 +338,7 @@ void alert(int times, bool quietMode){
     char soundCommand[MAX_COMMAND_LENGTH];
     char homeFolder[MAX_COMMAND_LENGTH];
     char unixSeparator = '/';
-    char winSepartor = '\\';
+    char winSeparator = '\\';
 
     printf("\rTime's up!\n");
     if (quietMode == true)

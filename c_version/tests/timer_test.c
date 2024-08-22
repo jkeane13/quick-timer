@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <math.h>
 #include <string.h>
-#include "minunit.h"
-#include "timer.h"
+#include "../include/minunit.h"
+#include "../include/timer.h"
 #define RED     "\x1B[31m"
 #define GREEN   "\x1B[32m"
 #define RESET   "\x1B[0m"

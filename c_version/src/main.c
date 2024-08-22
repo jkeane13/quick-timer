@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "timer.h"
+#include "../include/timer.h"
 
 #define ALERT_TIMES 1
 

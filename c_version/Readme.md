@@ -32,3 +32,6 @@ Criticality is based on priority
 - Able to open a file at the end of a timer, via a switch
 - Alternative alert to use beeps if sound file doesn't exist
 
+### Quality of Life
+- Test every function in some way
+- Subdivide timer function to smaller files to reuse and easier reading

@@ -4,12 +4,12 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <time.h>
-#include "timer.h"
+#include "../include/timer.h"
 
 #define HOME_FOLDER_UNIX "~"
 #define HOME_FOLDER_WINDOWS "{$HOME}"
-#define UNIX_FILENAME ".local/media/duck_quack.mp3"
-#define WIN_FILENAME ".local\\media\\duck_quack.mp3"
+#define UNIX_FILENAME ".local/assets/duck_quack.mp3"
+#define WIN_FILENAME ".local\\assets\\duck_quack.mp3"
 #define MAC_PLAYER "afplay"
 #define WIN_PLAYER "mpg123"
 #define LINUX_PLAYER "mpg123"

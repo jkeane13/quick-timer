@@ -2,25 +2,32 @@
 
 CC = gcc
 APP_NAME = timer
+TEST_APP_NAME = $(APP_NAME)_test
+SRC=src
+TEST=tests
+BIN=build
+
+SRCS := $(wildcard $(SRC)/*.c)
+SRCS_TEST := $(wildcard $(TEST)/*.c)
 
 build:
-	@$(CC) main.c $(APP_NAME).c \
-	-o $(APP_NAME)
+	@$(CC) -o $(BIN)/$(APP_NAME) $(SRCS)
 
-test: build
+test:
 	@echo Function Testing:
-	@$(CC) $(APP_NAME)_test.c $(APP_NAME).c -o ./$(APP_NAME)_test
-	@./$(APP_NAME)_test
+	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(SRC)/$(APP_NAME).c $(SRCS_TEST)
+	@$(BIN)/$(TEST_APP_NAME)
 
 test-full: build test
 	@echo
 	@echo Output Testing:
-	./$(APP_NAME) 1 2 3 --dry-run
+	$(BIN)/$(APP_NAME) 1 2 3 --dry-run
 
 deploy: build
-	mv $(APP_NAME) ${HOME}/.local/bin/
-	cp -f ../media/duck_quack.mp3 ${HOME}/.local/media/
+	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
+	 cp -f assets/duck_quack.mp3 ${HOME}/.local/assets/
 
 clean:
-	rm -f ./$(APP_NAME)
-	rm -f ./$(APP_NAME)_test
+	$(RM) $(BIN)/*
+
+.PHONY: all build

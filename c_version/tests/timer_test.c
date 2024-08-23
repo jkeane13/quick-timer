@@ -235,9 +235,9 @@ static char * convertHourMinPmTime12to24() {
 }
 
 static char * convert24HourClockto12Hour7am() {
-    printf("Convert 24 Clock 07:00 to 7 am clock...\t\t\t\t\t");
+    printf("Convert 24 Clock 07:00 to 7am clock...\t\t\t\t\t");
     strcpy(inputString, "07:00");
-    strcpy(expectString, "7 am");
+    strcpy(expectString, "7am");
     char time12String[10];
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
@@ -248,9 +248,9 @@ static char * convert24HourClockto12Hour7am() {
 }
 
 static char * convert24HourClockto12Hour7pm() {
-    printf("Convert 24 Clock 19:00 to 7 pm clock...\t\t\t\t\t");
+    printf("Convert 24 Clock 19:00 to 7pm clock...\t\t\t\t\t");
     strcpy(inputString, "19:00");
-    strcpy(expectString, "7 pm");
+    strcpy(expectString, "7pm");
     char time12String[10];
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
@@ -261,9 +261,9 @@ static char * convert24HourClockto12Hour7pm() {
 }
 
 static char * convert24HourClockto12Hour730am() {
-    printf("Convert 24 Clock 07:30 to 7:30 am clock...\t\t\t\t");
+    printf("Convert 24 Clock 07:30 to 7:30am clock...\t\t\t\t");
     strcpy(inputString, "07:30");
-    strcpy(expectString, "7:30 am");
+    strcpy(expectString, "7:30am");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -273,9 +273,9 @@ static char * convert24HourClockto12Hour730am() {
 }
 
 static char * convert24HourClockto12Hour730pm() {
-    printf("Convert 24 Clock 19:30 to 7:30 pm clock...\t\t\t\t");
+    printf("Convert 24 Clock 19:30 to 7:30pm clock...\t\t\t\t");
     strcpy(inputString, "19:30");
-    strcpy(expectString, "7:30 pm");
+    strcpy(expectString, "7:30pm");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -285,9 +285,9 @@ static char * convert24HourClockto12Hour730pm() {
 }
 
 static char * convert24HourClockto12Hour12am() {
-    printf("Convert 24 Clock 00:00 to 12 am clock...\t\t\t\t");
+    printf("Convert 24 Clock 00:00 to 12am clock...\t\t\t\t\t");
     strcpy(inputString, "00:00");
-    strcpy(expectString, "12 am");
+    strcpy(expectString, "12am");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -296,9 +296,9 @@ static char * convert24HourClockto12Hour12am() {
     return 0;
 }
 static char * convert24HourClockto12Hour1230am() {
-    printf("Convert 24 Clock 00:30 to 12:30 am clock...\t\t\t\t");
+    printf("Convert 24 Clock 00:30 to 12:30am clock...\t\t\t\t");
     strcpy(inputString, "00:30");
-    strcpy(expectString, "12:30 am");
+    strcpy(expectString, "12:30am");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -308,9 +308,9 @@ static char * convert24HourClockto12Hour1230am() {
 }
 
 static char * convert24HourClockto12Hour12pm() {
-    printf("Convert 24 Clock 12:00 to 12 pm clock...\t\t\t\t");
+    printf("Convert 24 Clock 12:00 to 12pm clock...\t\t\t\t\t");
     strcpy(inputString, "12:00");
-    strcpy(expectString, "12 pm");
+    strcpy(expectString, "12pm");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
@@ -319,9 +319,9 @@ static char * convert24HourClockto12Hour12pm() {
     return 0;
 }
 static char * convert24HourClockto12Hour1230pm() {
-    printf("Convert 24 Clock 12:30 to 12:30 pm clock...\t\t\t\t");
+    printf("Convert 24 Clock 12:30 to 12:30pm clock...\t\t\t\t");
     strcpy(inputString, "12:30");
-    strcpy(expectString, "12:30 pm");
+    strcpy(expectString, "12:30pm");
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);

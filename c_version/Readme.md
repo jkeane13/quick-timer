@@ -29,7 +29,6 @@ Criticality is based on priority
   suffix (eg "12 pm, instead of 12pm")
 
 ### Features
-- x:00pm timer for xpm time and remove spacing between am/pm for timer ends
 - Bump the time up to 12 hours in am or pm is not specified.
   (Eg 1:30 timer at 3:30pm will go off at 1:30am)
 - Able to open a file at the end of a timer, via a switch

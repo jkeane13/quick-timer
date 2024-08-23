@@ -310,10 +310,10 @@ void convert24ClockTo12(char* clockTime){
     hour = atoi(hourString);
 
     if (hour < 12){
-        strcpy(timerSuffix," am");
+        strcpy(timerSuffix,"am");
     }else{
         hour -= 12;
-        strcpy(timerSuffix," pm");
+        strcpy(timerSuffix,"pm");
     }
 
     if (hour == 0){

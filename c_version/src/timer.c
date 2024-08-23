@@ -15,7 +15,9 @@ void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
+void printSecondsEndAsClock(int seconds, char* clockType);
 void runTimer (int seconds, bool dryRunMode);
+
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
     if (strcmp(argument, "--quiet") == 0){
@@ -87,18 +89,18 @@ int convertToSeconds(char* input){
     if (nowTime->tm_hour > hourInt)
         hourInt = 24 + hourInt;
 
-    int hourDifference =  hourInt - nowTime->tm_hour;
     int minDifference = minuteInt - nowTime->tm_min;
-    int secDifference = seconds - nowTime->tm_sec;
 
     if (minDifference < 0){
         minDifference += 60;
         hourInt--;
     }
 
+    int hourDifference =  hourInt - nowTime->tm_hour;
+
     seconds = convertHoursMinsToSeconds(hourDifference,
                                         minDifference,
-                                        secDifference);
+                                        0);
 
     return seconds;
 }
@@ -123,8 +125,8 @@ void convertIntToDoubleString(int number, char stringNumber[]){
     }
 }
 
-//Not Tested
-void runTimer (int seconds, bool dryRunMode){
+// Not Tested
+void printSecondsEndAsClock(int seconds, char* clockType){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
 
@@ -132,21 +134,29 @@ void runTimer (int seconds, bool dryRunMode){
 
    char minString[3];
    char hourString[3];
-   char time24String[6];
-   char time12String[10];
+   char outputString[10];
 
-   convertIntToDoubleString(endTimeInfo->tm_min, minString);
    convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
+   convertIntToDoubleString(endTimeInfo->tm_min, minString);
 
-   strcpy(time24String,hourString);
-   strcat(time24String,":");
-   strcat(time24String,minString);
+   strcpy(outputString,hourString);
+   strcat(outputString,":");
+   strcat(outputString,minString);
 
-   strcpy(time12String,time24String);
+   if (strcmp(clockType,"24Hour") != 0 )
+       convert24ClockTo12(outputString);
 
-   convert24ClockTo12(time12String);
+   printf("%s", outputString);
+}
 
-   printf("Timer ends at %s\n", time12String);
+//Not Tested
+void runTimer (int seconds, bool dryRunMode){
+   struct tm *endTimeInfo;
+   time_t endTime = time(NULL) + seconds;
+   printf("Timer ends at ");
+   printSecondsEndAsClock(seconds,"12Hour");
+   printf("\n");
+
    if (dryRunMode == false){
        int timeDifference =  endTime - time(NULL);
 
@@ -161,6 +171,5 @@ void runTimer (int seconds, bool dryRunMode){
            sleep(1);
            seconds--;
        }
-   }
-}
+   } }
 

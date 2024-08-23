@@ -171,5 +171,6 @@ void runTimer (int seconds, bool dryRunMode){
            sleep(1);
            seconds--;
        }
-   } }
+   }
+}
 

@@ -27,12 +27,15 @@ Criticality is based on priority
   8:34 won't work if it is 8:28
 - "am" and "pm" inputs will not work with there is a space between the time and
   suffix (eg "12 pm, instead of 12pm")
+- Test Clock time to make sure it ends at the correct time
 
 ### Features
 - Bump the time up to 12 hours in am or pm is not specified.
   (Eg 1:30 timer at 3:30pm will go off at 1:30am)
 - Able to open a file at the end of a timer, via a switch
 - Alternative alert to use beeps if sound file doesn't exist
+- Convert alert function and file to a sound player with windows location
+  converter
 
 ### Quality of Life
 - Test every function in some way

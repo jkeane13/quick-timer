@@ -7,15 +7,17 @@ SRC=src
 TEST=tests
 BIN=build
 
-SRCS := $(wildcard $(SRC)/*.c)
-SRCS_TEST := $(wildcard $(TEST)/*.c)
+EXECUTABLE_SOURCE := $(SRC)/main.c
+TESTSUITE_SOURCE := $(TEST)/timer_test.c
+
+COMMON_SOURCES := $(filter-out $(TESTSUITE_SOURCE) $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
 build:
-	@$(CC) -o $(BIN)/$(APP_NAME) $(SRCS)
+	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
 	@echo Function Testing:
-	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(SRC)/$(APP_NAME).c $(SRCS_TEST)
+	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
 
 test-full: build test

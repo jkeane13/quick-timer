@@ -136,8 +136,8 @@ void printSecondsEndAsClock(int seconds, char* clockType){
    char hourString[3];
    char outputString[10];
 
-   convertIntToDoubleString(endTimeInfo->tm_min, minString);
    convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
+   convertIntToDoubleString(endTimeInfo->tm_min, minString);
 
    strcpy(outputString,hourString);
    strcat(outputString,":");
@@ -154,7 +154,7 @@ void runTimer (int seconds, bool dryRunMode){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
    printf("Timer ends at ");
-   printSecondsEndAsClock(seconds,"24Hour");
+   printSecondsEndAsClock(seconds,"12Hour");
    printf("\n");
 
    if (dryRunMode == false){

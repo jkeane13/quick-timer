@@ -8,7 +8,9 @@
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+int convertArgsToSeconds(char* hoursString,
+                         char* minutesString,
+                         char* secondsString);
 void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
 int promptTimer();
@@ -32,7 +34,9 @@ int convertHoursMinsToSeconds(int hours, int minutes, int seconds){
     return seconds = hours + minutes + seconds;
 }
 
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString){
+int convertArgsToSeconds(char* hoursString,
+                         char* minutesString,
+                         char* secondsString){
     int hours = atoi(hoursString);
     int minutes = atoi(minutesString);
     int seconds = atoi(secondsString);
@@ -69,7 +73,6 @@ int convertToSeconds(char* input){
         printf("Format needs to be 00:00, or single digit am or pm\n");
         exit(1);
     }
-    int seconds;
     char hourInput[] = {input[0], input[1], '\0'};
     char minInput[] = {input[3], input[4], '\0'};
     struct tm *nowTime;
@@ -77,23 +80,25 @@ int convertToSeconds(char* input){
 
     nowTime = localtime(&currentTime);
 
-    int hour_int = atoi(hourInput);
+    int hourInt = atoi(hourInput);
+    int minuteInt = atoi(minInput);
+    int seconds = 0;
 
-    int minute_int = atoi(minInput);
+    if (nowTime->tm_hour > hourInt)
+        hourInt = 24 + hourInt;
 
-    if (nowTime->tm_hour > hour_int)
-        hour_int = 24 + hour_int;
+    int hourDifference =  hourInt - nowTime->tm_hour;
+    int minDifference = minuteInt - nowTime->tm_min;
+    int secDifference = seconds - nowTime->tm_sec;
 
-    int min_difference = minute_int - nowTime->tm_min;
-
-    if (min_difference < 0){
-        min_difference += 60;
-        hour_int--;
+    if (minDifference < 0){
+        minDifference += 60;
+        hourInt--;
     }
 
-    int hour_difference =  hour_int - nowTime->tm_hour;
-
-    seconds = hour_difference * 60 * 60 + min_difference * 60;
+    seconds = convertHoursMinsToSeconds(hourDifference,
+                                        minDifference,
+                                        secDifference);
 
     return seconds;
 }
@@ -158,5 +163,4 @@ void runTimer (int seconds, bool dryRunMode){
        }
    }
 }
-
 

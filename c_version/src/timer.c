@@ -89,18 +89,18 @@ int convertToSeconds(char* input){
     if (nowTime->tm_hour > hourInt)
         hourInt = 24 + hourInt;
 
-    int hourDifference =  hourInt - nowTime->tm_hour;
     int minDifference = minuteInt - nowTime->tm_min;
-    int secDifference = seconds - nowTime->tm_sec;
 
     if (minDifference < 0){
         minDifference += 60;
         hourInt--;
     }
 
+    int hourDifference =  hourInt - nowTime->tm_hour;
+
     seconds = convertHoursMinsToSeconds(hourDifference,
                                         minDifference,
-                                        secDifference);
+                                        0);
 
     return seconds;
 }

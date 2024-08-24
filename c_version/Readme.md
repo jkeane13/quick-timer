@@ -38,5 +38,8 @@ Criticality is based on priority
   converter
 
 ### Quality of Life
-- Test every function in some way
+- Test every function in some way...
 - Subdivide timer function to smaller files for reuse and easier reading
+- Subdivide timer test to smaller files for reuse and easier reading
+- Convert alert function to be a cross platform sound player for reuse
+- Update test framework to be grouped up

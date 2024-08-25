@@ -21,8 +21,6 @@ In order to play the alert, the sound mp3 must be located in
 ##  Todo list
 Criticality is based on priority
 ### Bugs
-- `timer 50 0` seems to be not reading the last parameter and setting to 50
-  seconds when using the `-p` switch
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
 - "am" and "pm" inputs will not work with there is a space between the time and
@@ -43,3 +41,5 @@ Criticality is based on priority
 - Subdivide timer test to smaller files for reuse and easier reading
 - Convert alert function to be a cross platform sound player for reuse
 - Update test framework to be grouped up
+- Update prompt to read like an argument, instead of prompting for minutes and
+  seconds

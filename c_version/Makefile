@@ -20,10 +20,15 @@ test:
 	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
 
-test-full: build test
+test-dry: build test
 	@echo
 	@echo Output Testing:
 	$(BIN)/$(APP_NAME) 1 2 3 --dry-run
+
+test-prompt: build test
+	@echo
+	@echo Prompt Testing:
+	$(BIN)/$(APP_NAME) -p
 
 deploy: build
 	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/

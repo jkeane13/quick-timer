@@ -13,7 +13,7 @@ int convertArgsToSeconds(char* hoursString,
                          char* secondsString);
 void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
-int promptTimer();
+int promptTimeEnd();
 int convertToSeconds(char* input);
 void printSecondsEndAsClock(int seconds, char* clockType);
 void runTimer (int seconds, bool dryRunMode);
@@ -57,7 +57,7 @@ int checkArgument(char* input){
     int seconds;
 
     if (strcmp(input,"-p") == 0 ){
-        seconds = promptTimer();
+        seconds = promptTimeEnd();
     }else if (strchr(input, 'm') != 0){
         convert12to24(input);
         seconds = convertToSeconds(input);
@@ -108,12 +108,24 @@ int convertToSeconds(char* input){
     return seconds;
 }
 
-// Not Tested
-int promptTimer(){
-    char entry[10];
-    printf("Enter seconds or time: ");
-    scanf("%s", entry);
-    int seconds = checkArgument(entry);
+int promptTimeEnd(){
+    char firstInput[10];
+    int hoursInput;
+    int minutesInput;
+    int secondsInput;
+    int seconds;
+    printf("Enter hours or time: ");
+    scanf("%s", firstInput);
+    if (strlen(firstInput) > 2)
+        seconds = checkArgument(firstInput);
+    else{
+        hoursInput = atoi(firstInput);
+        printf("Enter mintues: ");
+        scanf("%d", &minutesInput);
+        printf("Enter seconds: ");
+        scanf("%d", &secondsInput);
+        seconds = convertHoursMinsToSeconds(hoursInput, minutesInput, secondsInput);
+    }
     return seconds;
 }
 

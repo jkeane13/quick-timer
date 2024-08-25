@@ -72,7 +72,6 @@ int checkArgument(char* input){
     return seconds;
 }
 
-// Not Tested
 int convert24ClockToSeconds(char* input){
     if (strlen(input) > 5){
         printf("Format needs to be 00:00, or single digit am or pm\n");
@@ -139,7 +138,6 @@ void convertIntToDoubleString(int number, char stringNumber[]){
     }
 }
 
-// Not Tested
 void printSecondsEndAsClock(int seconds, char* clockType){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
@@ -163,7 +161,6 @@ void printSecondsEndAsClock(int seconds, char* clockType){
    printf("%s", outputString);
 }
 
-//Not Tested
 void timerCountdown (int seconds, bool dryRunMode){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;

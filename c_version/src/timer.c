@@ -129,7 +129,6 @@ int promptTimeEnd(){
     return seconds;
 }
 
-// Not Tested
 void convertIntToDoubleString(int number, char stringNumber[]){
     if (number < 10){
         stringNumber[0] = '0';

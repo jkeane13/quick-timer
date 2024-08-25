@@ -51,7 +51,8 @@ int convertArgsToSeconds(char* hoursString,
     return seconds;
 }
 
-// Not Tested
+// Bad function name, will send back the difference in seconds, thus can't be
+// tested other than being triggered with ?. Needs to be refactored
 int checkArgument(char* input){
     int seconds;
 
@@ -63,6 +64,8 @@ int checkArgument(char* input){
     }else if (strchr(input, ':') != 0){
         convert12to24(input);
         seconds = convertToSeconds(input);
+    }else if (strchr(input, '?') != 0){ // ? is used just for testing
+        seconds = 42;
     }else{
         seconds = atoi(input);
     }

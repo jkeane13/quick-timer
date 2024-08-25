@@ -116,7 +116,7 @@ int promptTimeEnd(){
     int seconds;
     printf("Enter hours or time: ");
     scanf("%s", firstInput);
-    if (strlen(firstInput) > 2)
+    if (strchr(firstInput,':') !=0 || strchr(firstInput, 'm') !=0)
         seconds = checkArgument(firstInput);
     else{
         hoursInput = atoi(firstInput);

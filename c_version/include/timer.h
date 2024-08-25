@@ -7,7 +7,7 @@ int promptTimer();
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
-void runTimer (int seconds, bool dryRunMode);
+void timerCountdown (int seconds, bool dryRunMode);
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 // ../src/convert_clock.c

@@ -14,9 +14,9 @@ int convertArgsToSeconds(char* hoursString,
 void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
 int promptTimeEnd();
-int convertToSeconds(char* input);
+int convert24ClockToSeconds(char* input);
 void printSecondsEndAsClock(int seconds, char* clockType);
-void runTimer (int seconds, bool dryRunMode);
+void timerCountdown (int seconds, bool dryRunMode);
 
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
@@ -60,10 +60,10 @@ int checkArgument(char* input){
         seconds = promptTimeEnd();
     }else if (strchr(input, 'm') != 0){
         convert12to24(input);
-        seconds = convertToSeconds(input);
+        seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, ':') != 0){
         convert12to24(input);
-        seconds = convertToSeconds(input);
+        seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, '?') != 0){ // ? is used just for testing
         seconds = 42;
     }else{
@@ -73,7 +73,7 @@ int checkArgument(char* input){
 }
 
 // Not Tested
-int convertToSeconds(char* input){
+int convert24ClockToSeconds(char* input){
     if (strlen(input) > 5){
         printf("Format needs to be 00:00, or single digit am or pm\n");
         exit(1);
@@ -165,7 +165,7 @@ void printSecondsEndAsClock(int seconds, char* clockType){
 }
 
 //Not Tested
-void runTimer (int seconds, bool dryRunMode){
+void timerCountdown (int seconds, bool dryRunMode){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
    printf("Timer ends at ");

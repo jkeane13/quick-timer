@@ -23,9 +23,6 @@ Criticality is based on priority
 ### Bugs
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
-- "am" and "pm" inputs will not work with there is a space between the time and
-  suffix (eg "12 pm, instead of 12pm")
-- Test Clock time to make sure it ends at the correct time
 
 ### Features
 - Bump the time up to 12 hours in am or pm is not specified.

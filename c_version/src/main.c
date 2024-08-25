@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
             usage();
             return 1;
     }
-    runTimer(seconds, dryRunMode);
+    timerCountdown(seconds, dryRunMode);
     alert(ALERT_TIMES, quietMode);
 }
 

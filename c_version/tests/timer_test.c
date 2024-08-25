@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
@@ -330,6 +329,17 @@ static char * convert24HourClockto12Hour1230pm() {
     return 0;
 }
 
+//Hard to test, due to being time dependant for seconds
+static char * checkArgumentFunctionTriggered() {
+    printf("Check argument function for check is triggered\t\t\t\t");
+    strcpy(inputString, "?"); // ? is used just for testing
+    expect = 42;
+    result = checkArgument(inputString);
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+    return 0;
+}
+
 static char * all_tests() {
     mu_run_test(hourMinsSeconds);
     mu_run_test(correctQuietSwitch);
@@ -356,7 +366,7 @@ static char * all_tests() {
     mu_run_test(convert24HourClockto12Hour1230am);
     mu_run_test(convert24HourClockto12Hour12pm);
     mu_run_test(convert24HourClockto12Hour1230pm);
-
+    mu_run_test(checkArgumentFunctionTriggered);
     return 0;
 }
 

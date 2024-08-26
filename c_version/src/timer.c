@@ -16,7 +16,7 @@ int checkArgument(char* input);
 int promptTimeEnd();
 int convert24ClockToSeconds(char* input);
 void printSecondsEndAsClock(int seconds, char* clockType);
-void timerCountdown (int seconds, bool dryRunMode);
+void printTimerEndTime (int seconds);
 
 
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
@@ -123,7 +123,8 @@ int promptTimeEnd(){
         scanf("%d", &minutesInput);
         printf("Enter seconds: ");
         scanf("%d", &secondsInput);
-        seconds = convertHoursMinsToSeconds(hoursInput, minutesInput, secondsInput);
+        seconds = convertHoursMinsToSeconds(hoursInput, minutesInput,
+                secondsInput);
     }
     return seconds;
 }
@@ -161,27 +162,8 @@ void printSecondsEndAsClock(int seconds, char* clockType){
    printf("%s", outputString);
 }
 
-void timerCountdown (int seconds, bool dryRunMode){
-   struct tm *endTimeInfo;
-   time_t endTime = time(NULL) + seconds;
+void printTimerEndTime (int seconds){
    printf("Timer ends at ");
    printSecondsEndAsClock(seconds,"12Hour");
-   printf("\n");
-
-   if (dryRunMode == false){
-       int timeDifference =  endTime - time(NULL);
-
-       while(timeDifference > 1){
-           timeDifference =  endTime - time(NULL);
-           int h = seconds / 3600;
-           int m = (seconds  % 3600) / 60;
-           int s = seconds  % 60;
-
-           printf ("\r%02d:%02d:%02d", h, m, s);
-           fflush(stdout);
-           sleep(1);
-           seconds--;
-       }
-   }
 }
 

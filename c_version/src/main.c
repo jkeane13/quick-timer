@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <string.h>
 #include "../include/timer.h"
 
 #define ALERT_TIMES 1
@@ -7,49 +7,40 @@
 void usage();
 
 int main(int argc, char *argv[]){
-    bool quietMode = false;
-    bool dryRunMode = false;
+    int quietMode = 0;
+    int dryRunMode = 0;
+    int programMode = 0;
     int seconds = 0;
-    if (argc <= 1){
+    char timeString[20] ="";
+    char argSwitch[20] = "";
+    if (argc <= 1 || argc > 5){
         usage();
         return 1;
     }
 
-    switch (argc){
-        case 2:
-            seconds = convertArgsToSeconds("", "", argv[1]);
-            break;
-        case 3:
-            checkforEndSwitch(argv[2], &quietMode, &dryRunMode);
-            if (quietMode == true || dryRunMode == true)
-                seconds = convertArgsToSeconds("", "", argv[1]);
-            else
-                seconds = convertArgsToSeconds("", argv[1], argv[2]);
-            break;
-        case 4:
-            checkforEndSwitch(argv[3], &quietMode, &dryRunMode);
-            if (quietMode == true || dryRunMode == true)
-                seconds = convertArgsToSeconds("", argv[1], argv[2]);
-            else
-                seconds = convertArgsToSeconds(argv[1], argv[2], argv[3]);
-            break;
-        case 5:
-            checkforEndSwitch(argv[4], &quietMode, &dryRunMode);
-            if (quietMode == true || dryRunMode == true)
-                seconds = convertArgsToSeconds(argv[1], argv[2], argv[3]);
-            else{
-                usage();
-                return 1;
-            }
-            break;
-        default:
-            usage();
-            return 1;
+    if (strstr(argv[argc-1],"--") != 0 || strstr(argv[argc-1],".") !=0){
+        strcat(argSwitch,argv[argc-1]);
+        runEndSwitch(argSwitch, &quietMode, &dryRunMode, &programMode);
+        argc = argc -1;
     }
+
+    for (int i = 1; i < argc; i++){
+        strcat(timeString, argv[i]);
+        strcat(timeString, " ");
+    }
+
+    seconds = convertArgsToSeconds(timeString);
+
     printTimerEndTime(seconds);
-    if (dryRunMode == false)
+    if (dryRunMode == 0)
         secondsCountdown(seconds);
-    alert(ALERT_TIMES, quietMode);
+
+    if (quietMode == 0)
+        alert(ALERT_TIMES);
+
+    if (programMode)
+        runProgram(argSwitch);
+
 }
 
 void usage(void){

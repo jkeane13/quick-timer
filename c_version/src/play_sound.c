@@ -16,18 +16,13 @@
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 #define WIN_NULL_OUTPUT " >NUL 2>&1"
 
-void alert(int times, bool quietMode);
-
 // Not Tested
-void alert(int times, bool quietMode){
+void alert(int times){
     int i;
     char soundCommand[MAX_COMMAND_LENGTH];
     char homeFolder[MAX_COMMAND_LENGTH];
     char unixSeparator = '/';
     char winSeparator = '\\';
-
-    if (quietMode == true)
-        exit(0);
 
     for (i = 0; i < times; i++){
         #if defined(__APPLE__)

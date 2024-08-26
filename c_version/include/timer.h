@@ -5,18 +5,19 @@
 int checkArgument(char* input);
 int promptTimer();
 int convertToSeconds(char* input);
-int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
+int convertArgsToSeconds(char* args);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
 void printTimerEndTime (int seconds);
-void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
+void runEndSwitch(char* argSwitch, int *quietMode, int *dryRunMode, int *executeMode);
+void runProgram(char* programLocation);
 
 // ../src/convert_clock.c
 void convert12to24(char* timeInput);
 void convert24ClockTo12(char* clockTime);
 
 // ../src/play_sound.c
-void alert(int times, bool quietMode);
+void alert(int times);
 
 // ../src/countdown.c
 void secondsCountdown (int seconds);

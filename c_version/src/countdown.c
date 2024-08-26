@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <stdbool.h>
 #include <time.h>
 #include "../include/timer.h"
 
@@ -22,6 +21,6 @@ void secondsCountdown (int seconds){
        sleep(1);
        seconds--;
    }
-   printf("\nTime's up!\n");
+   printf("Time's up!\n");
 }
 

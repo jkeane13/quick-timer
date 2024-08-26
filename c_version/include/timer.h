@@ -8,7 +8,7 @@ int convertToSeconds(char* input);
 int convertArgsToSeconds(char* hoursString, char* minutesString, char* secondsString);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
-void timerCountdown (int seconds, bool dryRunMode);
+void printTimerEndTime (int seconds);
 void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
 
 // ../src/convert_clock.c
@@ -17,6 +17,9 @@ void convert24ClockTo12(char* clockTime);
 
 // ../src/play_sound.c
 void alert(int times, bool quietMode);
+
+// ../src/countdown.c
+void secondsCountdown (int seconds);
 
 #endif
 

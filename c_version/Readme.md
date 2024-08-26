@@ -23,6 +23,7 @@ Criticality is based on priority
 ### Bugs
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
+- Set executable arg to use malloc, due to random input
 
 ### Features
 - Bump the time up to 12 hours in am or pm is not specified.

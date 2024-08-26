@@ -26,7 +26,6 @@ void alert(int times, bool quietMode){
     char unixSeparator = '/';
     char winSeparator = '\\';
 
-    printf("\rTime's up!\n");
     if (quietMode == true)
         exit(0);
 

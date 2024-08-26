@@ -27,14 +27,10 @@ Criticality is based on priority
 ### Features
 - Bump the time up to 12 hours in am or pm is not specified.
   (Eg 1:30 timer at 3:30pm will go off at 1:30am)
-- Able to open a file at the end of a timer, via a switch
 - Alternative alert to use beeps if sound file doesn't exist
 - Convert alert function and file to a sound player with windows location
   converter
 
 ### Quality of Life
-- Subdivide timer function to smaller files for reuse and easier reading
 - Subdivide timer test to smaller files for reuse and easier reading
 - Convert alert function to be a cross platform sound player for reuse
-- Update prompt to read like an argument, instead of prompting for minutes and
-  seconds

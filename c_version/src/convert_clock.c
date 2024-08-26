@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 #include "../include/timer.h"
-
-void convert12to24(char* timeInput);
-void convert24ClockTo12(char* clockTime);
 
 void convert12to24(char* timeInput){
     int timeInputLength = strlen(timeInput);

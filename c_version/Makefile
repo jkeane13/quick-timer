@@ -20,17 +20,32 @@ test:
 	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
 
-test-dry: build test
+test-dry-time-hour: build test
 	@echo
 	@echo Output Testing:
-	$(BIN)/$(APP_NAME) 1 2 3 --dry-run
+	$(BIN)/$(APP_NAME) 12 20 2 --dry-run
 
-test-prompt: build test
+test-dry-time-minute: build
+	@echo
+	@echo Output Testing:
+	$(BIN)/$(APP_NAME) 2 30  --dry-run
+
+test-dry-time-second: build
+	@echo
+	@echo Output Testing:
+	$(BIN)/$(APP_NAME) 35 --dry-run
+
+test-dry-clock: build
+	@echo
+	@echo Output Testing:
+	$(BIN)/$(APP_NAME) 9:30pm --dry-run
+
+test-prompt: build
 	@echo
 	@echo Prompt Testing:
 	$(BIN)/$(APP_NAME) -p
 
-test-full: test test-dry test-prompt
+test-full: test test-dry-time-hour test-dry-time-minute test-dry-time-second test-dry-clock test-prompt
 
 deploy: build
 	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/

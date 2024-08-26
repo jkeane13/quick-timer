@@ -2,15 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdbool.h>
 #include <time.h>
 #include "../include/timer.h"
 
-void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun);
+void runEndSwitch(char* argSwitch, int *quietMode, int *dryRunMode, int *executeMode);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
-int convertArgsToSeconds(char* hoursString,
-                         char* minutesString,
-                         char* secondsString);
+int convertArgsToSeconds(char* args);
 void convertIntToDoubleString(int number, char stringNumber[]);
 int checkArgument(char* input);
 int promptTimeEnd();
@@ -18,15 +15,22 @@ int convert24ClockToSeconds(char* input);
 void printSecondsEndAsClock(int seconds, char* clockType);
 void printTimerEndTime (int seconds);
 
-
-void checkforEndSwitch(char* argument, bool* quietMode, bool* dryRun){
+void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode, int *executeMode){
     if (strcmp(argument, "--quiet") == 0){
-        *quietMode = true;
+        *quietMode = 1;
     }
     if (strcmp(argument, "--dry-run") == 0){
-        *quietMode = true;
-        *dryRun = true;
+        *quietMode = 1;
+        *dryRunMode = 1;
     }
+    if (strstr(argument, ".") != 0){
+        *quietMode = 1;
+        *executeMode = 1;
+    }
+}
+
+void runProgram(char* programLocation){
+    system(programLocation);
 }
 
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds){
@@ -36,17 +40,35 @@ int convertHoursMinsToSeconds(int hours, int minutes, int seconds){
     return seconds = hours + minutes + seconds;
 }
 
-int convertArgsToSeconds(char* hoursString,
-                         char* minutesString,
-                         char* secondsString){
-    int hours = atoi(hoursString);
-    int minutes = atoi(minutesString);
-    int seconds = atoi(secondsString);
+int convertArgsToSeconds(char* arg){
+    int hourminsec[] = {0,0,0};
+    int i = 0;
+    char commandString[10];
+    int seconds = 0;
+    int temp;
 
-    if (hours == 0 | minutes == 0){
-       seconds = checkArgument(secondsString);
+    char *token = strtok(arg, " ");
+    while (token){
+        hourminsec[i] = atoi(token);
+        i++;
+        token = strtok(NULL, " ");
     }
-    seconds = convertHoursMinsToSeconds(hours, minutes, seconds);
+
+    if (i == 1){
+        hourminsec[2] = hourminsec[0];
+        hourminsec[0] = 0;
+        sprintf(commandString, "%d", hourminsec[2]);
+        hourminsec[2] = checkArgument(arg);
+    }
+
+    if (i == 2){
+        temp = hourminsec[0];
+        hourminsec[0] = 0;
+        hourminsec[2] = hourminsec[1];
+        hourminsec[1] = temp;
+    }
+
+    seconds = convertHoursMinsToSeconds(hourminsec[0], hourminsec[1], hourminsec[2]);
 
     return seconds;
 }
@@ -159,7 +181,7 @@ void printSecondsEndAsClock(int seconds, char* clockType){
    if (strcmp(clockType,"24Hour") != 0 )
        convert24ClockTo12(outputString);
 
-   printf("%s", outputString);
+   printf("%s\n", outputString);
 }
 
 void printTimerEndTime (int seconds){

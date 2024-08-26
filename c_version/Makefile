@@ -22,30 +22,30 @@ test:
 
 test-dry-time-hour: build test
 	@echo
-	@echo Output Testing:
 	$(BIN)/$(APP_NAME) 12 20 2 --dry-run
 
 test-dry-time-minute: build
 	@echo
-	@echo Output Testing:
 	$(BIN)/$(APP_NAME) 2 30  --dry-run
 
 test-dry-time-second: build
 	@echo
-	@echo Output Testing:
 	$(BIN)/$(APP_NAME) 35 --dry-run
 
 test-dry-clock: build
 	@echo
-	@echo Output Testing:
 	$(BIN)/$(APP_NAME) 9:30pm --dry-run
+
+test-program: build
+	@echo Program Testing...
+	$(BIN)/$(APP_NAME) 1 tests/example.sh
 
 test-prompt: build
 	@echo
 	@echo Prompt Testing:
 	$(BIN)/$(APP_NAME) -p
 
-test-full: test test-dry-time-hour test-dry-time-minute test-dry-time-second test-dry-clock test-prompt
+test-all: test test-dry-time-hour test-dry-time-minute test-dry-time-second test-dry-clock test-program test-prompt
 
 deploy: build
 	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/

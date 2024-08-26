@@ -6,7 +6,6 @@
 void secondsCountdown (int seconds){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
-   printf("\n");
 
    int timeDifference =  endTime - time(NULL);
 

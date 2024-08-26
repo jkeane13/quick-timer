@@ -62,7 +62,7 @@ int convertArgsToSeconds(char* arg){
     }
 
     if (i == 2){
-        hourminsec[0] = temp;
+        temp = hourminsec[0];
         hourminsec[0] = 0;
         hourminsec[2] = hourminsec[1];
         hourminsec[1] = temp;

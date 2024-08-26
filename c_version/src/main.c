@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
     int dryRunMode = 0;
     int programMode = 0;
     int seconds = 0;
-    char timeString[20] ="";
+    char timeString[20] = "";
     char argSwitch[20] = "";
     if (argc <= 1 || argc > 5){
         usage();
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     if (strstr(argv[argc-1],"--") != 0 || strstr(argv[argc-1],".") !=0){
         strcat(argSwitch,argv[argc-1]);
         runEndSwitch(argSwitch, &quietMode, &dryRunMode, &programMode);
-        argc = argc -1;
+        argc = argc - 1;
     }
 
     for (int i = 1; i < argc; i++){
@@ -40,7 +40,6 @@ int main(int argc, char *argv[]){
 
     if (programMode)
         runProgram(argSwitch);
-
 }
 
 void usage(void){
@@ -72,4 +71,3 @@ void usage(void){
            "                                                            \n"
            );
 }
-

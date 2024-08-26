@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
     int programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
-    char argSwitch[20] = "";
+    char argSwitch[256] = "";
     if (argc <= 1 || argc > 5){
         usage();
         return 1;

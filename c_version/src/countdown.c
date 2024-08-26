@@ -20,6 +20,6 @@ void secondsCountdown (int seconds){
        sleep(1);
        seconds--;
    }
-   printf("Time's up!\n");
+   printf("\rTime's up!\n");
 }
 

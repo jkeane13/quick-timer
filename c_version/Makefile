@@ -30,6 +30,8 @@ test-prompt: build test
 	@echo Prompt Testing:
 	$(BIN)/$(APP_NAME) -p
 
+test-full: test test-dry test-prompt
+
 deploy: build
 	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
 	 cp -f assets/duck_quack.mp3 ${HOME}/.local/assets/

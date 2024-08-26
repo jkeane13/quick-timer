@@ -18,43 +18,13 @@ char expectString[MAX_STRING];
 void assertInt(int expect, int result);
 void assertString(char *expect, char* result);
 
-/* static char * correctQuietSwitch() { */
-/*      printf("Correct quiet switch entered...\t\t\t\t\t\t"); */
-/*      char* switchEnd = "--quiet"; */
-
-/*      bool quietMode = false; */
-/*      bool dryRun = false; */
-/*      checkforEndSwitch(switchEnd, &quietMode, &dryRun); */
-
-/*      expectBool = true; */
-/*      resultBool = quietMode; */
-/*      assertBool(expectBool, resultBool); */
-/*      mu_assert("", resultBool == expectBool); */
-/*      return 0; */
-/*  } */
-
-/* static char * correctDrySwitch() { */
-/*      printf("Correct dry switch entered...\t\t\t\t\t\t"); */
-/*      char* switchEnd = "--dry-run"; */
-
-/*      bool quietMode = false; */
-/*      bool dryRun = false; */
-/*      checkforEndSwitch(switchEnd, &quietMode, &dryRun); */
-
-/*      expectBool = true; */
-/*      resultBool = dryRun; */
-/*      assertBool(expectBool, resultBool); */
-/*      mu_assert("", resultBool == expectBool); */
-/*      return 0; */
-/*  } */
-
- static char * hourMinsSeconds() {
-     printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
-     expect = 10921;
-     result = convertHoursMinsToSeconds(3, 2, 1);
-     assertInt(expect, result);
-     mu_assert("", result == expect);
-     return 0;
+static char * hourMinsSeconds() {
+    printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
+    expect = 10921;
+    result = convertHoursMinsToSeconds(3, 2, 1);
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+    return 0;
  }
 
 static char * argsSecToSeconds() {

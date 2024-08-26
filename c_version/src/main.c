@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
         secondsCountdown(seconds);
 
     if (quietMode == 0)
-        alert(ALERT_TIMES);
+        playSound(ALERT_TIMES);
 
     if (programMode)
         runProgram(argSwitch);

@@ -10,7 +10,8 @@ int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
 void printTimerEndTime (int seconds);
 void runEndSwitch(char* argSwitch, int *quietMode, int *dryRunMode, int *executeMode);
-void runProgram(char* programLocation);
+void runProgram(char* programLocation, int silentOutput);
+int convert24ClockToSeconds(char* input);
 
 // ../src/convert_clock.c
 void convert12to24(char* timeInput);

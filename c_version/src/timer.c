@@ -1,16 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 #include <time.h>
 #include "../include/timer.h"
 
-void runProgram(char* programLocation){
-    system(programLocation);
+#define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
+
+void runProgram(char* programLocation, int silentOutput){
+    char command[256];
+    if (access(programLocation, F_OK) == 0) {
+        printf("Program Location: %s\n",programLocation);
+    } else {
+        printf("Error: File doesn't exist");
+        exit(1);
+    }
+    strcpy(command,programLocation);
+    if (silentOutput)
+        strcat(command,UNIX_NULL_OUTPUT);
+    system(command);
 }
 
 int convert24ClockToSeconds(char* input){
-    if (strlen(input) > 5){
-        printf("Format needs to be 00:00, or single digit am or pm\n");
+    if (strlen(input) > 5 || input[2] != ':'){
+        printf("Format needs to be 24 hour time - 00:00\n");
         exit(1);
     }
     char hourInput[] = {input[0], input[1], '\0'};

@@ -18,25 +18,6 @@ char expectString[MAX_STRING];
 void assertInt(int expect, int result);
 void assertString(char *expect, char* result);
 
-static char * hourMinsSeconds() {
-    printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
-    expect = 10921;
-    result = convertHoursMinsToSeconds(3, 2, 1);
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
- }
-
-static char * argsSecToSeconds() {
-    printf("Convert 50 seconds string argument to seconds...\t\t\t");
-    expect = 50;
-    result = convertArgsToSeconds("50");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
-}
-
-
 static char * convertSingleHourTime7to24() {
     printf("Convert Single Hour Time String of 7:00 to 07:00 24 clock...\t\t");
     strcpy(inputString, "7:00");
@@ -314,8 +295,6 @@ static char * convertIntToDoublestring12() {
 }
 
 static char * all_tests() {
-    mu_run_test(hourMinsSeconds);
-    mu_run_test(argsSecToSeconds);
     mu_run_test(convertSingleHourTime7to24);
     mu_run_test(convertHourAmTime12to24);
     mu_run_test(convertHourPmTime12to24);

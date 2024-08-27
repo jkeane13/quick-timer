@@ -2,13 +2,13 @@
 
 CC = gcc
 APP_NAME = timer
-TEST_APP_NAME = $(APP_NAME)_test
+TEST_APP_NAME = convert_args_test
 SRC=src
 TEST=tests
 BIN=build
 
 EXECUTABLE_SOURCE := $(SRC)/main.c
-TESTSUITE_SOURCE := $(TEST)/timer_test.c
+TESTSUITE_SOURCE := $(TEST)/convert_args_test.c
 
 COMMON_SOURCES := $(filter-out $(TESTSUITE_SOURCE) $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
@@ -16,9 +16,10 @@ build:
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
-	@echo Function Testing:
-	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
+	@$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
+	@$(CC) -o $(BIN)/timer_test $(TEST)/timer_test.c $(COMMON_SOURCES)
+	@$(BIN)/timer_test
 
 test-dry-time-hour: build test
 	@echo

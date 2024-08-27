@@ -33,5 +33,4 @@ Criticality is based on priority
   converter
 
 ### Quality of Life
-- Subdivide timer test to smaller files for reuse and easier reading
 - Convert alert function to be a cross platform sound player for reuse

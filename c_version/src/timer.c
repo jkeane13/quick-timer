@@ -10,9 +10,7 @@
 
 void runProgram(char* programLocation, int silentOutput){
     char command[256];
-    if (access(programLocation, F_OK) == 0) {
-        printf("Program Location: %s\n",programLocation);
-    } else {
+    if (access(programLocation, F_OK) != 0) {
         printf("Error: File doesn't exist");
         exit(1);
     }

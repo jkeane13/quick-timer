@@ -3,7 +3,7 @@
 
 // ../src/timer.c
 int checkArgument(char* input);
-int promptTimer();
+int promptTimeEnd(int seconds);
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* args);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);

@@ -3,7 +3,6 @@
 #include <string.h>
 #include "../include/timer.h"
 
-int promptTimeEnd();
 int convert24ClockToSeconds(char* input);
 
 void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode, int *executeMode){
@@ -60,7 +59,7 @@ int checkArgument(char* input){
     int seconds;
 
     if (strcmp(input,"-p") == 0 ){
-        seconds = promptTimeEnd();
+        seconds = promptTimeEnd(0);
     }else if (strchr(input, 'm') != 0){
         convert12to24(input);
         seconds = convert24ClockToSeconds(input);
@@ -75,9 +74,12 @@ int checkArgument(char* input){
     return seconds;
 }
 
-int promptTimeEnd(){
+int promptTimeEnd(int seconds){
     char firstInput[10];
-    int hoursInput, minutesInput, secondsInput, seconds;
+    int hoursInput, minutesInput, secondsInput;
+
+    if (seconds == -1)
+        return seconds;
     printf("Enter hours or time: ");
     scanf("%s", firstInput);
     if (strchr(firstInput,':') !=0 || strchr(firstInput, 'm') !=0)
@@ -93,4 +95,3 @@ int promptTimeEnd(){
     }
     return seconds;
 }
-

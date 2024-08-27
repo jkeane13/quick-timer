@@ -18,6 +18,8 @@ build:
 test:
 	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
+	@$(CC) -o $(BIN)/convert_clock_test $(TEST)/convert_clock_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_clock_test
 	@$(CC) -o $(BIN)/timer_test $(TEST)/timer_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/timer_test
 

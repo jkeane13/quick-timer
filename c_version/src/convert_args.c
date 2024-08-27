@@ -75,10 +75,11 @@ int checkArgument(char* input){
 }
 
 int promptTimeEnd(int seconds){
-    if (seconds == -1)
-        return seconds;
     char firstInput[10];
     int hoursInput, minutesInput, secondsInput;
+
+    if (seconds == -1)
+        return seconds;
     printf("Enter hours or time: ");
     scanf("%s", firstInput);
     if (strchr(firstInput,':') !=0 || strchr(firstInput, 'm') !=0)
@@ -94,4 +95,3 @@ int promptTimeEnd(int seconds){
     }
     return seconds;
 }
-

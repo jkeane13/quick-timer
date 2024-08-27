@@ -28,7 +28,7 @@ static char * runASystemProgram() {
 
 // convert24ClockToSeconds
 static char * convert1530ClocktoSeconds() {
-    printf("Convert a 24 Hour clock entry into seconds for countdown\t");
+    printf("Convert a 24 Hour clock entry into seconds for countdown\t\t");
     strcpy(inputString,"15:30");
     result = convert24ClockToSeconds(inputString) > 0;
     expect = 1 > 0;

@@ -16,9 +16,9 @@ build:
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
-	@$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) $(COMMON_SOURCES)
+	$(CC) -o $(BIN)/$(TEST_APP_NAME) $(TESTSUITE_SOURCE) tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/$(TEST_APP_NAME)
-	@$(CC) -o $(BIN)/timer_test $(TEST)/timer_test.c $(COMMON_SOURCES)
+	@$(CC) -o $(BIN)/timer_test $(TEST)/timer_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/timer_test
 
 test-dry-time-hour: build test

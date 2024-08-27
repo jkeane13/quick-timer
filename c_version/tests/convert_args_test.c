@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include "../include/minunit.h"
 #include "../include/timer.h"
 #include "../include/testing.h"
 

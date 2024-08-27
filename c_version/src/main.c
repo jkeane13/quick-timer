@@ -3,6 +3,7 @@
 #include "../include/timer.h"
 
 #define ALERT_TIMES 1
+#define DISPLAY_OUTPUT 0
 
 void usage();
 
@@ -39,7 +40,7 @@ int main(int argc, char *argv[]){
         playSound(ALERT_TIMES);
 
     if (programMode)
-        runProgram(argSwitch);
+        runProgram(argSwitch, DISPLAY_OUTPUT);
 }
 
 void usage(void){

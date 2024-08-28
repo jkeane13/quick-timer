@@ -4,12 +4,12 @@
 #include <time.h>
 #include "../include/timer.h"
 
-void convert12to24(char* timeInput){
+void convert12to24(char* timeInput, int quickClock){
     int timeInputLength = strlen(timeInput);
     char convertPMToString[3];
     int convertToPM;
     char hourString[3];
-    int quickClock = 0;
+    quickClock = 0;
 
     int time_int;
     int prefix_int;

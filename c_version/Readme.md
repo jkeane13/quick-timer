@@ -23,11 +23,11 @@ Criticality is based on priority
 ### Bugs
 - Timer goes off if hour is set to the same hour, even with a minute change Eg
   8:34 won't work if it is 8:28
-- Set executable arg to use malloc, due to random input
+- Set executable arg to use malloc, due to random input size for program
+  locations
 
 ### Features
-- Bump the time up to 12 hours in am or pm is not specified.
-  (Eg 1:30 timer at 3:30pm will go off at 1:30am)
+- Switch to do 24 hour time or quick clock time (Quick Clock time is default)
 - Alternative alert to use beeps if sound file doesn't exist
 - Convert alert function and file to a sound player with windows location
   converter

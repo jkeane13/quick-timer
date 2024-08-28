@@ -3,11 +3,16 @@
 #include <time.h>
 #include "../include/timer.h"
 
-void secondsCountdown (int seconds){
+void secondsCountdown (int seconds, int quickClock){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
 
    int timeDifference =  endTime - time(NULL);
+   if (quickClock == 1){
+       int hours12 = (12 * 60 * 60);
+       if (timeDifference > hours12)
+           seconds -= hours12;
+    }
 
    while(timeDifference > 1){
        timeDifference =  endTime - time(NULL);

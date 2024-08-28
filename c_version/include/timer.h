@@ -21,7 +21,7 @@ void convert24ClockTo12(char* clockTime);
 void playSound(int times);
 
 // ../src/countdown.c
-void secondsCountdown (int seconds);
+void secondsCountdown (int seconds, int quickClock);
 
 #endif
 

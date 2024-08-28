@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../include/timer.h"
 
 void convert12to24(char* timeInput){
@@ -8,6 +9,7 @@ void convert12to24(char* timeInput){
     char convertPMToString[3];
     int convertToPM;
     char hourString[3];
+    int quickClock = 0;
 
     int time_int;
     int prefix_int;
@@ -17,12 +19,14 @@ void convert12to24(char* timeInput){
 
     // *:**
     if (timeInputLength == 4 & thirdLastChar == ':'){
+        quickClock = 1;
         strcpy(clock24Time, "0");
         strcat(clock24Time, timeInput);
     }
 
     // **:**
     if (timeInputLength == 5 & thirdLastChar == ':'){
+        quickClock = 0;
         strcpy(clock24Time,timeInput);
     }
 
@@ -120,6 +124,47 @@ void convert12to24(char* timeInput){
         }
         strncat(clock24Time, &timeInput[3], 1);
         strncat(clock24Time, &timeInput[4], 1);
+    }
+
+
+    printf("Print 24 Clock: %s\n",clock24Time);
+    if (quickClock == 1){
+       int secondsNow = time(NULL);
+       printf("Seconds Now: : %d\n",secondsNow);
+       int secondsFuture = convert24ClockToSeconds(clock24Time) + secondsNow;
+       printf("Seconds Future: : %d\n",secondsFuture);
+       int timeDifference = secondsFuture - secondsNow;
+       printf("Time Difference: %d\n", timeDifference);
+       int hours12 = (12 * 60 * 60);
+
+       struct tm *nowTime;
+       struct tm *laterTime;
+       time_t currentTime = time(NULL);
+
+       nowTime = localtime(&currentTime);
+
+       int currentHour = nowTime->tm_hour;
+       printf("Current Hour: %d\n", currentHour);
+
+       char hourString[3];
+       strcpy(hourString,"");
+       strncat(hourString, &clock24Time[0], 1);
+       strncat(hourString, &clock24Time[1], 1);
+       int nextHour = atoi(hourString);
+       printf("Next Hour: %d\n", nextHour);
+       int hourDiff = nextHour - currentHour;
+       printf("Hour Difference: %d\n", hourDiff);
+
+       int newHour;
+       if (nextHour < currentHour)
+           newHour = nextHour + 12;
+
+        printf("New Hour: %d\n", newHour);
+        sprintf(convertPMToString,"%d",newHour);
+        strcpy(clock24Time, convertPMToString);
+        strncat(clock24Time, &timeInput[1], 1);
+        strncat(clock24Time, &timeInput[2], 1);
+        strncat(clock24Time, &timeInput[3], 1);
     }
 
     strcpy(timeInput,clock24Time);

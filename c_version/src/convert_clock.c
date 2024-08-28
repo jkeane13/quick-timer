@@ -26,7 +26,7 @@ void convert12to24(char* timeInput){
 
     // **:**
     if (timeInputLength == 5 & thirdLastChar == ':'){
-        quickClock = 0;
+        quickClock = 1;
         strcpy(clock24Time,timeInput);
     }
 
@@ -127,14 +127,15 @@ void convert12to24(char* timeInput){
     }
 
 
-    printf("Print 24 Clock: %s\n",clock24Time);
+    /* printf("Print 24 Clock: %s\n",clock24Time); */
     if (quickClock == 1){
+       char separator = ':';
        int secondsNow = time(NULL);
-       printf("Seconds Now: : %d\n",secondsNow);
+       /* printf("Seconds Now: : %d\n",secondsNow); */
        int secondsFuture = convert24ClockToSeconds(clock24Time) + secondsNow;
-       printf("Seconds Future: : %d\n",secondsFuture);
+       /* printf("Seconds Future: : %d\n",secondsFuture); */
        int timeDifference = secondsFuture - secondsNow;
-       printf("Time Difference: %d\n", timeDifference);
+       /* printf("Time Difference: %d\n", timeDifference); */
        int hours12 = (12 * 60 * 60);
 
        struct tm *nowTime;
@@ -144,29 +145,36 @@ void convert12to24(char* timeInput){
        nowTime = localtime(&currentTime);
 
        int currentHour = nowTime->tm_hour;
-       printf("Current Hour: %d\n", currentHour);
+       /* printf("Current Hour: %d\n", currentHour); */
 
        char hourString[3];
        strcpy(hourString,"");
        strncat(hourString, &clock24Time[0], 1);
        strncat(hourString, &clock24Time[1], 1);
        int nextHour = atoi(hourString);
-       printf("Next Hour: %d\n", nextHour);
-       int hourDiff = nextHour - currentHour;
-       printf("Hour Difference: %d\n", hourDiff);
+       /* printf("Next Hour: %d\n", nextHour); */
+       int hourDiff = abs(nextHour - currentHour);
+       /* printf("Hour Difference: %d\n", hourDiff); */
 
        int newHour;
-       if (nextHour < currentHour)
+       if (hourDiff < 12){
            newHour = nextHour + 12;
+       }
+       else
+           newHour = nextHour;
 
-        printf("New Hour: %d\n", newHour);
+       char convertHourString[3];
+        int lastCharPostition = strlen(timeInput) - 1;
+        int secondLastCharPostition = strlen(timeInput) - 2;
+        /* printf("New Hour: %d\n", newHour); */
         sprintf(convertPMToString,"%d",newHour);
-        strcpy(clock24Time, convertPMToString);
-        strncat(clock24Time, &timeInput[1], 1);
-        strncat(clock24Time, &timeInput[2], 1);
-        strncat(clock24Time, &timeInput[3], 1);
+        convertIntToDoubleString(newHour, convertHourString);
+        strcpy(clock24Time, convertHourString);
+        strncat(clock24Time, &separator, 1);
+        strncat(clock24Time, &timeInput[secondLastCharPostition], 1);
+        strncat(clock24Time, &timeInput[lastCharPostition], 1);
+        /* printf("clock Time: %s\n", clock24Time); */
     }
-
     strcpy(timeInput,clock24Time);
 }
 

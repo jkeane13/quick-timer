@@ -13,6 +13,8 @@ char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
 /*convert12to24 */
+// 24 Clock will not work in relative time, will need to put in a switch in
+// place to fix
 static char * convertSingleHourTime7to24() {
     printf("Convert Single Hour Time String of 7:00 to 07:00 24 clock...\t\t");
     strcpy(inputString, "7:00");

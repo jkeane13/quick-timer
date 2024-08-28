@@ -3,6 +3,9 @@
 #include <string.h>
 #include "../include/timer.h"
 
+#define QUICK_CLOCK 1
+#define CLOCK_24 0
+
 int convert24ClockToSeconds(char* input);
 
 void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode, int *executeMode){
@@ -61,10 +64,10 @@ int checkArgument(char* input){
     if (strcmp(input,"-p") == 0 ){
         seconds = promptTimeEnd(0);
     }else if (strchr(input, 'm') != 0){
-        convert12to24(input);
+        convert12to24(input, QUICK_CLOCK);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, ':') != 0){
-        convert12to24(input);
+        convert12to24(input, QUICK_CLOCK);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, '?') != 0){ // ? is used just for testing
         seconds = 42;

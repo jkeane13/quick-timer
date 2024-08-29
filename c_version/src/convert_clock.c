@@ -155,10 +155,7 @@ void convertInputToQuickClockTime(char* inputTime){
    int currentHour = nowTime->tm_hour;
    /* printf("Current Hour: %d\n", currentHour); */
 
-   char hourString[3];
-   strcpy(hourString,"");
-   strncat(hourString, &inputTime[0], 1);
-   strncat(hourString, &inputTime[1], 1);
+   char hourString[] = {inputTime[0], inputTime[1],'\0'};
    int nextHour = atoi(hourString);
    /* printf("Next Hour: %d\n", nextHour); */
    int hourDiff = abs(nextHour - currentHour);

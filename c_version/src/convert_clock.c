@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "../include/timer.h"
+
 void convertInputToQuickClockTime(char* inputTime);
 
 void convert12to24(char* timeInput, int quickClock){
@@ -162,10 +163,14 @@ void convertInputToQuickClockTime(char* inputTime){
    /* printf("Hour Difference: %d\n", hourDiff); */
 
    int newHour;
-   if (hourDiff < 12  )
+   if (hourDiff < 12 && hourDiff > 0  ){
+       /* printf("Bump Hours...\n"); */
        newHour = nextHour + 12;
-   else
+   }
+   else{
+       /* printf("Same Hours...\n"); */
        newHour = nextHour;
+   }
 
     char convertPMToString[3];
     char convertHourString[3];

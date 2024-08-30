@@ -154,12 +154,13 @@ void convertInputToQuickClockTime(char* inputTime){
 
    int newHour;
 
-   if (currentHour > nextHour || nextHour == 12){
-       newHour = nextHour;
-   }
-   if (nextHour < 12 ){
+   if (currentHour > 12 )
        newHour = nextHour + 12;
-   }
+   else
+       newHour = nextHour;
+
+   if (currentHour > newHour)
+       newHour -= 12;
 
     char convertPMToString[3];
     char convertHourString[3];

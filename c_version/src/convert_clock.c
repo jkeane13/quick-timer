@@ -139,14 +139,8 @@ void convertInputToQuickClockTime(char* inputTime){
    char newTime[8];
    char separator = ':';
 
-   /* printf("Print 24 Clock: %s\n",inputTime); */
    int secondsNow = time(NULL);
-   /* printf("Seconds Now: : %d\n",secondsNow); */
    int secondsFuture = convert24ClockToSeconds(inputTime) + secondsNow;
-   /* printf("Seconds Future: : %d\n",secondsFuture); */
-   int timeDifference = secondsFuture - secondsNow;
-   /* printf("Time Difference: %d\n", timeDifference); */
-   int hours12 = (12 * 60 * 60);
 
    struct tm *nowTime;
    time_t currentTime = time(NULL);
@@ -154,35 +148,29 @@ void convertInputToQuickClockTime(char* inputTime){
    nowTime = localtime(&currentTime);
 
    int currentHour = nowTime->tm_hour;
-   /* printf("Current Hour: %d\n", currentHour); */
 
    char hourString[] = {inputTime[0], inputTime[1],'\0'};
    int nextHour = atoi(hourString);
-   /* printf("Next Hour: %d\n", nextHour); */
-   int hourDiff = abs(nextHour - currentHour);
-   /* printf("Hour Difference: %d\n", hourDiff); */
 
    int newHour;
-   if (hourDiff < 12 && hourDiff > 0  ){
-       /* printf("Bump Hours...\n"); */
-       newHour = nextHour + 12;
-   }
-   else{
-       /* printf("Same Hours...\n"); */
+
+   if (currentHour > nextHour || nextHour == 12){
        newHour = nextHour;
+   }
+   if (nextHour < 12 ){
+       newHour = nextHour + 12;
    }
 
     char convertPMToString[3];
     char convertHourString[3];
-    int firstMinutePosition = strlen(inputTime) - 1;
-    int secondMinutePosition = strlen(inputTime) - 2;
+    int firstMinutePosition = strlen(inputTime) - 2;
+    int secondMinutePosition = strlen(inputTime) - 1;
     sprintf(convertPMToString,"%d",newHour);
     convertIntToDoubleString(newHour, convertHourString);
     strcpy(newTime, convertHourString);
     strncat(newTime, &separator,1);
     strncat(newTime, &inputTime[firstMinutePosition], 1);
     strncat(newTime, &inputTime[secondMinutePosition], 1);
-    /* printf("New Time: %s\n", newTime); */
     strcpy(inputTime,newTime);
 }
 
@@ -194,22 +182,22 @@ void convert24ClockTo12(char* clockTime){
 
     char hourString[] = {clockTime[0], clockTime[1],'\0'};
     char minString[] = {clockTime[secondLastCharPostition], clockTime[lastCharPostition],'\0'};
+
     char separator = ':';
     int hour;
     int minute;;
 
     hour = atoi(hourString);
 
-    if (hour < 12){
+    if (hour < 12)
         strcpy(timerSuffix,"am");
-    }else{
+    else{
         hour -= 12;
         strcpy(timerSuffix,"pm");
     }
 
-    if (hour == 0){
+    if (hour == 0)
         hour +=12;
-    }
 
     sprintf(hourString, "%d", hour);
     strcpy(clockTime, hourString);

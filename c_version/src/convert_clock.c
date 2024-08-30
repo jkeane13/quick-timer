@@ -150,24 +150,20 @@ void convertInputToQuickClockTime(char* inputTime){
    int currentHour = nowTime->tm_hour;
 
    char hourString[] = {inputTime[0], inputTime[1],'\0'};
-   int nextHour = atoi(hourString);
-
-   int newHour;
+   int endHour = atoi(hourString);
 
    if (currentHour > 12 )
-       newHour = nextHour + 12;
-   else
-       newHour = nextHour;
+       endHour += 12;
 
-   if (currentHour > newHour)
-       newHour -= 12;
+   if (currentHour > endHour)
+       endHour -= 12;
 
     char convertPMToString[3];
     char convertHourString[3];
     int firstMinutePosition = strlen(inputTime) - 2;
     int secondMinutePosition = strlen(inputTime) - 1;
-    sprintf(convertPMToString,"%d",newHour);
-    convertIntToDoubleString(newHour, convertHourString);
+    sprintf(convertPMToString,"%d",endHour);
+    convertIntToDoubleString(endHour, convertHourString);
     strcpy(newTime, convertHourString);
     strncat(newTime, &separator,1);
     strncat(newTime, &inputTime[firstMinutePosition], 1);

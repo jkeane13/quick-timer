@@ -152,11 +152,8 @@ void convertInputToQuickClockTime(char* inputTime){
    char hourString[] = {inputTime[0], inputTime[1],'\0'};
    int endHour = atoi(hourString);
 
-   if (currentHour > 12 )
+   if (currentHour > 12 || currentHour > (endHour + 12) )
        endHour += 12;
-
-   if (currentHour > endHour)
-       endHour -= 12;
 
     char convertPMToString[3];
     char convertHourString[3];

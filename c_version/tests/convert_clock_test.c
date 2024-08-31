@@ -76,7 +76,7 @@ static char * convertSingleHourAmTime7to24() {
 }
 
 static char * convertHourAmTime12to24() {
-    printf("Convert Single Hour Time String of 12am to 12:00 24 clock...\t\t");
+    printf("Convert Single Hour Time String of 12am to 00:00 24 clock...\t\t");
     strcpy(inputString, "12am");
     strcpy(expectString, "00:00");
     convert12to24(inputString,1);

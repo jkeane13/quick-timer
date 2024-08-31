@@ -1,134 +1,96 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "../include/timer.h"
+
+void addMinutesToClock(char* clock24Time, char* timeInput);
 
 void convert12to24(char* timeInput, int quickClock){
     int timeInputLength = strlen(timeInput);
-    char convertPMToString[3];
-    int convertToPM;
-    char hourString[3];
-    quickClock = 0;
+    char pmString[3];
 
-    int time_int;
-    int prefix_int;
     char clock24Time[6];
+    char lastChar = timeInput[timeInputLength-1];
     char secondLastChar = timeInput[timeInputLength-2];
     char thirdLastChar = timeInput[timeInputLength-3];
 
-    // *:**
-    if (timeInputLength == 4 & thirdLastChar == ':'){
-        quickClock = 1;
-        strcpy(clock24Time, "0");
-        strcat(clock24Time, timeInput);
-    }
-
-    // **:**
-    if (timeInputLength == 5 & thirdLastChar == ':'){
-        quickClock = 1;
+    // *:** and **.**
+    if (thirdLastChar == ':'){
+        convertQuickClockto24Hour(timeInput);
         strcpy(clock24Time,timeInput);
     }
 
-    // *am
-    if (timeInputLength == 3 & secondLastChar == 'a'){
-        strcpy(clock24Time, "0");
-        strncat(clock24Time, &timeInput[0], 1);
+    // * am and pm
+    if (timeInputLength == 3 & lastChar == 'm'){
+        if (secondLastChar == 'p'){
+            int hourNumber = timeInput[0] - '0';
+            sprintf(pmString,"%d",hourNumber + 12);
+            strcpy(clock24Time, pmString);
+        }else{
+            clock24Time[0] = '0';
+            clock24Time[1] = timeInput[0];
+
+        }
         strcat(clock24Time, ":00");
     }
 
-    // *pm
-    if (timeInputLength == 3 & secondLastChar == 'p'){
-        time_int = timeInput[0] - '0';
-        convertToPM = time_int + 12;
-        sprintf(convertPMToString,"%d",convertToPM);
-        strcpy(clock24Time, convertPMToString);
-        strcat(clock24Time, ":00");
-    }
-
-    // **am
-    if (timeInputLength == 4 & secondLastChar == 'a'){
-        strcpy(hourString,"");
-        strncat(hourString, &timeInput[0], 1);
-        strncat(hourString, &timeInput[1], 1);
-        if (strcmp(hourString,"12") == 0){
+    // ** am and pm
+    if (timeInputLength == 4 & lastChar == 'm'){
+        int addHours = 0;
+        if (secondLastChar == 'p')
+            addHours = 12;
+        clock24Time[0] = timeInput[0];
+        clock24Time[1] = timeInput[1];
+        if (clock24Time[1] != '2'){
+            sprintf(pmString,"%d",atoi(clock24Time) + addHours);
+            strcpy(clock24Time, pmString);
+        }
+        if (clock24Time[1] != '2' || secondLastChar == 'a'){
             strcpy(clock24Time, "00");
-        }else {
-            strcpy(clock24Time, hourString);
         }
         strcat(clock24Time, ":00");
     }
 
-    // 1*pm
-    if (timeInputLength == 4 & secondLastChar == 'p'){
-        strcpy(hourString,"");
-        strncat(hourString, &timeInput[0], 1);
-        strncat(hourString, &timeInput[1], 1);
-        prefix_int = atoi(hourString);
-        if (strcmp(hourString,"12") != 0){
-            convertToPM = prefix_int + 12;
-            sprintf(convertPMToString,"%d",convertToPM);
-            strcpy(clock24Time, convertPMToString);
-        }else {
-            strcpy(clock24Time, "12");
-        }
-        strcat(clock24Time, ":00");
-    }
-
-    // *:**am
-    if (timeInputLength == 6 & secondLastChar == 'a'){
-        strcpy(clock24Time, "0");
-        strncat(clock24Time, &timeInput[0], 1);
-        strncat(clock24Time, &timeInput[1], 1);
-        strncat(clock24Time, &timeInput[2], 1);
-        strncat(clock24Time, &timeInput[3], 1);
-    }
-
-    // *:**pm
-    if (timeInputLength == 6 & secondLastChar == 'p'){
-        int time_int = timeInput[0] - '0';
-        convertToPM = time_int + 12;
-        sprintf(convertPMToString,"%d",convertToPM);
-        strcpy(clock24Time, convertPMToString);
-        strncat(clock24Time, &timeInput[1], 1);
-        strncat(clock24Time, &timeInput[2], 1);
-        strncat(clock24Time, &timeInput[3], 1);
-    }
-
-    // **:**am
-    if (timeInputLength == 7 & secondLastChar == 'a'){
-        if(timeInput[0] == '1' & timeInput[1] == '2'){
-            strcpy(clock24Time, "00:");
+    // *:** am and pm
+    if (timeInputLength == 6 & lastChar == 'm'){
+        if (secondLastChar == 'p'){
+            int hourNumber = timeInput[0] - '0';
+            sprintf(pmString,"%d", hourNumber + 12);
+            strcpy(clock24Time, pmString);
         }
         else{
-            strcpy(clock24Time, "");
-            strncat(clock24Time, &timeInput[1], 1);
-            strncat(clock24Time, &timeInput[2], 1);
+            clock24Time[0] = '0';
+            clock24Time[1] = timeInput[0];
         }
-        strncat(clock24Time, &timeInput[3], 1);
-        strncat(clock24Time, &timeInput[4], 1);
+        clock24Time[2] = timeInput[1];
+        clock24Time[3] = timeInput[2];
+        clock24Time[4] = timeInput[3];
+        clock24Time[5] =  '\0';
     }
 
-    // **:**pm
-    if (timeInputLength == 7 & secondLastChar == 'p'){
-        if(timeInput[0] == '1' & timeInput[1] == '2'){
-            strcpy(clock24Time, "12:");
-        }else{
-            strncat(hourString, &timeInput[0], 1);
-            strncat(hourString, &timeInput[1], 1);
-            int prefix_int = atoi(hourString);
-            convertToPM = prefix_int + 12;
-            sprintf(convertPMToString,"%d",convertToPM);
-            strcpy(clock24Time, convertPMToString);
-            strncat(clock24Time, &timeInput[2], 1);
-        }
-        strncat(clock24Time, &timeInput[3], 1);
-        strncat(clock24Time, &timeInput[4], 1);
+    // **:** am and pm
+    if (timeInputLength == 7){
+        clock24Time[0] = timeInput[0];
+        clock24Time[1] = timeInput[1];
+        int addHours = 0;
+
+        if (secondLastChar == 'p'&& clock24Time[1] != '2' )
+            addHours = 12;
+
+        int hoursInt = atoi(clock24Time) + addHours;
+        sprintf(clock24Time,"%d", hoursInt);
+
+        if (hoursInt == 12 & secondLastChar =='a')
+            strcpy(clock24Time, "00");
+
+        addMinutesToClock(clock24Time, timeInput);
     }
-
-    if (quickClock == 1)
-        convertQuickClockto24Hour(clock24Time);
-
     strcpy(timeInput,clock24Time);
 }
 
+void addMinutesToClock(char* clock24Time, char* timeInput){
+        clock24Time[2] =  timeInput[2];
+        clock24Time[3] =  timeInput[3];
+        clock24Time[4] =  timeInput[4];
+        clock24Time[5] =  '\0';
+}

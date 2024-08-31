@@ -4,40 +4,6 @@
 #include <time.h>
 #include "../include/timer.h"
 
-void convertQuickClockto24Hour(char* inputTime){
-   int timeInputLength = strlen(inputTime);
-   char newTime[8];
-   char separator = ':';
-   char convertPMToString[3];
-   char convertHourString[3];
-   int firstMinutePosition = strlen(inputTime) - 2;
-   int secondMinutePosition = strlen(inputTime) - 1;
-
-   int secondsNow = time(NULL);
-   int secondsFuture = convert24ClockToSeconds(inputTime) + secondsNow;
-
-   struct tm *nowTime;
-   time_t currentTime = time(NULL);
-
-   nowTime = localtime(&currentTime);
-
-   int currentHour = nowTime->tm_hour;
-
-   char hourString[] = {inputTime[0], inputTime[1],'\0'};
-   int endHour = atoi(hourString);
-
-   if (currentHour >= 12 || currentHour > (endHour + 12) )
-       endHour += 12;
-
-    sprintf(convertPMToString,"%d",endHour);
-    convertIntToDoubleString(endHour, convertHourString);
-    strcpy(newTime, convertHourString);
-    strncat(newTime, &separator,1);
-    strncat(newTime, &inputTime[firstMinutePosition], 1);
-    strncat(newTime, &inputTime[secondMinutePosition], 1);
-    strcpy(inputTime,newTime);
-}
-
 void convert12to24(char* timeInput, int quickClock){
     int timeInputLength = strlen(timeInput);
     char convertPMToString[3];

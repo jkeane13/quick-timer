@@ -3,11 +3,6 @@
 #include <string.h>
 #include "../include/timer.h"
 
-#define QUICK_CLOCK 1
-#define CLOCK_24 0
-
-int convert24ClockToSeconds(char* input);
-
 void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode, int *executeMode){
     if (strcmp(argument, "--quiet") == 0){
         *quietMode = 1;
@@ -20,54 +15,16 @@ void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode, int *execute
     }
 }
 
-int convertHoursMinsToSeconds(int hours, int minutes, int seconds){
-    hours = hours * 60 * 60;
-    minutes = minutes * 60;
-
-    return seconds = hours + minutes + seconds;
-}
-
-int convertArgsToSeconds(char* arg){
-    int hourminsec[] = {0,0,0};
-    int i = 0;
-    char commandString[10];
-    int seconds = 0;
-    int temp;
-
-    char *token = strtok(arg, " ");
-    while (token){
-        hourminsec[i] = atoi(token);
-        i++;
-        token = strtok(NULL, " ");
-    }
-
-    if (i == 1){
-        hourminsec[2] = hourminsec[0];
-        hourminsec[0] = 0;
-        sprintf(commandString, "%d", hourminsec[2]);
-        hourminsec[2] = checkArgument(arg);
-    }
-    if (i == 2){
-        temp = hourminsec[0];
-        hourminsec[0] = 0;
-        hourminsec[2] = hourminsec[1];
-        hourminsec[1] = temp;
-    }
-
-    seconds = convertHoursMinsToSeconds(hourminsec[0], hourminsec[1], hourminsec[2]);
-    return seconds;
-}
-
 int checkArgument(char* input){
     int seconds;
 
     if (strcmp(input,"-p") == 0 ){
         seconds = promptTimeEnd(0);
     }else if (strchr(input, 'm') != 0){
-        convert12to24(input, QUICK_CLOCK);
+        convert12to24(input, 1);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, ':') != 0){
-        convert12to24(input, QUICK_CLOCK);
+        convert12to24(input, 1);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, '?') != 0){ // ? is used just for testing
         seconds = 42;

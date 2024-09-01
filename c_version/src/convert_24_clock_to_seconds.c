@@ -1,24 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include <time.h>
 #include "../include/timer.h"
-
-#define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
-
-void runProgram(char* programLocation, int silentOutput){
-    char command[256];
-    if (access(programLocation, F_OK) != 0) {
-        printf("Error: File doesn't exist");
-        exit(1);
-    }
-    strcpy(command,programLocation);
-    if (silentOutput)
-        strcat(command,UNIX_NULL_OUTPUT);
-    system(command);
-}
 
 int convert24ClockToSeconds(char* input){
     if (strlen(input) > 5 || input[2] != ':'){
@@ -65,31 +50,9 @@ void convertIntToDoubleString(int number, char stringNumber[]){
     }
 }
 
-void printSecondsEndAsClock(int seconds, char* clockType){
-   struct tm *endTimeInfo;
-   time_t endTime = time(NULL) + seconds;
+int convertHoursMinsToSeconds(int hours, int minutes, int seconds){
+    hours = hours * 60 * 60;
+    minutes = minutes * 60;
 
-   endTimeInfo = localtime(&endTime);
-
-   char minString[3];
-   char hourString[3];
-   char outputString[10];
-
-   convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
-   convertIntToDoubleString(endTimeInfo->tm_min, minString);
-
-   strcpy(outputString,hourString);
-   strcat(outputString,":");
-   strcat(outputString,minString);
-
-   if (strcmp(clockType,"24Hour") != 0 )
-       convert24ClockTo12(outputString);
-
-   printf("%s\n", outputString);
+    return seconds = hours + minutes + seconds;
 }
-
-void printTimerEndTime (int seconds){
-   printf("Timer ends at ");
-   printSecondsEndAsClock(seconds,"12Hour");
-}
-

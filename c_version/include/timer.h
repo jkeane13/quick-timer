@@ -29,5 +29,7 @@ void convert12to24(char* timeInput, int quickClock);
 // ../convert_quick_clock_to_24
 void convertQuickClockto24Hour(char* inputTime);
 
+void usage();
+
 #endif
 

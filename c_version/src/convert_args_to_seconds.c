@@ -30,7 +30,9 @@ int convertArgsToSeconds(char* arg){
         hourminsec[1] = temp;
     }
 
-    seconds = convertHoursMinsToSeconds(hourminsec[0], hourminsec[1], hourminsec[2]);
+    seconds = convertHoursMinsToSeconds(hourminsec[0],
+                                        hourminsec[1],
+                                        hourminsec[2]);
     return seconds;
 }
 

@@ -16,7 +16,7 @@ char argString[MAX_STRING];
 
 // runEndSwitch
 static char * checkQuietMode() {
-    printf("Quiet Mode can be checked\t\t\t\t");
+    printf("Quiet Mode can be turned on\t\t\t\t\t\t");
     strcpy(argString, "--quiet");
     runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
     expect = 1;
@@ -79,7 +79,7 @@ static char * all_tests() {
 
 //------------------main-----------------------------
 int main(int argc, char **argv) {
-    printf("Running args_handler_test.c function tests...\n");
+    printf("Testing args_handler.c...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

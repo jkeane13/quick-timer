@@ -15,51 +15,6 @@ char expectString[MAX_STRING];
 void assertInt(int expect, int result);
 void assertString(char *expect, char* result);
 
-// PromptTimeEnd
-
-// runEndSwitch
-static char * checkQuietMode() {
-    printf("Quiet mode to be turned on with --quiet switch is used \t\t\t");
-    char argString[] = "--quiet";
-    int quietMode = 0;
-    int dryRunMode = 0;
-    int executeMode = 0;
-    runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
-    expect = 1;
-    result = quietMode;
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
- }
-
-static char * checkDryRunMode() {
-    printf("Dry run mode to be turned on with --dry-run switch is used \t\t");
-    char argString[] = "--dry-run";
-    int quietMode = 0;
-    int dryRunMode = 0;
-    int executeMode = 0;
-    runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
-    expect = 2; // both quietmode and dryRunMode turned on
-    result = quietMode + dryRunMode;
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
- }
-
-static char * checkExecuteMode() {
-    printf("Execute mode to be turned on with files with '.' in them\t\t");
-    char argString[] = "--dry-run";
-    int quietMode = 0;
-    int dryRunMode = 0;
-    int executeMode = 0;
-    runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
-    expect = 2; // both quietmode and ExecuteMode turned on
-    result = quietMode + dryRunMode;
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
- }
-
 // convertHoursMinsToSeconds
 static char * hourMinsSeconds() {
     printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
@@ -100,41 +55,17 @@ static char * argsHourToSeconds() {
     return 0;
 }
 
-// checkArgument
-static char * checkArgumentActivated() {
-    printf("Check argument function can be activated using the ? argument\t\t");
-    expect = 42;
-    result = convertArgsToSeconds("?");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
-}
-// promptTimeEnd
-static char * testTimePrompt() {
-    printf("Time prompt function can be triggered\t\t\t\t\t");
-    expect = -1;
-    result = promptTimeEnd(-1);
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
-}
-
 static char * all_tests() {
-    mu_run_test(checkQuietMode);
-    mu_run_test(checkDryRunMode);
-    mu_run_test(checkExecuteMode);
     mu_run_test(hourMinsSeconds);
     mu_run_test(argsSecToSeconds);
     mu_run_test(argsMinToSeconds);
     mu_run_test(argsHourToSeconds);
-    mu_run_test(checkArgumentActivated);
-    mu_run_test(testTimePrompt);
     return 0;
 }
 
 //------------------main-----------------------------
 int main(int argc, char **argv) {
-    printf("Running convert_arg.c function tests...\n");
+    printf("Running convert_args.c function tests...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

@@ -8,18 +8,6 @@
 
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 
-void runProgram(char* programLocation, int silentOutput){
-    char command[256];
-    if (access(programLocation, F_OK) != 0) {
-        printf("Error: File doesn't exist");
-        exit(1);
-    }
-    strcpy(command,programLocation);
-    if (silentOutput)
-        strcat(command,UNIX_NULL_OUTPUT);
-    system(command);
-}
-
 int convert24ClockToSeconds(char* input){
     if (strlen(input) > 5 || input[2] != ':'){
         printf("Format needs to be 24 hour time - 00:00\n");

@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include "../include/timer.h"
 
@@ -45,3 +47,14 @@ void playSound(int times){
         system(soundCommand);
 }
 
+void runProgram(char* programLocation, int silentOutput){
+    char command[256];
+    if (access(programLocation, F_OK) != 0) {
+        printf("Error: File doesn't exist");
+        exit(1);
+    }
+    strcpy(command,programLocation);
+    if (silentOutput)
+        strcat(command,UNIX_NULL_OUTPUT);
+    system(command);
+}

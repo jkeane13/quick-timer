@@ -11,7 +11,8 @@ void convert24ClockTo12(char* clockTime){
     int secondLastCharPostition = strlen(clockTime) - 2;
 
     char hourString[] = {clockTime[0], clockTime[1],'\0'};
-    char minString[] = {clockTime[secondLastCharPostition], clockTime[lastCharPostition],'\0'};
+    char minString[] = {clockTime[secondLastCharPostition],
+                        clockTime[lastCharPostition],'\0'};
 
     char separator = ':';
     int hour;

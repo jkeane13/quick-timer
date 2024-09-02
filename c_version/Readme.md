@@ -30,7 +30,6 @@ In order to play the alert, the sound mp3 must be located in
 - Use system beeps if sound file or player application doesn't exist
 
 ### Tests todo
-- Convert 12 Hour Clock to 24 Tests
 - Convert 24 Hour to Seconds Tests
 - Convert Arguments to Seconds Tests
 - Convert Quick Clock to 24 Tests

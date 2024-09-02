@@ -12,69 +12,6 @@ char inputString[MAX_STRING];
 char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
-/*convert12to24 */
-// 24 Clock will not work in relative time, needs complete overhaul
-static char * convertSingleHourTime7to24() {
-    printf("Convert Single Hour Time String of 7:00am to 07:00 24 clock...\t\t");
-    strcpy(inputString, "7:00am");
-    strcpy(expectString, "07:00");
-    convert12to24(inputString,1);
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
-static char * convertSingleHourTime730to24() {
-    printf("Convert Single Hour Time String of 7:30am to 07:00 24 clock...\t\t");
-    strcpy(inputString, "7:30am");
-    strcpy(expectString, "07:30");
-    convert12to24(inputString,1);
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
-static char * convertSingleHourTime745to24() {
-    printf("Convert Single Hour Time String of 7:45am to 07:00 24 clock...\t\t");
-    strcpy(inputString, "7:45am");
-    strcpy(expectString, "07:45");
-    convert12to24(inputString,1);
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
-static char * convertDoubleHourTime10to24() {
-    printf("Convert Double Hour Time String of 10:00 to 10:00 24 clock...\t\t");
-    strcpy(inputString, "10:00");
-    strcpy(expectString, "10:00");
-    convert12to24(inputString,1);
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
-static char * convert12HourTime12to24() {
-    printf("Convert Double Hour Time String of 12:00 to 12:00 24 clock...\t\t");
-    strcpy(inputString, "12:00");
-    strcpy(expectString, "12:00");
-    convert12to24(inputString,1);
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
-
 static char * convertSingleHourAmTime7to24() {
     printf("Convert Single Hour Time String of 7am to 07:00 24 clock...\t\t");
     strcpy(inputString, "7am");
@@ -82,12 +19,11 @@ static char * convertSingleHourAmTime7to24() {
     convert12to24(inputString,1);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
-
     mu_assert("", result == expect);
     return 0;
 }
 
-static char * convertHourAmTime12to24() {
+static char * convertSingleHourAmTime12to24() {
     printf("Convert Single Hour Time String of 12am to 00:00 24 clock...\t\t");
     strcpy(inputString, "12am");
     strcpy(expectString, "00:00");
@@ -99,8 +35,8 @@ static char * convertHourAmTime12to24() {
     return 0;
 }
 
-//stop
 static char * convertHourPmTime12to24() {
+    strcpy(inputString, "");
     printf("Convert Single Hour Time String of 12pm to 12:00 24 clock...\t\t");
     strcpy(inputString, "12pm");
     strcpy(expectString, "12:00");
@@ -143,7 +79,6 @@ static char * convertHourMinAmTime12to24() {
     convert12to24(inputString,1);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
-
     mu_assert("", result == expect);
     return 0;
 }
@@ -181,7 +116,6 @@ static char * convert24HourClockto12Hour7am() {
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
-
     mu_assert("", result == expect);
     return 0;
 }
@@ -194,7 +128,6 @@ static char * convert24HourClockto12Hour730am() {
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
-
     mu_assert("", result == expect);
     return 0;
 }
@@ -206,7 +139,6 @@ static char * convert24HourClockto12Hour730pm() {
     convert24ClockTo12(inputString);
     strcpy(resultString, inputString);
     assertString(expectString, resultString);
-
     mu_assert("", result == expect);
     return 0;
 }
@@ -258,26 +190,18 @@ static char * convert24HourClockto12Hour1230pm() {
 }
 
 static char * all_tests() {
-    //bugged
-    mu_run_test(convertSingleHourTime7to24);
-    mu_run_test(convertSingleHourTime730to24);
-    mu_run_test(convertSingleHourTime745to24);
-    /* mu_run_test(convertHourAmTime12to24); */
-    /* mu_run_test(convertHourPmTime12to24); */
-    /* mu_run_test(convertDoubleHourTime10to24); */
-    /* mu_run_test(convert12HourTime12to24); */
-    /* mu_run_test(convertSingleHourAmTime7to24); */
-    /* mu_run_test(convertSingleHourPmTime7to24); */
-    /* mu_run_test(convertHourMinAmTime7to24); */
-    /* mu_run_test(convertHourMinAmTime12to24); */
-    /* mu_run_test(convertHourMinPmTime7to24); */
-    /* mu_run_test(convert24HourClockto12Hour7am); */
-    /* mu_run_test(convert24HourClockto12Hour730am); */
-    /* mu_run_test(convert24HourClockto12Hour730pm); */
-    /* mu_run_test(convert24HourClockto12Hour12am); */
-    /* mu_run_test(convert24HourClockto12Hour1230am); */
-    /* mu_run_test(convert24HourClockto12Hour12pm); */
-    /* mu_run_test(convert24HourClockto12Hour1230pm); */
+    mu_run_test(convertSingleHourAmTime12to24);
+    mu_run_test(convertSingleHourPmTime7to24);
+    mu_run_test(convertHourMinAmTime7to24);
+    mu_run_test(convertHourMinAmTime12to24);
+    mu_run_test(convertHourMinPmTime7to24);
+    mu_run_test(convert24HourClockto12Hour7am);
+    mu_run_test(convert24HourClockto12Hour730am);
+    mu_run_test(convert24HourClockto12Hour730pm);
+    mu_run_test(convert24HourClockto12Hour12am);
+    mu_run_test(convert24HourClockto12Hour1230am);
+    mu_run_test(convert24HourClockto12Hour12pm);
+    mu_run_test(convert24HourClockto12Hour1230pm);
     return 0;
 }
 

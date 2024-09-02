@@ -20,7 +20,7 @@ test:
 	@$(BIN)/$(TEST_APP_NAME)
 	@$(CC) -o $(BIN)/args_handler_test $(TEST)/args_handler_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/args_handler_test
-	@$(CC) -o $(BIN)/convert_clock_test $(TEST)/convert_clock_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(CC) -o $(BIN)/convert_12_hour_clock_to_24_test $(TEST)/convert_12_hour_clock_to_24_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_clock_test
 	@$(CC) -o $(BIN)/timer_test $(TEST)/timer_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/timer_test

@@ -21,16 +21,10 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
-### Bugs
-- Quick Clock cannot work in the same hour eg 2:45 timer at 2:30 will shoot
+- Quick Clock cannot work in the same hour eg 2:45 timer at 2:44 will shoot
   forward 12 hours
 - 256 character limit on exectable argument, before the application will break
-
-### What's left...
-- Use system beeps if sound file or player application doesn't exist
-
-### Tests todo
-- Convert Quick Clock to 24 Tests
+- Add failsafe system beeps if sound file or player application doesn't exist
 - Countdown Seconds Tests
 - Review Main Output Tests
 - Print Clock Tests

@@ -26,6 +26,8 @@ test:
 	@$(BIN)/timer_test
 	@$(CC) -o $(BIN)/convert_24_hour_clock_to_seconds_test $(TEST)/convert_24_hour_clock_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_24_hour_clock_to_seconds_test
+	@$(CC) -o $(BIN)/convert_quick_clock_to_24_test $(TEST)/convert_quick_clock_to_24_test.c  tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_quick_clock_to_24_test
 
 test-dry-time-hour: build test
 	@echo

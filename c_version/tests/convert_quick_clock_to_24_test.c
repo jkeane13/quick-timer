@@ -23,9 +23,9 @@ static char * convert7quickClockTo24() {
     strcpy(inputString,"7:00");
     convertQuickClockto24Hour(inputString);
     strcpy(resultString, inputString);
-    if (getCurrentHourNumber() > 7 && getCurrentHourNumber() < 19)
+    if (getCurrentHourNumber() <= 7)
         strcpy(expectString,"19:00");
-    if (getCurrentHourNumber() < 7 && getCurrentHourNumber() > 19)
+    if (getCurrentHourNumber() >= 19)
         strcpy(expectString,"07:00");
     if (getCurrentHourNumber() == 7 && getCurrentMinuteNumber() > 1)
         strcpy(expectString,"19:00");

@@ -21,8 +21,6 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
-- Quick Clock cannot work in the same hour eg 2:45 timer at 2:44 will shoot
-  forward 12 hours
 - 256 character limit on exectable argument, before the application will break
 - Add failsafe system beeps if sound file or player application doesn't exist
 - Countdown Seconds Tests
@@ -30,6 +28,9 @@ In order to play the alert, the sound mp3 must be located in
 - Print Clock Tests
 - Run Application Tests
 - Usage Tests
+- Set alert to run twice
+- Add a meow alert
+- Optimise `duck_quack.mp3`
 
 ### After tests
 - Replace bash primary folder with C version

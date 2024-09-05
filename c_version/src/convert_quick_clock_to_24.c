@@ -39,9 +39,11 @@ void convertQuickClockto24Hour(char* inputTime){
     if (currentHour >= (endHour + 1) && currentHour < (endHour + 12) )
         endHour += 12;
 
+    if (endHour == 24)
+        endHour = 0;
+
     convertIntToDoubleString(endHour, endHourString);
     strcpy(inputTime, endHourString);
     strncat(inputTime, &separator,1);
     strcat(inputTime,endMinutesString);
 }
-

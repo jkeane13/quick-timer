@@ -12,9 +12,17 @@ int getCurrentHourNumber(){
     return nowTime->tm_hour;
 }
 
+int getCurrentMinuteNumber(){
+    struct tm *nowTime;
+    time_t currentTime = time(NULL);
+    nowTime = localtime(&currentTime);
+
+    return nowTime->tm_min;
+}
+
 void convertQuickClockto24Hour(char* inputTime){
     int currentHour = getCurrentHourNumber();
-    char separator = ':';
+    int currentMinute = getCurrentMinuteNumber();
     char endHourString[3];
     int timeInputLength = strlen(inputTime);
     int firstMinutePosition = strlen(inputTime) - 2;
@@ -33,17 +41,17 @@ void convertQuickClockto24Hour(char* inputTime){
                                inputTime[secondMinutePosition],
                                '\0'};
     int endHour = atoi(endHourString);
+    int endMinute = atoi(endMinutesString);
 
-    // This will need to be fixed to be able to do time of the same hour and
-    // measure minutes as well
-    if (currentHour >= (endHour + 1) && currentHour < (endHour + 12) )
+    if (currentHour >= (endHour + 1) && currentHour < (endHour + 12))
+        endHour += 12;
+
+    if (currentHour == endHour || currentHour == (endHour + 12 )
+                               && currentMinute < endMinute)
         endHour += 12;
 
     if (endHour == 24)
         endHour = 0;
 
-    convertIntToDoubleString(endHour, endHourString);
-    strcpy(inputTime, endHourString);
-    strncat(inputTime, &separator,1);
-    strcat(inputTime,endMinutesString);
+    sprintf(inputTime, "%02d:%s", endHour, endMinutesString);
 }

@@ -34,7 +34,9 @@ void convertQuickClockto24Hour(char* inputTime){
                                '\0'};
     int endHour = atoi(endHourString);
 
-    if (currentHour >= 12 && currentHour < (endHour + 12) )
+    // This will need to be fixed to be able to do time of the same hour and
+    // measure minutes as well
+    if (currentHour >= (endHour + 1) && currentHour < (endHour + 12) )
         endHour += 12;
 
     convertIntToDoubleString(endHour, endHourString);

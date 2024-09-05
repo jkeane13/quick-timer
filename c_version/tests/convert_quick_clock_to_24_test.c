@@ -7,6 +7,7 @@
 
 void convertQuickClockto24Hour(char* inputTime);
 int getCurrentHourNumber();
+int getCurrentMinuteNumber();
 
 #define MAX_STRING 100
 
@@ -22,9 +23,13 @@ static char * convert7quickClockTo24() {
     strcpy(inputString,"7:00");
     convertQuickClockto24Hour(inputString);
     strcpy(resultString, inputString);
-    if (getCurrentHourNumber() > 7 && getCurrentHourNumber() < 19)
+    if (getCurrentHourNumber() <= 7)
         strcpy(expectString,"19:00");
-    if (getCurrentHourNumber() <= 8 && getCurrentHourNumber() > 19)
+    if (getCurrentHourNumber() >= 19)
+        strcpy(expectString,"07:00");
+    if (getCurrentHourNumber() == 7 && getCurrentMinuteNumber() > 1)
+        strcpy(expectString,"19:00");
+    if (getCurrentHourNumber() == 19 && getCurrentMinuteNumber() > 1)
         strcpy(expectString,"07:00");
 
     assertString(expectString, resultString);
@@ -37,9 +42,13 @@ static char * convert12quickClockTo24() {
     strcpy(inputString,"12:00");
     convertQuickClockto24Hour(inputString);
     strcpy(resultString, inputString);
-    if (getCurrentHourNumber() >= 12 && getCurrentHourNumber() < 24)
+    if (getCurrentHourNumber() > 12 && getCurrentHourNumber() < 24)
         strcpy(expectString,"00:00");
     if (getCurrentHourNumber() < 12 )
+        strcpy(expectString,"12:00");
+    if (getCurrentHourNumber() == 12 && getCurrentMinuteNumber() > 1)
+        strcpy(expectString,"00:00");
+    if (getCurrentHourNumber() == 12 && getCurrentMinuteNumber() > 1)
         strcpy(expectString,"12:00");
 
     assertString(expectString, resultString);

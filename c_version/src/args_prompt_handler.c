@@ -3,20 +3,6 @@
 #include <string.h>
 #include "../include/timer.h"
 
-void runEndSwitch(char* argument, int *quietMode,  int *dryRunMode,
-                  int *executeMode)
-{
-    if (strcmp(argument, "--quiet") == 0){
-        *quietMode = 1;
-    } else if (strcmp(argument, "--dry-run") == 0){
-        *quietMode = 1;
-        *dryRunMode = 1;
-    } else if (strstr(argument, ".") != 0){
-        *quietMode = 1;
-        *executeMode = 1;
-    }
-}
-
 int checkArgument(char* input){
     int seconds;
 
@@ -33,6 +19,7 @@ int checkArgument(char* input){
     }else{
         seconds = atoi(input);
     }
+
     return seconds;
 }
 
@@ -42,8 +29,10 @@ int promptTimeEnd(int seconds){
 
     if (seconds == -1)
         return seconds;
+
     printf("Enter hours or time: ");
     scanf("%s", firstInput);
+
     if (strchr(firstInput,':') !=0 || strchr(firstInput, 'm') !=0)
         seconds = checkArgument(firstInput);
     else{
@@ -55,5 +44,6 @@ int promptTimeEnd(int seconds){
         seconds = convertHoursMinsToSeconds(hoursInput, minutesInput,
                 secondsInput);
     }
+
     return seconds;
 }

@@ -1,3 +1,4 @@
+// Needs refactoring
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +6,7 @@
 #include "../include/timer.h"
 
 int convert24ClockToSeconds(char* input){
-    if (strlen(input) > 5 || input[2] != ':'){
+    if (strlen(input) != 5 || input[2] != ':'){
         printf("Format needs to be 24 hour time - 00:00\n");
         exit(1);
     }

@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../include/timer.h"
 
-#define ALERT_TIMES 1
+#define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
 
 int main(int argc, char *argv[]){

@@ -5,25 +5,26 @@
 
 int convertArgsToSeconds(char* arg){
     int hourminsec[] = {0,0,0};
-    int i = 0;
+    int itemCount = 0;
     char commandString[10];
     int seconds = 0;
     int temp;
-
     char *token = strtok(arg, " ");
+
     while (token){
-        hourminsec[i] = atoi(token);
-        i++;
+        hourminsec[itemCount] = atoi(token);
+        itemCount++;
         token = strtok(NULL, " ");
     }
 
-    if (i == 1){
+    if (itemCount == 1){
         hourminsec[2] = hourminsec[0];
         hourminsec[0] = 0;
         sprintf(commandString, "%d", hourminsec[2]);
         hourminsec[2] = checkArgument(arg);
     }
-    if (i == 2){
+
+    if (itemCount == 2){
         temp = hourminsec[0];
         hourminsec[0] = 0;
         hourminsec[2] = hourminsec[1];
@@ -33,6 +34,6 @@ int convertArgsToSeconds(char* arg){
     seconds = convertHoursMinsToSeconds(hourminsec[0],
                                         hourminsec[1],
                                         hourminsec[2]);
+
     return seconds;
 }
-

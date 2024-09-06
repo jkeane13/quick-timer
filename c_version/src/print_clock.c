@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-
 #include <time.h>
 #include "../include/timer.h"
-
-#define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
-
 
 void printSecondsEndAsClock(int seconds, char* clockType){
    struct tm *endTimeInfo;
@@ -13,21 +9,15 @@ void printSecondsEndAsClock(int seconds, char* clockType){
 
    endTimeInfo = localtime(&endTime);
 
-   char minString[3];
-   char hourString[3];
-   char outputString[10];
+   char output[7];
 
-   convertIntToDoubleString(endTimeInfo->tm_hour, hourString);
-   convertIntToDoubleString(endTimeInfo->tm_min, minString);
+   sprintf(output,"%02d:%02d", endTimeInfo->tm_hour, endTimeInfo->tm_min);
 
-   strcpy(outputString,hourString);
-   strcat(outputString,":");
-   strcat(outputString,minString);
+   if (strcmp(clockType,"24Hour") != 0)
+       convert24ClockTo12(output);
 
-   if (strcmp(clockType,"24Hour") != 0 )
-       convert24ClockTo12(outputString);
+   printf("%s\n", output);
 
-   printf("%s\n", outputString);
 }
 
 void printTimerEndTime (int seconds){

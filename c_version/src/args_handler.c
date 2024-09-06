@@ -23,10 +23,10 @@ int checkArgument(char* input){
     if (strcmp(input,"-p") == 0 ){
         seconds = promptTimeEnd(0);
     }else if (strchr(input, 'm') != 0){
-        convert12to24(input, 1);
+        convert12to24(input);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, ':') != 0){
-        convert12to24(input, 1);
+        convert12to24(input);
         seconds = convert24ClockToSeconds(input);
     }else if (strchr(input, '?') != 0){ // ? is used just for testing
         seconds = 42;

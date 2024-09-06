@@ -14,17 +14,14 @@ void runProgram(char* programLocation, int silentOutput);
 int convert24ClockToSeconds(char* input);
 
 // ../src/convert_clock.c
-void convert12to24(char* timeInput, int quickClock);
+void convert12to24(char* timeInput);
 void convert24ClockTo12(char* clockTime);
 
 // ../src/play_sound.c
 void playSound(int times);
 
 // ../src/countdown.c
-void secondsCountdown (int seconds, int quickClock);
-
-// ../src/convert_clock.c
-void convert12to24(char* timeInput, int quickClock);
+void secondsCountdown (int seconds);
 
 // ../convert_quick_clock_to_24
 void convertQuickClockto24Hour(char* inputTime);

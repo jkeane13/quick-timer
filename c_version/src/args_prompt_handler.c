@@ -42,7 +42,7 @@ int promptTimeEnd(int seconds){
         printf("Enter seconds: ");
         scanf("%d", &secondsInput);
         seconds = convertHoursMinsToSeconds(hoursInput, minutesInput,
-                secondsInput);
+                                                        secondsInput);
     }
 
     return seconds;

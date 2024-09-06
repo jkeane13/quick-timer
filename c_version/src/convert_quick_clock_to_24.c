@@ -1,3 +1,4 @@
+// Needs Refactoring
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,7 +21,7 @@ int getCurrentMinuteNumber(){
     return nowTime->tm_min;
 }
 
-void convertQuickClockto24Hour(char* inputTime){
+void convertQuickClockto24(char* inputTime){
     int currentHour = getCurrentHourNumber();
     int currentMinute = getCurrentMinuteNumber();
     char endHourString[3];

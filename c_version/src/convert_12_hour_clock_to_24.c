@@ -5,7 +5,7 @@
 
 void addMinutesToClock(char* clock24Time, char* timeInput);
 
-void convert12to24(char* timeInput, int quickClock){
+void convert12to24(char* timeInput){
     int timeInputLength = strlen(timeInput);
     char pmString[3];
 

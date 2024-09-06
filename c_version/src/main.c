@@ -9,7 +9,6 @@ int main(int argc, char *argv[]){
     int quietMode = 0;
     int dryRunMode = 0;
     int programMode = 0;
-    int quickClock = 0;
     int seconds = 0;
     char timeString[20] = "";
     char argSwitch[256] = "";
@@ -33,7 +32,7 @@ int main(int argc, char *argv[]){
 
     printTimerEndTime(seconds);
     if (dryRunMode == 0)
-        secondsCountdown(seconds, quickClock);
+        secondsCountdown(seconds);
 
     if (quietMode == 0)
         playSound(ALERT_TIMES);

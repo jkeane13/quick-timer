@@ -28,7 +28,6 @@ In order to play the alert, the sound mp3 must be located in
 - Print Clock Tests
 - Run Application Tests
 - Usage Tests
-- Set alert to run twice
 - Add a meow alert
 - Optimise `duck_quack.mp3`
 

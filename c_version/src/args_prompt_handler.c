@@ -24,25 +24,24 @@ int checkArgument(char* input){
 }
 
 int promptTimeEnd(int seconds){
-    char firstInput[10];
-    int hoursInput, minutesInput, secondsInput;
+    char input[10];
+    int hours, minutes;
 
     if (seconds == -1)
         return seconds;
 
     printf("Enter hours or time: ");
-    scanf("%s", firstInput);
+    scanf("%s",input);
 
-    if (strchr(firstInput,':') !=0 || strchr(firstInput, 'm') !=0)
-        seconds = checkArgument(firstInput);
+    if (strchr(input,':') != 0 || strchr(input, 'm') != 0)
+        seconds = checkArgument(input);
     else{
-        hoursInput = atoi(firstInput);
-        printf("Enter mintues: ");
-        scanf("%d", &minutesInput);
+        hours = atoi(input);
+        printf("Enter minutes: ");
+        scanf("%d", &minutes);
         printf("Enter seconds: ");
-        scanf("%d", &secondsInput);
-        seconds = convertHoursMinsToSeconds(hoursInput, minutesInput,
-                                                        secondsInput);
+        scanf("%d", &seconds);
+        seconds = convertHoursMinsToSeconds(hours, minutes, seconds);
     }
 
     return seconds;

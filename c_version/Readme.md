@@ -28,9 +28,10 @@ In order to play the alert, the sound mp3 must be located in
 - Print Clock Tests
 - Run Application Tests
 - Usage Tests
-- Set alert to run twice
 - Add a meow alert
 - Optimise `duck_quack.mp3`
+- Add consistancy of alerts, by adding a periodic time (eg 0.5 or 1 second)
+- Clean up `run_application.c` to utilise sprintf for cleaner code
 
 ### After tests
 - Replace bash primary folder with C version

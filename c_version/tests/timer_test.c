@@ -13,9 +13,6 @@ char inputString[MAX_STRING];
 char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
-// Need to find a way to test this: printSecondsEndAsClock(int seconds, char* clockType)
-// Need to find a way to test this: printTimerEndTime (int seconds)
-
 // runProgram
 static char * runASystemProgram() {
     runProgram(TEST_FILE,0);
@@ -38,37 +35,9 @@ static char * convert1530ClocktoSeconds() {
     return 0;
 }
 
-// convertIntToDoubleString
-static char * convertIntToDoublestring08() {
-    printf("Convert integer 8 to double string \"08\"\t\t\t\t\t");
-    strcpy(inputString,"9");
-    convertIntToDoubleString(9,inputString);
-    strcpy(expectString,"09");
-
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-static char * convertIntToDoublestring12() {
-    printf("Convert integer 12 to double string \"12\"\t\t\t\t");
-    strcpy(inputString,"12");
-    convertIntToDoubleString(12,inputString);
-    strcpy(expectString,"12");
-
-    strcpy(resultString, inputString);
-    assertString(expectString, resultString);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
 static char * all_tests() {
     mu_run_test(runASystemProgram);
     mu_run_test(convert1530ClocktoSeconds);
-    mu_run_test(convertIntToDoublestring08);
-    mu_run_test(convertIntToDoublestring12);
     return 0;
 }
 

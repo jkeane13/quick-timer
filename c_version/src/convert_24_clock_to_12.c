@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "../include/timer.h"
 
 void convert24ClockTo12(char* clockTime){

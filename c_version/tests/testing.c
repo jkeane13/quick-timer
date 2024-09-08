@@ -6,7 +6,7 @@
 #define RED     "\x1B[31m"
 #define GREEN   "\x1B[32m"
 #define RESET   "\x1B[0m"
-#define STATEMENT_MAX 70 
+#define STATEMENT_MAX 81
 
 void assertInt(int expect, int result){
      if (result != expect){
@@ -34,13 +34,13 @@ void statement(char* statement){
 
     if (statementLength > STATEMENT_MAX){
        printf("Error: Statement \"%s\" must be under %d characters", statement
-                                                               , STATEMENT_MAX);
+                                                               , STATEMENT_MAX-1);
        exit(1);
     }
 
     strcpy(fullStatement, statement);
 
-    for (int i = statementLength; i < STATEMENT_MAX; i++)
+    for (int i = statementLength; i < STATEMENT_MAX-1; i++)
         strcat(fullStatement, " ");
 
     printf(RESET "%s", fullStatement);

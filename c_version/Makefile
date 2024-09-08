@@ -16,9 +16,9 @@ test:
 	@$(CC) -o $(BIN)/args_prompt_handler_test $(TEST)/args_prompt_handler_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/args_prompt_handler_test
 	@echo
-	# @$(CC) -o $(BIN)/args_switch_handler_test $(TEST)/args_switch_handler_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/args_switch_handler_test
-	# @echo
+	@$(CC) -o $(BIN)/args_switch_handler_test $(TEST)/args_switch_handler_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/args_switch_handler_test
+	@echo
 	@$(CC) -o $(BIN)/convert_args_to_seconds_test $(TEST)/convert_args_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_args_to_seconds_test
 	@echo

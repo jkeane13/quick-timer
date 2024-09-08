@@ -13,26 +13,26 @@ build:
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
-	# @$(CC) -o $(BIN)/args_prompt_handler_test $(TEST)/args_prompt_handler_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/args_prompt_handler_test
-	# @echo
-	# @$(CC) -o $(BIN)/args_switch_handler_test $(TEST)/args_switch_handler_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/args_switch_handler_test
-	# @echo
-	# @$(CC) -o $(BIN)/convert_args_to_seconds_test $(TEST)/convert_args_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/convert_args_to_seconds_test
-	# @echo
+	@$(CC) -o $(BIN)/args_prompt_handler_test $(TEST)/args_prompt_handler_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/args_prompt_handler_test
+	@echo
+	@$(CC) -o $(BIN)/args_switch_handler_test $(TEST)/args_switch_handler_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/args_switch_handler_test
+	@echo
+	@$(CC) -o $(BIN)/convert_args_to_seconds_test $(TEST)/convert_args_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_args_to_seconds_test
+	@echo
 	@$(CC) -o $(BIN)/convert_12_hour_clock_to_24_test $(TEST)/convert_12_hour_clock_to_24_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_12_hour_clock_to_24_test
-	# @echo
-	# @$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/run_application_test
-	# @echo
-	# @$(CC) -o $(BIN)/convert_24_hour_clock_to_seconds_test $(TEST)/convert_24_hour_clock_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/convert_24_hour_clock_to_seconds_test
-	# @echo
-	# @$(CC) -o $(BIN)/convert_quick_clock_to_24_test $(TEST)/convert_quick_clock_to_24_test.c  tests/testing.c $(COMMON_SOURCES)
-	# @$(BIN)/convert_quick_clock_to_24_test
+	@echo
+	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/run_application_test
+	@echo
+	@$(CC) -o $(BIN)/convert_24_hour_clock_to_seconds_test $(TEST)/convert_24_hour_clock_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_24_hour_clock_to_seconds_test
+	@echo
+	@$(CC) -o $(BIN)/convert_quick_clock_to_24_test $(TEST)/convert_quick_clock_to_24_test.c  tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_quick_clock_to_24_test
 
 test-output: build test
 	@echo Testing hour...

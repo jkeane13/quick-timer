@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     char timeString[20] = "";
     char argSwitch[256] = "";
     if (argc <= 1 || argc > 5){
-        usage();
+        usage(1);
         return 1;
     }
 

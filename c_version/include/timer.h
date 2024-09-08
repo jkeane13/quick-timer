@@ -29,7 +29,7 @@ void convertQuickClockto24(char* timeInput);
 int getHour(char* timeInput);
 int getMinutes(char* timeInput);
 
-void usage();
+void usage(int toggle);
 
 #endif
 

@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "../include/timer.h"
 
-void usage(void){
+void usage(int toggle){
+    if (toggle == 1 ){
     printf("usage:\n"
            "Countdown to the second, minute or hour,  or by a clock time\n"
            "                                                            \n"
@@ -29,4 +30,5 @@ void usage(void){
            "timer 5pm                                                   \n"
            "                                                            \n"
            );
+    }
 }

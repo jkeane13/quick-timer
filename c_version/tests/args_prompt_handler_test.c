@@ -23,7 +23,7 @@ static char * all_tests() {
 
 int main(int argc, char **argv) {
     printf("-- args_prompt_handler_test.c --\n");
-    printf("Testing argument prompt.c...\n");
+    printf("Testing argument prompt...\n");
     char *result = all_tests();
 
     if (result != 0)

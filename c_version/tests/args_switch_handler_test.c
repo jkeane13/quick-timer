@@ -62,8 +62,8 @@ static char * all_tests() {
 }
 
 int main(int argc, char **argv) {
-    printf("-- args_handler_test.c --\n");
-    printf("Testing args_handler.c...\n");
+    printf("-- args_switch handler_test.c --\n");
+    printf("Testing argument switches...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

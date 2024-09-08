@@ -6,7 +6,7 @@ int result, expect;
 int tests_run = 0;
 
 static char * getSingleHour() {
-    printf("Get the single hour of 3:30...\t\t\t\t\t\t");
+    statement("Get the single hour of 3:30...");
     expect = 3;
     result = getHour("3:30");
     assertInt(expect, result);
@@ -16,7 +16,7 @@ static char * getSingleHour() {
 }
 
 static char * getSingleHourFromAmPm() {
-    printf("Get the single hour of 4am...\t\t\t\t\t\t");
+    statement("Get the single hour of 4am...");
     expect = 4;
     result = getHour("4am");
     assertInt(expect, result);
@@ -26,7 +26,7 @@ static char * getSingleHourFromAmPm() {
 }
 
 static char * getDoubleHourFromAmPm() {
-    printf("Get the single hour of 10am...\t\t\t\t\t\t");
+    statement("Get the single hour of 10am...");
     expect = 10;
     result = getHour("10am");
     assertInt(expect, result);
@@ -36,7 +36,7 @@ static char * getDoubleHourFromAmPm() {
 }
 
 static char * getDoubleHour() {
-    printf("Get the double hour of 12:30...\t\t\t\t\t\t");
+    statement("Get the double hour of 12:30...");
     expect = 12;
     result = getHour("12:30");
     assertInt(expect, result);
@@ -46,7 +46,7 @@ static char * getDoubleHour() {
 }
 
 static char * getSingleMinutes() {
-    printf("Get the single minute of 6:09...\t\t\t\t\t");
+    statement("Get the single minute of 6:09...");
     expect = 9;
     result = getMinutes("6:09");
     assertInt(expect, result);
@@ -56,7 +56,7 @@ static char * getSingleMinutes() {
 }
 
 static char * getDoubleMinutes() {
-    printf("Get the double minutes of 7:30...\t\t\t\t\t");
+    statement("Get the double minutes of 7:30...");
     expect = 30;
     result = getMinutes("7:30");
     assertInt(expect, result);
@@ -66,7 +66,7 @@ static char * getDoubleMinutes() {
 }
 
 static char * getDoubleFullHour() {
-    printf("Get the single hour of full time 5:30am...\t\t\t\t");
+    statement("Get the single hour of full time 5:30am...");
     expect = 5;
     result = getHour("5:30am");
     assertInt(expect, result);
@@ -76,7 +76,7 @@ static char * getDoubleFullHour() {
 }
 
 static char * getDoubleFullMinute() {
-    printf("Get the double minutes of a full time 12:24am...\t\t\t");
+    statement("Get the double minutes of a full time 12:24am...");
     expect = 24;
     result = getMinutes("12:24am");
     assertInt(expect, result);

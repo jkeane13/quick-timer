@@ -11,4 +11,4 @@ extern int tests_run;
 
 void assertString(char* expect, char* result);
 void assertInt(int expect, int result);
-
+void statement(char* statement);

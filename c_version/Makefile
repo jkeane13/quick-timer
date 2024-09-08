@@ -22,6 +22,9 @@ test:
 	@$(CC) -o $(BIN)/convert_12_hour_clock_to_24_test $(TEST)/convert_12_hour_clock_to_24_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_12_hour_clock_to_24_test
 	@echo
+	@$(CC) -o $(BIN)/convert_24_clock_to_12_test $(TEST)/convert_24_clock_to_12_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/convert_24_clock_to_12_test
+	@echo
 	@$(CC) -o $(BIN)/convert_24_hour_clock_to_seconds_test $(TEST)/convert_24_hour_clock_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_24_hour_clock_to_seconds_test
 	@echo

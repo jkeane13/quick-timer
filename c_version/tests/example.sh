@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo Hello World from a script!
+echo --- Application execution of example.sh ---

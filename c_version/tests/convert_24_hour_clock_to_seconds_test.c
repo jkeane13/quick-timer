@@ -30,7 +30,8 @@ static char * all_tests() {
 }
 
 int main(int argc, char **argv) {
-    printf("Running function tests...\n");
+    printf("-- convert_24_hour_clock_to_seconds.c --\n");
+    printf("Testing 24 hour clock to seconds functions...\n");
     char *result = all_tests();
 
     return result != 0;

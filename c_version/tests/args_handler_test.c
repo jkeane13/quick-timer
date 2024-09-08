@@ -14,7 +14,6 @@ char expectString[MAX_STRING];
 int quietMode = 0, dryRunMode = 0, executeMode = 0;
 char argString[MAX_STRING];
 
-// runEndSwitch
 static char * checkQuietMode() {
     printf("Quiet Mode can be turned on\t\t\t\t\t\t");
     strcpy(argString, "--quiet");
@@ -48,7 +47,6 @@ static char * checkExecuteMode() {
     return 0;
  }
 
-// checkArgument
 static char * checkArgumentActivated() {
     printf("Check argument function can be activated using the ? argument\t\t");
     expect = 42;
@@ -57,8 +55,7 @@ static char * checkArgumentActivated() {
     mu_assert("", result == expect);
     return 0;
 }
-//
-// promptTimeEnd
+
 static char * testTimePrompt() {
     printf("Time prompt function can be triggered\t\t\t\t\t");
     expect = -1;
@@ -77,8 +74,8 @@ static char * all_tests() {
     return 0;
 }
 
-//------------------main-----------------------------
 int main(int argc, char **argv) {
+    printf("-- args_handler_test.c --\n");
     printf("Testing args_handler.c...\n");
     char *result = all_tests();
     if (result != 0) {

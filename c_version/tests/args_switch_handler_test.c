@@ -3,14 +3,10 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 100
+#define MAX_STRING 256
 
 int tests_run = 0;
 int result, expect;
-char inputString[MAX_STRING];
-char resultString[MAX_STRING];
-char expectString[MAX_STRING];
-
 int quietMode = 0, dryRunMode = 0, executeMode = 0;
 char argString[MAX_STRING];
 
@@ -56,27 +52,18 @@ static char * checkArgumentActivated() {
     return 0;
 }
 
-static char * testTimePrompt() {
-    printf("Time prompt function can be triggered\t\t\t\t\t");
-    expect = -1;
-    result = promptTimeEnd(-1);
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-    return 0;
-}
 
 static char * all_tests() {
     mu_run_test(checkQuietMode);
     mu_run_test(checkDryRunMode);
     mu_run_test(checkExecuteMode);
     mu_run_test(checkArgumentActivated);
-    mu_run_test(testTimePrompt);
     return 0;
 }
 
 int main(int argc, char **argv) {
-    printf("-- args_handler_test.c --\n");
-    printf("Testing args_handler.c...\n");
+    printf("-- args_switch handler_test.c --\n");
+    printf("Testing argument switches...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

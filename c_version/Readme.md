@@ -21,7 +21,7 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
-- 256 character limit on exectable argument, before the application will break
+- Convert Single Hour Time String of 7:30am to 07:30 24 clock... (Random Seg faults)
 - Add failsafe system beeps if sound file or player application doesn't exist
 - Countdown Seconds Tests
 - Review Main Output Tests

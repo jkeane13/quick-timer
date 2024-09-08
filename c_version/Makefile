@@ -36,8 +36,6 @@ test:
 	@echo
 	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/run_application_test
-	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/run_application_test
 
 test-output: build test
 	@echo Testing hour...

@@ -12,8 +12,6 @@ int getHour(char* timeInput){
        else{
            hourString[i] = '\0';
        }
-   printf("Hour String %s\n",hourString);
-
    return atoi(hourString);
 }
 
@@ -29,7 +27,6 @@ int getMinutes(char* timeInput){
           minString[2] = '\0';
        }
    }
-   printf("Minutes String %s\n",minString);
    return atoi(minString);
 }
 

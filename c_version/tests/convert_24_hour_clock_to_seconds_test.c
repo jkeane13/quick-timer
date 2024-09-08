@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
@@ -14,7 +13,7 @@ char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
 static char * convert321HoursMinsToSeconds(){
-    printf("Convert 3 Hours, 2 mins and 1 second to seconds\t\t\t\t");
+    statement("Convert 3 Hours, 2 mins and 1 second to seconds");
     result = convertHoursMinsToSeconds(3,2,1);
     expect = 10921;
 

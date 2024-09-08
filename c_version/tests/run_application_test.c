@@ -12,7 +12,7 @@ char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
 static char * runASystemProgram() {
-    printf("Program should execute in silent output mode \t\t\t\t");
+    statement("Program should execute in silent output mode");
     runProgram(TEST_FILE,0);
     assertString(expectString, resultString);
 
@@ -21,7 +21,7 @@ static char * runASystemProgram() {
 }
 
 static char * playDuckSound() {
-    printf("Function should play a duck sound\t\t\t\t\t");
+    statement("Function should play a duck sound");
     playSound(1);
     assertString(expectString, resultString);
 

@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
@@ -18,7 +16,7 @@ char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
 static char * convert7quickClockTo24() {
-    printf("Convert 7 quick clock to 7:00 or 19:00\t\t\t\t\t");
+    statement("Convert 7 quick clock to 7:00 or 19:00");
     strcpy(inputString,"7:00");
     convertQuickClockto24(inputString);
     strcpy(resultString, inputString);
@@ -37,7 +35,7 @@ static char * convert7quickClockTo24() {
 }
 
 static char * convert12quickClockTo24() {
-    printf("Convert 12 quick clock to 12:00 or 00:00\t\t\t\t");
+    statement("Convert 12 quick clock to 12:00 or 00:00");
     strcpy(inputString,"12:00");
     convertQuickClockto24(inputString);
     strcpy(resultString, inputString);

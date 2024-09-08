@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
@@ -16,7 +15,7 @@ void assertInt(int expect, int result);
 void assertString(char *expect, char* result);
 
 static char * hourMinsSeconds() {
-    printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
+    statement("Convert hours, mins, seconds to just seconds...");
     expect = 10921;
     result = convertHoursMinsToSeconds(3, 2, 1);
     assertInt(expect, result);
@@ -25,7 +24,7 @@ static char * hourMinsSeconds() {
  }
 
 static char * argsSecToSeconds() {
-    printf("Convert 50 seconds string argument to seconds...\t\t\t");
+    statement("Convert 50 seconds string argument to seconds...");
     expect = 50;
     result = convertArgsToSeconds("50");
     assertInt(expect, result);
@@ -35,7 +34,7 @@ static char * argsSecToSeconds() {
 
 static char * argsMinToSeconds() {
     char minArgs[] = "2 50";
-    printf("Convert 2 minutes and 50 seconds string argument to seconds...\t\t");
+    statement("Convert 2 minutes and 50 seconds string argument to seconds...");
     expect = 170;
     result = convertArgsToSeconds(minArgs);
     assertInt(expect, result);
@@ -45,7 +44,7 @@ static char * argsMinToSeconds() {
 
 static char * argsHourToSeconds() {
     char hourArgs[] = "1 12 50";
-    printf("Convert 1 hour, 12 minutes and 50 seconds string argument to seconds...\t");
+    statement("Convert 1 hour, 12 mins and 50 seconds args to just seconds...");
     expect = 4370;
     result = convertArgsToSeconds(hourArgs);
     assertInt(expect, result);

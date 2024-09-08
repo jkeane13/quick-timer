@@ -11,7 +11,7 @@ int quietMode = 0, dryRunMode = 0, executeMode = 0;
 char argString[MAX_STRING];
 
 static char * checkQuietMode() {
-    printf("Quiet Mode can be turned on\t\t\t\t\t\t");
+    statement("Quiet Mode can be turned on");
     strcpy(argString, "--quiet");
     runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
     expect = 1;
@@ -22,7 +22,7 @@ static char * checkQuietMode() {
  }
 
 static char * checkDryRunMode() {
-    printf("Dry run mode to be turned on with --dry-run switch is used \t\t");
+    statement("Dry run mode to be turned on with --dry-run switch is used");
     strcpy(argString,  "--dry-run");
     runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
     expect = 2; // both Quiet Mode and Dry Run Mode turned on
@@ -33,7 +33,7 @@ static char * checkDryRunMode() {
  }
 
 static char * checkExecuteMode() {
-    printf("Execute mode to be turned on with files with '.' in them\t\t");
+    statement("Execute mode to be turned on with files with '.' in them");
     strcpy(argString,  ".");
     runEndSwitch(argString, &quietMode, &dryRunMode, &executeMode);
     expect = 2; // both Quiet Mode and Execute Mode turned on
@@ -44,7 +44,7 @@ static char * checkExecuteMode() {
  }
 
 static char * checkArgumentActivated() {
-    printf("Check argument function can be activated using the ? argument\t\t");
+    statement("Check argument function can be activated using the ? argument");
     expect = 42;
     result = convertArgsToSeconds("?");
     assertInt(expect, result);

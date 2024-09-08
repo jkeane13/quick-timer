@@ -6,7 +6,7 @@ int result, expect;
 int tests_run = 0;
 
 static char * testTimePrompt() {
-    printf("Time prompt function can be triggered\t\t\t\t\t");
+    statement("Time prompt function can be triggered");
     expect = -1;
     result = promptTimeEnd(-1);
     assertInt(expect, result);

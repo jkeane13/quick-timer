@@ -8,7 +8,7 @@
 #define MPG_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 256
 #define UNIX_TAIL " ~/.local/assets/duck_quack.mp3 >/dev/null 2>&1"
-#define WINDOWS_TAIL "\%userprofile\%\\.local\\assets\\duck_quack.mp3 >NUL 2>&1"
+#define WINDOWS_TAIL " \%userprofile\%\\.local\\assets\\duck_quack.mp3 >NUL 2>&1"
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 
 void playSound(int times){

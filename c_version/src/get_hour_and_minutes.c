@@ -5,12 +5,15 @@
 
 int getHour(char* timeInput){
    char hourString[3];
-   for(int i = 0; i< strlen(timeInput); i++)
-       if (isdigit(timeInput[i]))
+   int i = 0;
+   for(; isdigit(timeInput[i]); i++)
           hourString[i] = timeInput[i];
-       else{
-           hourString[i] = '\0';
-       }
+
+   if (i == 1)
+       hourString[1] = '\0';
+   else
+       hourString[2] = '\0';
+
    return atoi(hourString);
 }
 

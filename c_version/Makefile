@@ -31,6 +31,11 @@ test:
 	@$(CC) -o $(BIN)/convert_quick_clock_to_24_test $(TEST)/convert_quick_clock_to_24_test.c  tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/convert_quick_clock_to_24_test
 	@echo
+	@$(CC) -o $(BIN)/get_hour_and_minutes_test $(TEST)/get_hour_and_minutes_test.c  tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/get_hour_and_minutes_test
+	@echo
+	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/run_application_test
 	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/run_application_test
 

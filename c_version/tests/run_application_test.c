@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
@@ -13,8 +12,17 @@ char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
 static char * runASystemProgram() {
-    runProgram(TEST_FILE,0);
     printf("Program should execute in silent output mode \t\t\t\t");
+    runProgram(TEST_FILE,0);
+    assertString(expectString, resultString);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * playDuckSound() {
+    printf("Function should play a duck sound\t\t\t\t\t");
+    playSound(1);
     assertString(expectString, resultString);
 
     mu_assert("", result == expect);
@@ -23,6 +31,7 @@ static char * runASystemProgram() {
 
 static char * all_tests() {
     mu_run_test(runASystemProgram);
+    mu_run_test(playDuckSound);
     return 0;
 }
 

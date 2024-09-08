@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include "../include/timer.h"
+
+#define CLOCK_24_SIZE 6
 
 int convertHourToAm(int hour){
     if (hour == 12)
@@ -28,7 +28,7 @@ void convert12HourClockto24( char *timeInput){
     else if (secondLastChar == 'p')
         hour = convertHourToPm(hour);
 
-    sprintf(timeInput,"%02d:%02d",hour,minutes);
+    snprintf(timeInput,CLOCK_24_SIZE,"%02d:%02d",hour,minutes);
 }
 
 void convertInputClockto24(char* timeInput){

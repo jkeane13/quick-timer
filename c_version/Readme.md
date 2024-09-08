@@ -23,11 +23,10 @@ In order to play the alert, the sound mp3 must be located in
 ##  Todo list
 - Optimatise testing statement printing
 - Add failsafe system beeps if sound file or player application doesn't exist
-- Countdown Seconds Tests
-- Review Main Output Tests
-- Print Clock Tests
+- Test: Countdown Seconds Tests
+- Test: Review Main Output Tests
+- Test: Print Clock Tests
 - Build folder creation automation on clean repo creation
-- Usage Tests
 - Add a meow alert
 - Optimise `duck_quack.mp3`
 - Add consistancy of alerts, by adding a periodic time (eg 0.5 or 1 second)

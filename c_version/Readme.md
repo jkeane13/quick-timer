@@ -21,11 +21,12 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
+- Optimatise testing statement printing
 - Add failsafe system beeps if sound file or player application doesn't exist
 - Countdown Seconds Tests
 - Review Main Output Tests
 - Print Clock Tests
-- Run Application Tests
+- Build folder creation automation on clean repo creation
 - Usage Tests
 - Add a meow alert
 - Optimise `duck_quack.mp3`

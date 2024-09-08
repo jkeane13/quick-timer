@@ -204,7 +204,8 @@ static char * all_tests() {
 }
 
 int main(int argc, char **argv) {
-    printf("Running Convert Clock function tests...\n");
+    printf("-- convert_12_hour_clock_to_24.c --\n");
+    printf("Testing convert 12 clock to 24 tests...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

@@ -17,7 +17,6 @@ char inputString[MAX_STRING];
 char resultString[MAX_STRING];
 char expectString[MAX_STRING];
 
-// convertIntToDoubleString
 static char * convert7quickClockTo24() {
     printf("Convert 7 quick clock to 7:00 or 19:00\t\t\t\t\t");
     strcpy(inputString,"7:00");
@@ -27,9 +26,9 @@ static char * convert7quickClockTo24() {
         strcpy(expectString,"19:00");
     if (getCurrentHourNumber() >= 19)
         strcpy(expectString,"07:00");
-    if (getCurrentHourNumber() == 7 && getCurrentMinuteNumber() > 1)
+    if (getCurrentHourNumber() >= 7 && getCurrentMinuteNumber() > 1)
         strcpy(expectString,"19:00");
-    if (getCurrentHourNumber() == 19 && getCurrentMinuteNumber() > 1)
+    if (getCurrentHourNumber() >= 19 && getCurrentMinuteNumber() > 1)
         strcpy(expectString,"07:00");
 
     assertString(expectString, resultString);
@@ -63,7 +62,8 @@ static char * all_tests() {
 }
 
 int main(int argc, char **argv) {
-    printf("Running function tests...\n");
+    printf("-- convert_quick_clock_to_24.c --\n");
+    printf("Testing convert quickclock to 24 hour functions...\n");
     char *result = all_tests();
 
     return result != 0;

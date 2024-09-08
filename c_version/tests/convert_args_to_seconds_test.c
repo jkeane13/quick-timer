@@ -15,7 +15,6 @@ char expectString[MAX_STRING];
 void assertInt(int expect, int result);
 void assertString(char *expect, char* result);
 
-// convertHoursMinsToSeconds
 static char * hourMinsSeconds() {
     printf("Convert hours, mins, seconds parameters to just seconds...\t\t");
     expect = 10921;
@@ -25,7 +24,6 @@ static char * hourMinsSeconds() {
     return 0;
  }
 
-// convertArgstoSeconds
 static char * argsSecToSeconds() {
     printf("Convert 50 seconds string argument to seconds...\t\t\t");
     expect = 50;
@@ -63,9 +61,9 @@ static char * all_tests() {
     return 0;
 }
 
-//------------------main-----------------------------
 int main(int argc, char **argv) {
-    printf("Running convert_args.c function tests...\n");
+    printf("-- convert_args_to_seconds.c --\n");
+    printf("Testing convert args to seconds functions...\n");
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

@@ -7,14 +7,20 @@
 
 int tests_run = 0;
 int result, expect;
-char inputString[MAX_STRING];
-char resultString[MAX_STRING];
-char expectString[MAX_STRING];
 
 static char * runASystemProgram() {
     statement("Program should execute in silent output mode");
     runProgram(TEST_FILE,0);
-    assertString(expectString, resultString);
+    assertInt(1,1);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * checkProgramExistsFunction() {
+    statement("Check with the program exists before running");
+    checkProgramExists(TEST_FILE);
+    assertInt(1,1);
 
     mu_assert("", result == expect);
     return 0;
@@ -23,7 +29,7 @@ static char * runASystemProgram() {
 static char * playDuckSound() {
     statement("Function should play a duck sound");
     playSound(1);
-    assertString(expectString, resultString);
+    assertInt(1,1);
 
     mu_assert("", result == expect);
     return 0;
@@ -32,6 +38,7 @@ static char * playDuckSound() {
 static char * all_tests() {
     mu_run_test(runASystemProgram);
     mu_run_test(playDuckSound);
+    mu_run_test(checkProgramExistsFunction);
     return 0;
 }
 

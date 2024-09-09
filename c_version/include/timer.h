@@ -12,6 +12,7 @@ void printTimerEndTime (int seconds);
 void runEndSwitch(char* argSwitch, int *quietMode, int *dryRunMode, int *executeMode);
 void runProgram(char* programLocation, int silentOutput);
 int convert24ClockToSeconds(char* input);
+void checkProgramExists(char* programLocation);
 
 // ../src/convert_clock.c
 void convert24ClockTo12(char* clockTime);

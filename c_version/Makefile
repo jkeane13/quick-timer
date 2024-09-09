@@ -40,6 +40,9 @@ test:
 	@$(CC) -o $(BIN)/get_hour_and_minutes_test $(TEST)/get_hour_and_minutes_test.c  tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/get_hour_and_minutes_test
 	@echo
+	@$(CC) -o $(BIN)/print_clock_test $(TEST)/print_clock_test.c  tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/print_clock_test
+	@echo
 	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/run_application_test
 	@echo

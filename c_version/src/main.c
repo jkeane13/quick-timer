@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include "../include/timer.h"
 
@@ -22,6 +21,9 @@ int main(int argc, char *argv[]){
         runEndSwitch(argSwitch, &quietMode, &dryRunMode, &programMode);
         argc = argc - 1;
     }
+
+    if (programMode)
+        checkProgramExists(argSwitch);
 
     for (int i = 1; i < argc; i++){
         strcat(timeString, argv[i]);

@@ -2,9 +2,9 @@
 
 ## Current Features
 - Prompts for time with the `-p` switch
-- Arguments can be am/pm, hours, minutes and seconds
-- Can do a "quick clock", Eg: Running 9:30 after 10am will go to the next 12
-  hour block time of 9:30pm
+- Arguments can be "quick clock", am/pm, hours, minutes and seconds
+- "Quick clock", is in a 12 hour cycle Eg: Running 9:30 after 9:30am will
+  go to the next 12 hour block time of 9:30pm
 - Has a `--quiet` switch to not make a noise at the end of the timer
 - For Windows and Linux alerts to work, `mpg123` will need to be installed to
   be able to play mp3 files
@@ -12,6 +12,9 @@
 ## Installation
 ### Linux and Mac
 Download the repo and run `make` to build the binary
+
+Running `make deploy` will copy the binary and assets into the `~/.local/bin`
+directory
 
 ### Windows
 Use a C compiler to build the binary
@@ -21,18 +24,22 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
-- Optimatise testing statement printing
-- Add failsafe system beeps if sound file or player application doesn't exist
-- Test: Countdown Seconds Tests
-- Test: Review Main Output Tests
-- Test: Print Clock Tests
-- Build folder creation automation on clean repo creation
-- Add a meow alert
+- Add failsafe to system beeps if sound file or player application doesn't exist
+- Tests: Countdown Seconds Tests
+- Tests: Review Main Output Tests
+- Tests: Print Clock Tests
+- Build folder creation automation on clean repo clone
+- Add a meow alert for variety
 - Optimise `duck_quack.mp3`
-- Add consistancy of alerts, by adding a periodic time (eg 0.5 or 1 second)
+- Add consistancy on alert repitition by adding a periodic time (eg 0.5 or 1
+  second)
 - Set Max Command length to 256 in run application to allocate more space
-- Remove duplicate lines in run application
+- Verify and clean
+- Testing execution automation in Makefile
+- Add animator rules for timer
+- Validation of 50 x 80 rule
+- 50 x 80 linter
 
-### After tests
+### After the end of todo
 - Replace bash primary folder with C version
 - Integrate tests with GitHub Actions

@@ -10,6 +10,7 @@ EXECUTABLE_SOURCE := $(SRC)/main.c
 COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
 build:
+	mkdir -p $(BIN)
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
@@ -69,6 +70,9 @@ test-prompt: build
 test-full: test test-output test-prompt
 
 deploy: build
+	 mkdir -p ${HOME}/.local
+	 mkdir -p ${HOME}/.local/bin
+	 mkdir -p ${HOME}/.local/assets
 	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
 	 cp -f assets/duck_quack.mp3 ${HOME}/.local/assets/
 

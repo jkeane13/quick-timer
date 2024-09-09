@@ -30,12 +30,15 @@ void playSound(int times){
         system(soundCommand);
 }
 
-void runProgram(char* programLocation, int silentOutput){
-    char command[MAX_COMMAND_LENGTH];
+void checkProgramExists(char* programLocation){
     if (access(programLocation, F_OK) != 0) {
-        printf("Error: File doesn't exist");
+        printf("Error: File doesn't exist\n");
         exit(1);
     }
+}
+
+void runProgram(char* programLocation, int silentOutput){
+    char command[MAX_COMMAND_LENGTH];
     strcpy(command,programLocation);
     if (silentOutput)
         strcat(command,UNIX_NULL_OUTPUT);

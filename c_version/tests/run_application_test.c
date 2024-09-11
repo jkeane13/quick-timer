@@ -4,6 +4,7 @@
 
 #define MAX_STRING 256
 #define TEST_FILE "tests/example.sh"
+#define SOUND_FILE "assets/duck_quack.mp3"
 
 int tests_run = 0;
 int result, expect;
@@ -19,7 +20,16 @@ static char * runASystemProgram() {
 
 static char * checkProgramExistsFunction() {
     statement("Check with the program exists before running");
-    checkProgramExists(TEST_FILE);
+    checkFileExists(TEST_FILE);
+    assertInt(1,1);
+
+    mu_assert("", result == expect);
+    return 0;
+}
+
+static char * checksSoundFileExists() {
+    statement("Check the sound file to play the alert exists");
+    checkFileExists(SOUND_FILE);
     assertInt(1,1);
 
     mu_assert("", result == expect);
@@ -39,6 +49,7 @@ static char * all_tests() {
     mu_run_test(runASystemProgram);
     mu_run_test(playDuckSound);
     mu_run_test(checkProgramExistsFunction);
+    mu_run_test(checksSoundFileExists);
     return 0;
 }
 

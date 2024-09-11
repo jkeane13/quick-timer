@@ -3,6 +3,7 @@
 
 #define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
+#define SOUND_FILE "assets/duck_quack.mp3"
 
 int main(int argc, char *argv[]){
     int quietMode = 0;
@@ -23,7 +24,9 @@ int main(int argc, char *argv[]){
     }
 
     if (programMode)
-        checkProgramExists(argSwitch);
+        checkFileExists(argSwitch);
+
+    checkFileExists(SOUND_FILE);
 
     for (int i = 1; i < argc; i++){
         strcat(timeString, argv[i]);

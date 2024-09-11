@@ -3,4 +3,4 @@ timer
 timer_test
 ./timer_test
 ../timer_test
-c_version/build/*
+build/*

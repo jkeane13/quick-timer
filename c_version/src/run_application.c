@@ -7,8 +7,8 @@
 #define AF_PLAYER "afplay"
 #define MPG_PLAYER "mpg123"
 #define MAX_COMMAND_LENGTH 256
-#define UNIX_TAIL " ~/.local/assets/duck_quack.mp3 >/dev/null 2>&1"
-#define WINDOWS_TAIL " \%userprofile\%\\.local\\assets\\duck_quack.mp3 >NUL 2>&1"
+#define UNIX_TAIL " assets/duck_quack.mp3"
+#define WINDOWS_TAIL " assets\\duck_quack.mp3"
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 
 void playSound(int times){
@@ -30,9 +30,9 @@ void playSound(int times){
         system(soundCommand);
 }
 
-void checkProgramExists(char* programLocation){
+void checkFileExists(char* programLocation){
     if (access(programLocation, F_OK) != 0) {
-        printf("Error: File doesn't exist\n");
+        printf("Error: File %s does not exist\n", programLocation);
         exit(1);
     }
 }

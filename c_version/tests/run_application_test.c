@@ -18,8 +18,8 @@ static char * runASystemProgram() {
     return 0;
 }
 
-static char * checkProgramExistsFunction() {
-    statement("Check with the program exists before running");
+static char * checkProgramExists() {
+    statement("Check the program exists before running");
     checkFileExists(TEST_FILE);
     assertInt(1,1);
 
@@ -48,7 +48,7 @@ static char * playDuckSound() {
 static char * all_tests() {
     mu_run_test(runASystemProgram);
     mu_run_test(playDuckSound);
-    mu_run_test(checkProgramExistsFunction);
+    mu_run_test(checkProgramExists);
     mu_run_test(checksSoundFileExists);
     return 0;
 }

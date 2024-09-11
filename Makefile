@@ -14,6 +14,7 @@ build:
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
 
 test:
+	mkdir -p $(BIN)
 	@$(CC) -o $(BIN)/args_prompt_handler_test $(TEST)/args_prompt_handler_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/args_prompt_handler_test
 	@echo

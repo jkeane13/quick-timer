@@ -24,18 +24,5 @@ In order to play the alert, the sound mp3 must be located in
 `assets/duck_quack.mp3`
 
 ##  Todo list
-- Add failsafe to system beeps if sound file or player application doesn't exist
-- Build folder creation automation on clean repo clone
-- Add a meow alert for variety
-- Optimise `duck_quack.mp3`
-- Add consistancy on alert repetition by adding a periodic time (eg 0.5 or 1
-  second)
-- Set Max Command length to 256 in run application to allocate more space
-- Verify and clean
-- Testing execution automation in Makefile
-- Add animator rules for timer
-- Validation of 50 x 80 rule (linter)
-
-### After the end of todo
 - Replace bash primary folder with C version
 - Integrate tests with GitHub Actions

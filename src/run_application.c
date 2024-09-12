@@ -9,6 +9,7 @@
 #define MAX_COMMAND_LENGTH 256
 #define UNIX_TAIL " assets/duck_quack.mp3"
 #define WINDOWS_TAIL " assets\\duck_quack.mp3"
+#define WINDOWS_NULL_OUTPUT " > nul 2>&1"
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 
 void playSound(int times){
@@ -22,8 +23,10 @@ void playSound(int times){
     #endif
     #if defined(__linux__) || defined(__APPLE__)
         strcat(soundCommand,UNIX_TAIL);
+        strcat(soundCommand,UNIX_NULL_OUTPUT);
     #elif defined(_WIN32)
         strcat(soundCommand,WINDOWS_TAIL);
+        strcat(soundCommand,WINDOWS_NULL_OUTPUT);
     #endif
 
     for (int i = 0; i < times; i++)

@@ -188,18 +188,18 @@ static char * convert24HourClockto12Hour1230pm() {
 }
 
 static char * all_tests() {
-    mu_run_test(convertSingleHourAmTime12to24);
-    mu_run_test(convertSingleHourPmTime7to24);
-    mu_run_test(convertHourMinAmTime7to24);
-    mu_run_test(convertHourMinAmTime12to24);
-    mu_run_test(convertHourMinPmTime7to24);
-    mu_run_test(convert24HourClockto12Hour7am);
-    mu_run_test(convert24HourClockto12Hour730am);
-    mu_run_test(convert24HourClockto12Hour730pm);
-    mu_run_test(convert24HourClockto12Hour12am);
-    mu_run_test(convert24HourClockto12Hour1230am);
-    mu_run_test(convert24HourClockto12Hour12pm);
-    mu_run_test(convert24HourClockto12Hour1230pm);
+    run_test(convertSingleHourAmTime12to24);
+    run_test(convertSingleHourPmTime7to24);
+    run_test(convertHourMinAmTime7to24);
+    run_test(convertHourMinAmTime12to24);
+    run_test(convertHourMinPmTime7to24);
+    run_test(convert24HourClockto12Hour7am);
+    run_test(convert24HourClockto12Hour730am);
+    run_test(convert24HourClockto12Hour730pm);
+    run_test(convert24HourClockto12Hour12am);
+    run_test(convert24HourClockto12Hour1230am);
+    run_test(convert24HourClockto12Hour12pm);
+    run_test(convert24HourClockto12Hour1230pm);
     return 0;
 }
 

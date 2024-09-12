@@ -21,7 +21,7 @@ static char * executeUsage() {
 }
 
 static char * all_tests() {
-    mu_run_test(executeUsage);
+    run_test(executeUsage);
     return 0;
 }
 

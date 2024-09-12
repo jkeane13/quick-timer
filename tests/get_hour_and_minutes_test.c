@@ -86,14 +86,14 @@ static char * getDoubleFullMinute() {
 }
 
 static char * all_tests() {
-    mu_run_test(getSingleHour);
-    mu_run_test(getDoubleHour);
-    mu_run_test(getSingleHourFromAmPm);
-    mu_run_test(getDoubleHourFromAmPm);
-    mu_run_test(getSingleMinutes);
-    mu_run_test(getDoubleMinutes);
-    mu_run_test(getDoubleFullHour);
-    mu_run_test(getDoubleFullMinute);
+    run_test(getSingleHour);
+    run_test(getDoubleHour);
+    run_test(getSingleHourFromAmPm);
+    run_test(getDoubleHourFromAmPm);
+    run_test(getSingleMinutes);
+    run_test(getDoubleMinutes);
+    run_test(getDoubleFullHour);
+    run_test(getDoubleFullMinute);
 
     return 0;
 }

@@ -46,10 +46,10 @@ static char * playDuckSound() {
 }
 
 static char * all_tests() {
-    mu_run_test(runASystemProgram);
-    mu_run_test(playDuckSound);
-    mu_run_test(checkProgramExists);
-    mu_run_test(checksSoundFileExists);
+    run_test(runASystemProgram);
+    run_test(playDuckSound);
+    run_test(checkProgramExists);
+    run_test(checksSoundFileExists);
     return 0;
 }
 

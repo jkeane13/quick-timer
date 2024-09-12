@@ -24,7 +24,7 @@ static char * convert321HoursMinsToSeconds(){
 }
 
 static char * all_tests() {
-    mu_run_test(convert321HoursMinsToSeconds);
+    run_test(convert321HoursMinsToSeconds);
     return 0;
 }
 

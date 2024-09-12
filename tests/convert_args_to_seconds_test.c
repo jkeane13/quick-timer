@@ -53,10 +53,10 @@ static char * argsHourToSeconds() {
 }
 
 static char * all_tests() {
-    mu_run_test(hourMinsSeconds);
-    mu_run_test(argsSecToSeconds);
-    mu_run_test(argsMinToSeconds);
-    mu_run_test(argsHourToSeconds);
+    run_test(hourMinsSeconds);
+    run_test(argsSecToSeconds);
+    run_test(argsMinToSeconds);
+    run_test(argsHourToSeconds);
     return 0;
 }
 

@@ -37,9 +37,9 @@ static char * convert0800to12Hour() {
 }
 
 static char * all_tests() {
-    mu_run_test(convert1330to12Hour);
-    mu_run_test(convert0030to12Hour);
-    mu_run_test(convert0800to12Hour);
+    run_test(convert1330to12Hour);
+    run_test(convert0030to12Hour);
+    run_test(convert0800to12Hour);
     return 0;
 }
 
@@ -47,9 +47,9 @@ int main(int argc, char **argv) {
     printf("-- convert_24_hour_clock_to_12.c --\n");
     printf("Testing convert 24 clock to 12 tests...\n");
     char *result = all_tests();
-    if (result != 0) 
+    if (result != 0)
         printf("%s\n", result);
-    
+
     printf("Tests run: %d\n", tests_run);
 
     return result != 0;

@@ -35,9 +35,9 @@ static char * printDefaultEndTime() {
 }
 
 static char * all_tests() {
-    mu_run_test(print24HourClockHourLater);
-    mu_run_test(print12HourClockHourLater);
-    mu_run_test(printDefaultEndTime);
+    run_test(print24HourClockHourLater);
+    run_test(print12HourClockHourLater);
+    run_test(printDefaultEndTime);
 
     return 0;
 }

@@ -54,10 +54,10 @@ static char * checkArgumentActivated() {
 
 
 static char * all_tests() {
-    mu_run_test(checkQuietMode);
-    mu_run_test(checkDryRunMode);
-    mu_run_test(checkExecuteMode);
-    mu_run_test(checkArgumentActivated);
+    run_test(checkQuietMode);
+    run_test(checkDryRunMode);
+    run_test(checkExecuteMode);
+    run_test(checkArgumentActivated);
     return 0;
 }
 

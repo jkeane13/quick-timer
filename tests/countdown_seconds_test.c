@@ -15,7 +15,7 @@ static char * timerExecutes() {
 }
 
 static char * all_tests() {
-    mu_run_test(timerExecutes);
+    run_test(timerExecutes);
     return 0;
 }
 

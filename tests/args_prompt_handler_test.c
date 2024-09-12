@@ -16,7 +16,7 @@ static char * testTimePrompt() {
 }
 
 static char * all_tests() {
-    mu_run_test(testTimePrompt);
+    run_test(testTimePrompt);
 
     return 0;
 }

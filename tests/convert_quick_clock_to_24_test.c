@@ -54,8 +54,8 @@ static char * convert12quickClockTo24() {
 }
 
 static char * all_tests() {
-    mu_run_test(convert7quickClockTo24);
-    mu_run_test(convert12quickClockTo24);
+    run_test(convert7quickClockTo24);
+    run_test(convert12quickClockTo24);
     return 0;
 }
 

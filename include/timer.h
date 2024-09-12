@@ -4,6 +4,7 @@
 // ../src/timer.c
 int checkArgument(char* input);
 int promptTimeEnd(int seconds);
+int readTimeInput(char *input);
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* args);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);

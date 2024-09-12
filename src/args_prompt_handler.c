@@ -37,8 +37,6 @@ int promptTimeEnd(int seconds){
     printf("Enter hours or clock time: ");
     hours = readTimeInput(input);
 
-    printf("Input Hours: %s\n",input);
-
     if (strchr(input,':') != 0 || strchr(input, 'm') != 0)
         seconds = checkArgument(input);
     else{
@@ -60,7 +58,7 @@ int promptTimeEnd(int seconds){
 }
 
 int readTimeInput(char* timeInput){
-    fgets(timeInput, sizeof timeInput, stdin);
+    fgets(timeInput, sizeof timeInput+1, stdin);
     if (timeInput[0] == '\n')
         return 0;
 

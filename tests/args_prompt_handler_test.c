@@ -15,8 +15,19 @@ static char * testTimePrompt() {
     return 0;
 }
 
+static char * timeInputIsRead() {
+    statement("The Input for null string is 0");
+    expect = 0;
+    result = readTimeInput("\n");
+    assertInt(expect, result);
+    mu_assert("", result == expect);
+
+    return 0;
+}
+
 static char * all_tests() {
     run_test(testTimePrompt);
+    /* run_test(timeInputIsRead); // stdin based: to be toggled */
 
     return 0;
 }

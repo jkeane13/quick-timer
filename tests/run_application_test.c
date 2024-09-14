@@ -38,7 +38,7 @@ static char * checksSoundFileExists() {
 
 static char * playDuckSound() {
     statement("Function should play a duck sound");
-    playSound(1);
+    playSound(SOUND_FILE,1);
     assertInt(1,1);
 
     mu_assert("", result == expect);

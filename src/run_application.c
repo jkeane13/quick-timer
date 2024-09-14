@@ -47,12 +47,9 @@ void playSound(char *soundFile, int times){
         replaceChar(soundCommand, '/', '\\');
     #endif
 
-        printf("Sound Command: %s\n", soundCommand);
-
     for (int i = 0; i < times; i++)
         system(soundCommand);
 }
-
 
 void checkForHomeFolderPath(char* filePath){
     if (filePath[0] == '~'){

@@ -15,12 +15,14 @@ void runProgram(char* programLocation, int silentOutput);
 int convert24ClockToSeconds(char* input);
 void checkFileExists(char* programLocation);
 
+void checkForHomeFolderPath(char* filePath);
+
 // ../src/convert_clock.c
 void convert24ClockTo12(char* clockTime);
 void convertInputClockto24(char* timeInput);
 
 // ../src/play_sound.c
-void playSound(int times);
+void playSound(char* soundFile, int times);
 
 // ../src/countdown.c
 void secondsCountdown (int seconds);

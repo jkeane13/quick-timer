@@ -1,20 +1,20 @@
 #include <string.h>
 #include "../include/timer.h"
+
 #define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
 #define SOUND_FILE "~/.local/assets/duck_quack.mp3"
-
 #define MAX_PATH_STRING 1024
 
 int main(int argc, char *argv[]){
-    char soundFilePath[MAX_PATH_STRING];
-    strcpy(soundFilePath,SOUND_FILE);
-
-    char homedir[MAX_PATH_STRING];
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
     char argSwitch[MAX_PATH_STRING] = "";
+
+    char soundFilePath[MAX_PATH_STRING];
+    strcpy(soundFilePath,SOUND_FILE);
+    checkForHomeFolderPath(soundFilePath);
 
     if (argc <= 1 || argc > 5){
         usage(1);
@@ -30,7 +30,6 @@ int main(int argc, char *argv[]){
     if (programMode)
         checkFileExists(argSwitch);
 
-    checkForHomeFolderPath(soundFilePath);
     checkFileExists(soundFilePath);
 
     for (int i = 1; i < argc; i++){

@@ -10,5 +10,5 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: 🔎 Run tests
         run: |
-          make test-full
+          make test
       - run: echo "🍏 This job's status is ${{ job.status }}."

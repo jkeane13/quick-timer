@@ -35,5 +35,8 @@ int getMinutes(char* timeInput);
 
 void usage(int toggle);
 
+void replaceChar(char* str, char find, char replace);
+void removeChar(char *str, char keyCharacter) ;
+
 #endif
 

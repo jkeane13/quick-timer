@@ -50,6 +50,9 @@ test:
 	@echo
 	@$(CC) -o $(BIN)/usage_test $(TEST)/usage_test.c tests/testing.c $(COMMON_SOURCES)
 	@$(BIN)/usage_test
+	@echo
+	@$(CC) -o $(BIN)/edit_characters_test $(TEST)/edit_characters_test.c tests/testing.c $(COMMON_SOURCES)
+	@$(BIN)/edit_characters_test
 
 test-output: build test
 	@echo Testing hour...

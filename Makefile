@@ -6,6 +6,8 @@ SRC = src
 TEST = tests
 BIN = build
 
+C_TESTS := $(shell find $(TEST) -name '*_test.c' -exec basename {} \; | awk -F '_test.c' {'print $$1'})
+
 EXECUTABLE_SOURCE := $(SRC)/main.c
 COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
@@ -15,63 +17,11 @@ build:
 
 test:
 	mkdir -p $(BIN)
-	@$(CC) -o $(BIN)/args_prompt_handler_test $(TEST)/args_prompt_handler_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/args_prompt_handler_test
-	@echo
-	@$(CC) -o $(BIN)/args_switch_handler_test $(TEST)/args_switch_handler_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/args_switch_handler_test
-	@echo
-	@$(CC) -o $(BIN)/convert_12_hour_clock_to_24_test $(TEST)/convert_12_hour_clock_to_24_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/convert_12_hour_clock_to_24_test
-	@echo
-	@$(CC) -o $(BIN)/convert_24_clock_to_12_test $(TEST)/convert_24_clock_to_12_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/convert_24_clock_to_12_test
-	@echo
-	@$(CC) -o $(BIN)/convert_24_hour_clock_to_seconds_test $(TEST)/convert_24_hour_clock_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/convert_24_hour_clock_to_seconds_test
-	@echo
-	@$(CC) -o $(BIN)/convert_args_to_seconds_test $(TEST)/convert_args_to_seconds_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/convert_args_to_seconds_test
-	@echo
-	@$(CC) -o $(BIN)/convert_quick_clock_to_24_test $(TEST)/convert_quick_clock_to_24_test.c  tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/convert_quick_clock_to_24_test
-	@echo
-	@$(CC) -o $(BIN)/countdown_seconds_test $(TEST)/countdown_seconds_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/countdown_seconds_test
-	@echo
-	@$(CC) -o $(BIN)/get_hour_and_minutes_test $(TEST)/get_hour_and_minutes_test.c  tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/get_hour_and_minutes_test
-	@echo
-	@$(CC) -o $(BIN)/print_clock_test $(TEST)/print_clock_test.c  tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/print_clock_test
-	@echo
-	@$(CC) -o $(BIN)/run_application_test $(TEST)/run_application_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/run_application_test
-	@echo
-	@$(CC) -o $(BIN)/usage_test $(TEST)/usage_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/usage_test
-	@echo
-	@$(CC) -o $(BIN)/edit_characters_test $(TEST)/edit_characters_test.c tests/testing.c $(COMMON_SOURCES)
-	@$(BIN)/edit_characters_test
-
-test-output: build test
-	@echo Testing hour...
-	$(BIN)/$(APP_NAME) 12 20 2 --dry-run
-	@echo Testing minute...
-	$(BIN)/$(APP_NAME) 2 30  --dry-run
-	@echo Testing second...
-	$(BIN)/$(APP_NAME) 35 --dry-run
-	@echo Testing quick clock...
-	$(BIN)/$(APP_NAME) 9:30pm --dry-run
-	@echo Testing application execution...
-	$(BIN)/$(APP_NAME) 1 tests/example.sh
-
-test-prompt: build
-	@echo
-	@echo Prompt Testing:
-	$(BIN)/$(APP_NAME) -p
-
-test-full: test test-output
+	for i in $(C_TESTS); do \
+	  $(CC) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c tests/testing.c $(COMMON_SOURCES); \
+	  $(BIN)/$${i}_test; \
+	  echo; \
+	  done
 
 deploy: build
 	 mkdir -p ${HOME}/.local
@@ -84,3 +34,4 @@ clean:
 	$(RM) $(BIN)/*
 
 .PHONY: all build
+.SILENT:

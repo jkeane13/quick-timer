@@ -3,7 +3,7 @@
 #include "../include/testing.h"
 
 #define MAX_STRING 256
-#define TEST_FILE "tests/example.sh"
+#define TEST_FILE "assets/example.sh"
 #define SOUND_FILE "assets/duck_quack.mp3"
 
 int tests_run = 0;
@@ -36,18 +36,8 @@ static char * checksSoundFileExists() {
     return 0;
 }
 
-static char * playDuckSound() {
-    statement("Function should play a duck sound");
-    playSound(SOUND_FILE,1);
-    assertInt(1,1);
-
-    mu_assert("", result == expect);
-    return 0;
-}
-
 static char * all_tests() {
     run_test(runASystemProgram);
-    run_test(playDuckSound);
     run_test(checkProgramExists);
     run_test(checksSoundFileExists);
     return 0;

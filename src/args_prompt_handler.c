@@ -22,7 +22,6 @@ int promptTimeEnd(int seconds){
         minutes = readTimeInput(minutesInput);
         printf("Enter seconds: ");
         seconds = readTimeInput(secondsInput);
-        printf("Input seconds: %s\n",input);
 
         if (hours != 0 || minutes != 0 || seconds != 0)
             seconds = convertHoursMinsToSeconds(hours, minutes, seconds);

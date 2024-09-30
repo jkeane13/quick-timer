@@ -11,7 +11,6 @@ int main(int argc, char *argv[]){
     int seconds = 0;
     char timeString[20] = "";
     char argSwitch[MAX_PATH_STRING] = "";
-
     char soundFilePath[MAX_PATH_STRING];
     strcpy(soundFilePath,SOUND_FILE);
     checkForHomeFolderPath(soundFilePath);

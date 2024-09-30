@@ -11,6 +11,9 @@ C_TESTS := $(shell find $(TEST) -name '*_test.c' -exec basename {} \; | awk -F '
 EXECUTABLE_SOURCE := $(SRC)/main.c
 COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
+lint:
+	assets/lint.sh
+
 build:
 	mkdir -p $(BIN)
 	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)

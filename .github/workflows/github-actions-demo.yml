@@ -8,6 +8,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: 🔎 Lint C files in src
+        run: |
+          make lint
+      - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: 🔎 Run tests
         run: |
           make test

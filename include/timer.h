@@ -38,5 +38,7 @@ void usage(int toggle);
 void replaceChar(char* str, char find, char replace);
 void removeChar(char *str, char keyCharacter) ;
 
+
+void printSecondsEndAsClock(int seconds, char* clockType);
 #endif
 

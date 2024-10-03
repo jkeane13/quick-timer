@@ -1,38 +1,19 @@
-#include <stdio.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 100
-#define TEST_FILE "tests/example.sh"
-
-int tests_run = 0;
-int result;
-int expect;
-char inputString[MAX_STRING];
-char resultString[MAX_STRING];
-char expectString[MAX_STRING];
-
-static char * convert321HoursMinsToSeconds(){
+void convert321HoursMinsToSeconds(){
     statement("Convert 3 Hours, 2 mins and 1 second to seconds");
-    result = convertHoursMinsToSeconds(3,2,1);
-    expect = 10921;
-
-    assertInt(result, expect);
-
-    mu_assert("", result == expect);
-    return 0;
+    assertInt(10921, convertHoursMinsToSeconds(3,2,1));
 }
 
-static char * all_tests() {
-    run_test(convert321HoursMinsToSeconds);
-    return 0;
+void all_tests() {
+    convert321HoursMinsToSeconds();
 }
 
 int main(int argc, char **argv) {
-    printf("-- convert_24_hour_clock_to_seconds.c --\n");
-    printf("Testing 24 hour clock to seconds functions...\n");
-    char *result = all_tests();
+    testTitle("Testing 24 hour clock to seconds functions",__FILE__);
+    all_tests();
 
-    return result != 0;
+    return 0;
 }
 

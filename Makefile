@@ -12,7 +12,7 @@ EXECUTABLE_SOURCE := $(SRC)/main.c
 COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
 lint:
-	assets/lint.sh
+	assets/clinter src/ .c
 
 build:
 	mkdir -p $(BIN)

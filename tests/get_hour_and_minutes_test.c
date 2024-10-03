@@ -1,111 +1,60 @@
-#include <stdio.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-int result, expect;
-int tests_run = 0;
-
-static char * getSingleHour() {
+void getSingleHour() {
     statement("Get the single hour of 3:30...");
-    expect = 3;
-    result = getHour("3:30");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(3, getHour("3:30"));
 }
 
-static char * getSingleHourFromAmPm() {
+void getSingleHourFromAmPm() {
     statement("Get the single hour of 4am...");
-    expect = 4;
-    result = getHour("4am");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(4, getHour("4am"));
 }
 
-static char * getDoubleHourFromAmPm() {
+void getDoubleHourFromAmPm() {
     statement("Get the single hour of 10am...");
-    expect = 10;
-    result = getHour("10am");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(10, getHour("10am"));
 }
 
-static char * getDoubleHour() {
+void getDoubleHour() {
     statement("Get the double hour of 12:30...");
-    expect = 12;
-    result = getHour("12:30");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(12, getHour("12:30"));
 }
 
-static char * getSingleMinutes() {
+void getSingleMinutes() {
     statement("Get the single minute of 6:09...");
-    expect = 9;
-    result = getMinutes("6:09");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(9, getMinutes("6:09"));
 }
 
-static char * getDoubleMinutes() {
+void getDoubleMinutes() {
     statement("Get the double minutes of 7:30...");
-    expect = 30;
-    result = getMinutes("7:30");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(30, getMinutes("7:30"));
 }
 
-static char * getDoubleFullHour() {
+void getDoubleFullHour() {
     statement("Get the single hour of full time 5:30am...");
-    expect = 5;
-    result = getHour("5:30am");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(5, getHour("5:30am"));
 }
 
-static char * getDoubleFullMinute() {
+void getDoubleFullMinute() {
     statement("Get the double minutes of a full time 12:24am...");
-    expect = 24;
-    result = getMinutes("12:24am");
-    assertInt(expect, result);
-    mu_assert("", result == expect);
-
-    return 0;
+    assertInt(24, getMinutes("12:24am"));
 }
 
-static char * all_tests() {
-    run_test(getSingleHour);
-    run_test(getDoubleHour);
-    run_test(getSingleHourFromAmPm);
-    run_test(getDoubleHourFromAmPm);
-    run_test(getSingleMinutes);
-    run_test(getDoubleMinutes);
-    run_test(getDoubleFullHour);
-    run_test(getDoubleFullMinute);
-
-    return 0;
+void run_tests() {
+    getSingleHour();
+    getDoubleHour();
+    getSingleHourFromAmPm();
+    getDoubleHourFromAmPm();
+    getSingleMinutes();
+    getDoubleMinutes();
+    getDoubleFullHour();
+    getDoubleFullMinute();
 }
 
 int main(int argc, char **argv) {
-    printf("-- get_hour_and_minutes.c --\n");
-    printf("Testing hour and minutes functions...\n");
-    char *result = all_tests();
+    testTitle("Testing hour and minutes functions", __FILE__);
+    run_tests();
 
-    if (result != 0)
-        printf("%s\n", result);
-
-    printf("Tests run: %d\n", tests_run);
-    return result != 0;
+    return 0;
 }

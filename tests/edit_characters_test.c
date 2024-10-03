@@ -2,7 +2,7 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 256
+#define MAX_STRING 100
 char inputString[MAX_STRING];
 
 void replaceCharactersInAString() {

@@ -9,13 +9,9 @@ void executeUsage() {
     assertInt(1,1);
 }
 
-void run_tests() {
-    executeUsage();
-}
-
 int main(int argc, char **argv) {
     testTitle("Testing usage function tests",__FILE__);
-    run_tests();
+    executeUsage();
 
     return 0;
 }

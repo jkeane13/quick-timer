@@ -10,13 +10,9 @@ void playDuckSound() {
     assertInt(1,1);
 }
 
-void run_tests() {
-    playDuckSound();
-}
-
 int main(int argc, char **argv) {
     testTitle("Testing play audio function tests", __FILE__);
-    run_tests();
+    playDuckSound();
 
     return 0;
 }

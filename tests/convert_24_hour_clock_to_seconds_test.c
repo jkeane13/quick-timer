@@ -6,13 +6,9 @@ void convert321HoursMinsToSeconds(){
     assertInt(10921, convertHoursMinsToSeconds(3,2,1));
 }
 
-void all_tests() {
-    convert321HoursMinsToSeconds();
-}
-
 int main(int argc, char **argv) {
     testTitle("Testing 24 hour clock to seconds functions",__FILE__);
-    all_tests();
+    convert321HoursMinsToSeconds();
 
     return 0;
 }

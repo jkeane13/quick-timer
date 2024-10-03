@@ -2,7 +2,7 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 256
+#define MAX_STRING 100
 
 char inputString[MAX_STRING];
 
@@ -27,7 +27,7 @@ void convert0800to12Hour() {
     assertString("8am", inputString);
 }
 
-void all_tests() {
+void run_tests() {
     convert1330to12Hour();
     convert0030to12Hour();
     convert0800to12Hour();
@@ -35,7 +35,7 @@ void all_tests() {
 
 int main() {
     testTitle("Testing convert 24 clock to 12 tests...",__FILE__);
-    all_tests();
+    run_tests();
 
     return 0;
 }

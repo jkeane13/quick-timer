@@ -6,13 +6,9 @@ void checkArg() {
     assertInt(42, checkArgument("?"));
 }
 
-void run_tests() {
-    checkArg();
-}
-
 int main() {
     testTitle("Testing argument handler",__FILE__);
-    run_tests();
+    checkArg();
 
     return 0;
 }

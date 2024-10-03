@@ -7,13 +7,9 @@ void timerExecutes() {
     assertInt(1, 1);
 }
 
-void run_tests() {
-    timerExecutes();
-}
-
 int main(int argc, char **argv) {
     testTitle("Testing countdown_seconds function tests", __FILE__);
-    run_tests();
+    timerExecutes();
 
     return 0;
 }

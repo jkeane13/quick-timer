@@ -13,6 +13,8 @@ COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
 lint:
 	assets/clinter src/ .c
+	echo
+	assets/clinter tests/ .c
 
 build:
 	mkdir -p $(BIN)

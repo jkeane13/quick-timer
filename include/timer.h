@@ -40,5 +40,8 @@ void removeChar(char *str, char keyCharacter) ;
 
 
 void printSecondsEndAsClock(int seconds, char* clockType);
+
+int getCurrentHourNumber();
+int getCurrentMinuteNumber();
 #endif
 

@@ -2,13 +2,9 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-int getCurrentHourNumber();
-int getCurrentMinuteNumber();
+#define MAX_STRING 10
 
-#define MAX_STRING 100
-
-char inputString[MAX_STRING];
-char expectString[MAX_STRING];
+char inputString[MAX_STRING], expectString[MAX_STRING];
 
 void convert7quickClockTo24() {
     statement("Convert 7 quick clock to 7:00 or 19:00");
@@ -42,14 +38,10 @@ void convert12quickClockTo24() {
     assertString(expectString, inputString);
 }
 
-void run_tests() {
-    convert7quickClockTo24();
-    convert12quickClockTo24();
-}
-
 int main(int argc, char **argv) {
     testTitle("Testing convert quickclock to 24 hour functions", __FILE__);
-    run_tests();
+    convert7quickClockTo24();
+    convert12quickClockTo24();
 
     return 0;
 }

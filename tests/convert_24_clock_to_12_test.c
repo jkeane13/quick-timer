@@ -1,36 +1,25 @@
-#include <string.h>
+#include <stdio.h>
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 100
+#define STR 10
 
-char inputString[MAX_STRING];
+char entryString[STR][STR] = {"13:30", "00:30", "08:00", "07:00", "07:30",
+                              "19:30","00:00", "00:30", "12:00", "12:30" };
+char expectString[STR][STR] = {"1:30pm", "12:30am", "8am", "7am","7:30am",
+                               "7:30pm", "12am", "12:30am", "12pm", "12:30pm" };
 
-void convert1330to12Hour() {
-    statement("Should convert 13:30 to 1:30pm");
-    strcpy(inputString, "13:30");
-    convert24ClockTo12(inputString);
-    assertString("1:30pm", inputString);
-}
-
-void convert0030to12Hour() {
-    statement("Should convert 00:30 to 12:30am");
-    strcpy(inputString, "00:30");
-    convert24ClockTo12(inputString);
-    assertString("12:30am", inputString);
-}
-
-void convert0800to12Hour() {
-    statement("Should convert 08:00 to 8am");
-    strcpy(inputString, "08:00");
-    convert24ClockTo12(inputString);
-    assertString("8am", inputString);
+void convertTime24TimetoAmPm() {
+    for (int i = 0; i < STR; i++){
+        printf("Convert %s to %s 12 hour clock\n",
+                entryString[i], expectString[i]);
+        convert24ClockTo12(entryString[i]);
+        assertString(expectString[i], entryString[i]);
+    }
 }
 
 void run_tests() {
-    convert1330to12Hour();
-    convert0030to12Hour();
-    convert0800to12Hour();
+    convertTime24TimetoAmPm();
 }
 
 int main() {

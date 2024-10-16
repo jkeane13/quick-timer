@@ -70,3 +70,6 @@ timer 30 0 "./assets/example.sh"
 `--quiet` : application will not set off an alarm
 `--dry-run` : mainly for testing, timer instantly goes off in quiet mode
 
+## Work in Progress
+- Bug with quick clock: `timer 12:30` at 12:20pm comes back as 12:30am.
+  Should be 12:30pm

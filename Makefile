@@ -32,8 +32,8 @@ deploy: build
 	 mkdir -p ${HOME}/.local
 	 mkdir -p ${HOME}/.local/bin
 	 mkdir -p ${HOME}/.local/assets
-	 cp $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
-	 cp -f assets/duck_quack.mp3 ${HOME}/.local/assets/
+	 cp -f $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
+	 cp -f assets/chime.mp3 ${HOME}/.local/assets/
 
 clean:
 	$(RM) $(BIN)/*

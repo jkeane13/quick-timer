@@ -3,7 +3,7 @@
 
 #define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
-#define SOUND_FILE "~/.local/assets/duck_quack.mp3"
+#define SOUND_FILE "~/.local/assets/chime.mp3"
 #define MAX_PATH_STRING 1024
 
 int main(int argc, char *argv[]){

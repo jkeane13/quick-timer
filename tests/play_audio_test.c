@@ -2,17 +2,17 @@
 #include "../include/testing.h"
 
 #define TEST_FILE "tests/example.sh"
-#define SOUND_FILE "assets/duck_quack.mp3"
+#define SOUND_FILE "assets/chime.mp3"
 
-void playDuckSound() {
-    statement("Function should play a duck sound");
+void playChimeSound() {
+    statement("Function should play a chime sound");
     playSound(SOUND_FILE,1);
     assertInt(1,1);
 }
 
 int main(int argc, char **argv) {
     testTitle("Testing play audio function tests", __FILE__);
-    playDuckSound();
+    playChimeSound();
 
     return 0;
 }

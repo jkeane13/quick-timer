@@ -2,7 +2,7 @@
 #include "../include/testing.h"
 
 #define TEST_FILE "assets/example.sh"
-#define SOUND_FILE "assets/duck_quack.mp3"
+#define SOUND_FILE "assets/stopwatch.mp3"
 
 void runASystemProgram() {
     statement("Program should execute in silent output mode");

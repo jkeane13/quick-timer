@@ -2,10 +2,10 @@
 #include "../include/testing.h"
 
 #define TEST_FILE "tests/example.sh"
-#define SOUND_FILE "assets/chime.mp3"
+#define SOUND_FILE "assets/stopwatch.mp3"
 
 void playChimeSound() {
-    statement("Function should play a chime sound");
+    statement("Function should play a stopwatch sound");
     playSound(SOUND_FILE,1);
     assertInt(1,1);
 }

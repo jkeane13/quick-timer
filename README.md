@@ -29,11 +29,15 @@ directory. One will be created, if it doesn't exist. In order to run as a
 local app, `~/.local/bin` will have to be added to your PATH
 
 ### Windows
-Use a C compiler to build the binary with `make`
+Has to be run inside Windows Terminal (`cmd.exe`)
+
+Run the `deploy.bat` script in the `windows_compile` directory. This will move
+the assets to `~/.local/ directory`. This will require Administrator mode on the
+command line to be able to execute
 
 ### Alert notication
 In order to play the alert, the sound mp3 must be located in
-`assets/duck_quack.mp3`
+`assets/stopwatch.mp3`
 
 ## Usage examples
 For seconds, 15 seconds

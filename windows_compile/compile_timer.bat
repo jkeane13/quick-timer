@@ -21,5 +21,7 @@ src\run_application.c ^
 src\usage.c ^
 -o ^
 build\timer.exe
+
+cd windows_compile
 echo Done!
-pause
+

@@ -1,13 +1,19 @@
 @ECHO OFF
 
-ECHO Create Timer folder...
-MKDIR "C:\Program Files\Quick Timer"
+IF NOT EXIST "C:\Program Files\Quick Timer\" (
+    ECHO Creating Timer folder...
+    MKDIR "C:\Program Files\Quick Timer"
+)
 
-ECHO Create .local folder in home folder...
-MKDIR %homepath%\.local
+IF NOT EXIST %homepath%\.local (
+    ECHO Creating .local folder in home folder...
+    MKDIR %homepath%\.local
+)
 
-ECHO Create assets folder in .local folder...
-MKDIR %homepath%\.local\assets
+IF NOT EXIST %homepath%\.local\assets (
+    ECHO Create assets folder in .local folder...
+    MKDIR %homepath%\.local\assets
+)
 
 ECHO Copying Timer...
 COPY ..\build\timer.exe "C:\Program Files\Quick Timer\"

@@ -1,18 +1,23 @@
 #include <string.h>
 #include "../include/timer.h"
+#include "../include/read_sound_config_file.h"
 
+#define CONFIG_FILE "config/timer.cfg"
 #define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
-#define SOUND_FILE "~/.local/assets/stopwatch.mp3"
+#define MAX_STRING 1024
 #define MAX_PATH_STRING 1024
 
 int main(int argc, char *argv[]){
+    char soundFile[MAX_STRING];
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
     char argSwitch[MAX_PATH_STRING] = "";
     char soundFilePath[MAX_PATH_STRING];
-    strcpy(soundFilePath,SOUND_FILE);
+
+    readSoundConfigFile(CONFIG_FILE, soundFile);
+    strcpy(soundFilePath,soundFile);
     checkForHomeFolderPath(soundFilePath);
 
     if (argc <= 1 || argc > 5){

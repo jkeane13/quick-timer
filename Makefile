@@ -32,8 +32,10 @@ deploy: build
 	 mkdir -p ${HOME}/.local
 	 mkdir -p ${HOME}/.local/bin
 	 mkdir -p ${HOME}/.local/assets
+	 mkdir -p ${HOME}/.local/config
 	 cp -f $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
 	 cp -f assets/*.mp3 ${HOME}/.local/assets/
+	 cp -f config/*.cfg ${HOME}/.local/config/
 
 clean:
 	$(RM) $(BIN)/*

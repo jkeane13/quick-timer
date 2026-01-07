@@ -15,8 +15,6 @@ void runProgram(char* programLocation, int silentOutput);
 int convert24ClockToSeconds(char* input);
 void checkFileExists(char* programLocation);
 
-void checkForHomeFolderPath(char* filePath);
-
 // ../src/convert_clock.c
 void convert24ClockTo12(char* clockTime);
 void convertInputClockto24(char* timeInput);

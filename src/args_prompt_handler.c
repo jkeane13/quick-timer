@@ -3,8 +3,6 @@
 #include <string.h>
 #include "../include/timer.h"
 
-#define MAX_STRING 256
-
 int promptTimeEnd(int seconds){
     char input[MAX_STRING], minutesInput[MAX_STRING], secondsInput[MAX_STRING];
     int hours, minutes;

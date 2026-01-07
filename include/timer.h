@@ -1,5 +1,9 @@
-#ifndef FILE_HANDLING_H
-#define FILE_HANDLING_H
+#ifndef TIMER_H
+#define TIMER_H
+#define ALERT_TIMES 3
+#define DISPLAY_OUTPUT 0
+#define MAX_STRING 1024
+#define CONFIG_FILE "~/.local/config/timer.cfg"
 
 // ../src/timer.c
 int checkArgument(char* input);
@@ -27,19 +31,12 @@ void secondsCountdown (int seconds);
 
 // ../convert_quick_clock_to_24
 void convertQuickClockto24(char* timeInput);
-
 int getHour(char* timeInput);
 int getMinutes(char* timeInput);
-
 void usage(int toggle);
-
 void replaceChar(char* str, char find, char replace);
 void removeChar(char *str, char keyCharacter) ;
-
-
 void printSecondsEndAsClock(int seconds, char* clockType);
-
 int getCurrentHourNumber();
 int getCurrentMinuteNumber();
 #endif
-

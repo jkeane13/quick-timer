@@ -1,11 +1,11 @@
 #include <string.h>
 #include "../include/timer.h"
 #include "../include/read_sound_config_file.h"
+#include "../include/complete_home_folder_path.h"
 #define CONFIG_FILE "~/.local/config/timer.cfg"
 #define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
 #define MAX_STRING 1024
-#define MAX_PATH_STRING 1024
 
 int main(int argc, char *argv[]){
     char configFile[MAX_STRING];
@@ -13,13 +13,13 @@ int main(int argc, char *argv[]){
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
-    char argSwitch[MAX_PATH_STRING] = "";
+    char argSwitch[MAX_STRING] = "";
 
     strcpy(configFile,CONFIG_FILE);
 
-    checkForHomeFolderPath(configFile);
+    completeHomeFolderPath(configFile);
     readSoundConfigFile(configFile, soundFile);
-    checkForHomeFolderPath(soundFile);
+    completeHomeFolderPath(soundFile);
 
     if (argc <= 1 || argc > 5){
         usage(1);

@@ -2,7 +2,6 @@
 #define TIMER_H
 #define DISPLAY_OUTPUT 0
 #define MAX_STRING 1024
-#define CONFIG_FILE "~/.local/config/timer.cfg"
 
 // ../src/timer.c
 int checkArgument(char* input);

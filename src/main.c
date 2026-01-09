@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 #include "../include/timer.h"
 #include "../include/read_sound_config_file.h"
 #include "../include/complete_home_folder_path.h"
@@ -6,6 +7,7 @@
 int main(int argc, char *argv[]){
     char configFile[MAX_STRING];
     char soundFile[MAX_STRING];
+    char alertTimes[MAX_STRING];
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
@@ -14,6 +16,7 @@ int main(int argc, char *argv[]){
     strcpy(configFile,CONFIG_FILE);
     completeHomeFolderPath(configFile);
     readSoundConfigFile(configFile, soundFile);
+    readAlertConfigFile(configFile, alertTimes);
     completeHomeFolderPath(soundFile);
 
     if (argc <= 1 || argc > 5){
@@ -43,7 +46,7 @@ int main(int argc, char *argv[]){
         secondsCountdown(seconds);
 
     if (quietMode == 0)
-        playSound(soundFile,ALERT_TIMES);
+        playSound(soundFile,atoi(alertTimes));
 
     if (programMode)
         runProgram(argSwitch, DISPLAY_OUTPUT);

@@ -1,6 +1,5 @@
 #ifndef TIMER_H
 #define TIMER_H
-#define ALERT_TIMES 3
 #define DISPLAY_OUTPUT 0
 #define MAX_STRING 1024
 #define CONFIG_FILE "~/.local/config/timer.cfg"

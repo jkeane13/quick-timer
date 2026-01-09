@@ -4,4 +4,3 @@
 void completeHomeFolderPath(char* filePath);
 
 #endif
-    

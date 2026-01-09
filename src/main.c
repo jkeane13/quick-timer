@@ -1,23 +1,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../include/timer.h"
-#include "../include/read_sound_config_file.h"
+#include "../include/get_timer_config.h"
 #include "../include/complete_home_folder_path.h"
 
 int main(int argc, char *argv[]){
-    char configFile[MAX_STRING];
-    char soundFile[MAX_STRING];
-    char alertTimes[MAX_STRING];
+    char soundFilePath[MAX_STRING], alertTimes[MAX_STRING];
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
     char timeString[20] = "";
     char argSwitch[MAX_STRING] = "";
+    char configFile[MAX_STRING] = "~/.local/config/timer.cfg";
 
-    strcpy(configFile,CONFIG_FILE);
     completeHomeFolderPath(configFile);
-    readSoundConfigFile(configFile, soundFile);
-    readAlertConfigFile(configFile, alertTimes);
-    completeHomeFolderPath(soundFile);
+    getConfigFromfileFile(configFile, soundFilePath, alertTimes);
+    completeHomeFolderPath(soundFilePath);
 
     if (argc <= 1 || argc > 5){
         usage(1);
@@ -33,7 +30,7 @@ int main(int argc, char *argv[]){
     if (programMode)
         checkFileExists(argSwitch);
 
-    checkFileExists(soundFile);
+    checkFileExists(soundFilePath);
 
     for (int i = 1; i < argc; i++){
         strcat(timeString, argv[i]);
@@ -46,7 +43,7 @@ int main(int argc, char *argv[]){
         secondsCountdown(seconds);
 
     if (quietMode == 0)
-        playSound(soundFile,atoi(alertTimes));
+        playSound(soundFilePath, atoi(alertTimes));
 
     if (programMode)
         runProgram(argSwitch, DISPLAY_OUTPUT);

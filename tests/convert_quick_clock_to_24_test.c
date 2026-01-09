@@ -2,8 +2,6 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 10
-
 char inputString[MAX_STRING], expectString[MAX_STRING];
 
 void convert7quickClockTo24() {

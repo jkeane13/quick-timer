@@ -2,7 +2,6 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-#define MAX_STRING 100
 char inputString[MAX_STRING];
 
 void replaceCharactersInAString() {
@@ -24,7 +23,7 @@ void run_tests() {
     removesCharactersInAString();
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     testTitle("Testing run application function tests",__FILE__);
     run_tests();
 

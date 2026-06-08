@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
     }
 
     if (strstr(argv[argc-1],"--") != 0 || strstr(argv[argc-1],".") !=0){
-        strcat(argSwitch,argv[argc-1]);
+        strncat(argSwitch,argv[argc-1], MAX_STRING - 1);
         runEndSwitch(argSwitch, &quietMode, &dryRunMode, &programMode);
         argc = argc - 1;
     }
@@ -33,8 +33,8 @@ int main(int argc, char *argv[]){
     checkFileExists(soundFilePath);
 
     for (int i = 1; i < argc; i++){
-        strcat(timeString, argv[i]);
-        strcat(timeString, " ");
+        strncat(timeString, argv[i], 20);
+        strncat(timeString, " ", 20);
     }
     seconds = convertArgsToSeconds(timeString);
     printTimerEndTime(seconds);
@@ -47,4 +47,6 @@ int main(int argc, char *argv[]){
 
     if (programMode)
         runProgram(argSwitch, DISPLAY_OUTPUT);
+
+    return 0;
 }

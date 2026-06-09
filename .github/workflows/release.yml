@@ -43,7 +43,7 @@ jobs:
         run: make clean && make ${{ matrix.target }}
 
       - name: Create release artifact
-        shell: cmd
+        shell: ${{ matrix.os == 'windows-latest' && 'cmd' || 'bash' }}
         run: ${{ matrix.script }}
 
       - name: Upload release asset

@@ -42,8 +42,14 @@ jobs:
       - name: Build
         run: make clean && make ${{ matrix.target }}
 
-      - name: Create release artifact
-        shell: ${{ matrix.os == 'windows-latest' && 'cmd' || 'bash' }}
+      - name: Create release artifact (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: bash ${{ matrix.script }}
+
+      - name: Create release artifact (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: cmd
         run: ${{ matrix.script }}
 
       - name: Upload release asset

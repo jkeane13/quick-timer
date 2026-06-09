@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
     char soundFilePath[MAX_STRING], alertTimes[MAX_STRING];
     int quietMode = 0, dryRunMode = 0, programMode = 0;
     int seconds = 0;
-    char timeString[20] = "";
+    char timeString[MAX_STRING] = "";
     char argSwitch[MAX_STRING] = "";
     char configFile[MAX_STRING] = "~/.local/config/timer.cfg";
 
@@ -33,8 +33,8 @@ int main(int argc, char *argv[]){
     checkFileExists(soundFilePath);
 
     for (int i = 1; i < argc; i++){
-        strncat(timeString, argv[i], 20);
-        strncat(timeString, " ", 20);
+        strncat(timeString, argv[i], MAX_STRING - strlen(timeString) - 1);
+        strncat(timeString, " ", MAX_STRING - strlen(timeString) - 1);
     }
     seconds = convertArgsToSeconds(timeString);
     printTimerEndTime(seconds);

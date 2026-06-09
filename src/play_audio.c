@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../include/timer.h"
@@ -10,24 +11,31 @@
 
 void playSound(char *soundFile, int times){
     char soundCommand[MAX_COMMAND_LENGTH];
+    const char *player = NULL;
+    const char *null_output = NULL;
 
     #if defined(__APPLE__)
-        strcpy (soundCommand, AF_PLAYER);
-    #endif
-    #if defined(__linux__) || (__WIN32)
-        strcpy (soundCommand, MPG_PLAYER);
-    #endif
-
-    strcat (soundCommand, " ");
-    strcat(soundCommand,soundFile);
-
-    #if defined(__linux__) || defined(__APPLE__)
-        strcat(soundCommand,UNIX_NULL_OUTPUT);
+        player = AF_PLAYER;
+        null_output = UNIX_NULL_OUTPUT;
+    #elif defined(__linux__)
+        player = MPG_PLAYER;
+        null_output = UNIX_NULL_OUTPUT;
     #elif defined(_WIN32)
-        strcat(soundCommand,WINDOWS_NULL_OUTPUT);
-        replaceChar(soundCommand, '/', '\\');
+        player = MPG_PLAYER;
+        null_output= WINDOWS_NULL_OUTPUT;
+    #else
+        #error "Unsupported Platform"
     #endif
 
+    int len = snprintf(soundCommand, MAX_COMMAND_LENGTH, "%s %s%s", player, soundFile, null_output);
+
+    if (len < 0 || len >= MAX_COMMAND_LENGTH){
+      return;
+    }
+
+  #if defined(_WIN32)
+      replaceChar(soundCommand, '/', '\\');
+  #endif
     for (int i = 0; i < times; i++)
         system(soundCommand);
 }

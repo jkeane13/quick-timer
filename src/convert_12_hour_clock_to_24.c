@@ -13,9 +13,9 @@ int convertHourToAm(int hour){
 
 int convertHourToPm(int hour){
     if (hour == 12)
-        return hour;
+        return 12;
     else
-        return hour+=12;
+        return hour + 12;
 }
 
 void convert12HourClockto24( char *timeInput){

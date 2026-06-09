@@ -20,7 +20,7 @@ int convertArgsToSeconds(char* arg){
     if (itemCount == 1){
         hourminsec[2] = hourminsec[0];
         hourminsec[0] = 0;
-        sprintf(commandString, "%d", hourminsec[2]);
+        snprintf(commandString,sizeof(commandString),"%d", hourminsec[2]);
         hourminsec[2] = checkArgument(arg);
     }
 

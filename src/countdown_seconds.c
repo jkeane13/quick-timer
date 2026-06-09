@@ -4,21 +4,19 @@
 #include "../include/timer.h"
 
 void secondsCountdown (int seconds){
-   struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
 
-   int timeDifference =  endTime - time(NULL);
+   int timeDifference = endTime - time(NULL);
 
-   while(timeDifference > 1){
-       timeDifference =  endTime - time(NULL);
-       int h = seconds / 3600;
-       int m = (seconds  % 3600) / 60;
-       int s = seconds  % 60;
+   while(timeDifference > 0){
+       timeDifference = endTime - time(NULL);
+       int h = timeDifference / 3600;
+       int m = (timeDifference % 3600) / 60;
+       int s = timeDifference % 60;
 
-       printf ("\r%02d:%02d:%02d", h, m, s);
+       printf("\r%02d:%02d:%02d", h, m, s);
        fflush(stdout);
        sleep(1);
-       seconds--;
    }
    printf("\rTime's up!\n");
 }

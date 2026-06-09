@@ -31,7 +31,7 @@ jobs:
             artifact: timer-linux-x86_64.tar.gz
           - os: windows-latest
             target: windows-release
-            script: scripts/windows-release.bat
+            script: scripts/windows_release.bat
             artifact: timer-windows.zip
 
     runs-on: ${{ matrix.os }}

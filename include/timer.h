@@ -10,8 +10,7 @@
 #define RANDOM_TEST_VALUE 42
 
 int t_check_argument(char* input);
-int promptTimeEnd(int seconds);
-int readTimeInput(char *input);
+int t_prompt_time_input(int seconds);
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* args);
 int convertHoursMinsToSeconds(int hours, int minutes, int seconds);

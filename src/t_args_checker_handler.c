@@ -4,7 +4,7 @@
 
 int t_check_argument(char* input){
   if (strcmp(input,PROMPT_TIME_SWITCH) == 0 ){
-    return promptTimeEnd(0);
+    return t_prompt_time_input(0);
   }
 
   if (strchr(input, AM_PM_ARGUMENT) != NULL || strchr(input, TIME_SEPARATOR_ARGUMENT) != NULL){

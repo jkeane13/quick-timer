@@ -3,8 +3,13 @@
 #define DISPLAY_OUTPUT 0
 #define MAX_STRING 1024
 
-// ../src/timer.c
-int checkArgument(char* input);
+#define PROMPT_TIME_SWITCH "-p"
+#define AM_PM_ARGUMENT 'm'
+#define TIME_SEPARATOR_ARGUMENT ':'
+#define TEST_CHARACTER '?'
+#define RANDOM_TEST_VALUE 42
+
+int t_check_argument(char* input);
 int promptTimeEnd(int seconds);
 int readTimeInput(char *input);
 int convertToSeconds(char* input);

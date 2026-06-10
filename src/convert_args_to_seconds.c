@@ -21,7 +21,7 @@ int convertArgsToSeconds(char* arg){
         hourminsec[2] = hourminsec[0];
         hourminsec[0] = 0;
         snprintf(commandString,sizeof(commandString),"%d", hourminsec[2]);
-        hourminsec[2] = checkArgument(arg);
+        hourminsec[2] = t_check_argument(arg);
     }
 
     if (itemCount == 2){

@@ -14,7 +14,7 @@ int promptTimeEnd(int seconds){
     hours = readTimeInput(input);
 
     if (strchr(input,':') != 0 || strchr(input, 'm') != 0)
-        seconds = checkArgument(input);
+        seconds = t_check_argument(input);
     else{
         printf("Enter minutes: ");
         minutes = readTimeInput(minutesInput);

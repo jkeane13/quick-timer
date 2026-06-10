@@ -8,7 +8,7 @@ int t_check_argument(char* input){
   }
 
   if (strchr(input, AM_PM_ARGUMENT) != NULL || strchr(input, TIME_SEPARATOR_ARGUMENT) != NULL){
-    convertInputClockto24(input);
+    t_convert_input_clock_to_24(input);
     return convert24ClockToSeconds(input);
   }
 

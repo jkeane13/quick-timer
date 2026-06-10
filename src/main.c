@@ -12,9 +12,9 @@ int main(int argc, char *argv[]){
     char argSwitch[MAX_STRING] = "";
     char configFile[MAX_STRING] = "~/.local/config/timer.cfg";
 
-    completeHomeFolderPath(configFile);
+    complete_home_folder_path(configFile);
     getConfigFromfileFile(configFile, soundFilePath, alertTimes);
-    completeHomeFolderPath(soundFilePath);
+    complete_home_folder_path(soundFilePath);
 
     if (argc <= 1 || argc > 5){
         usage(1);

@@ -13,6 +13,7 @@
 #define DRY_RUN_MODE_SWITCH "--dry-run"
 #define FILE_DIVIDER '.'
 
+void t_convert_input_clock_to_24(char* time_input);
 int t_check_argument(char* input);
 int t_prompt_time_input(int seconds);
 void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int *execute_mode);
@@ -27,7 +28,6 @@ void checkFileExists(char* programLocation);
 
 // ../src/convert_clock.c
 void convert24ClockTo12(char* clockTime);
-void convertInputClockto24(char* timeInput);
 
 // ../src/play_sound.c
 void playSound(char* soundFile, int times);

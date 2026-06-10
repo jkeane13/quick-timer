@@ -29,6 +29,12 @@ void completeHomeFolderPath(char* filePath){
 #endif
     home_length = strlen(full_filename_path);
     remaining = MAX_COMMAND_LENGTH - home_length - 1;
+
+    if (remaining <= 0) {
+      fprintf(stderr, "Error: Path too long, more than %d bytes", MAX_COMMAND_LENGTH);
+      exit(EXIT_FAILURE);
+    }
+
     strncat(full_filename_path, filePath + 1, remaining);
     strncpy(filePath, full_filename_path, MAX_COMMAND_LENGTH - 1);
     filePath[MAX_COMMAND_LENGTH - 1] = '\0';

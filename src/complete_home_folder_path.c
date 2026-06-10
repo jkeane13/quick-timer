@@ -39,5 +39,8 @@ void complete_home_folder_path(char* file_path){
     exit(EXIT_FAILURE);
   }
 
-  snprintf(file_path, MAX_COMMAND_LENGTH, "%s%s", home, file_path + 1);
+  char temp[MAX_COMMAND_LENGTH];
+  snprintf(temp, MAX_COMMAND_LENGTH, "%s%s", home, file_path + 1);
+  strncpy(file_path, temp, MAX_COMMAND_LENGTH - 1);
+  file_path[MAX_COMMAND_LENGTH - 1] = '\0';
 }

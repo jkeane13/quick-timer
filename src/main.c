@@ -24,7 +24,7 @@ int main(int argc, char *argv[]){
     if (strstr(argv[argc-1],"--") != 0 || strstr(argv[argc-1],".") !=0){
         strncpy(argSwitch,argv[argc-1], MAX_STRING - 1);
         argSwitch[MAX_STRING - 1] = '\0';
-        runEndSwitch(argSwitch, &quietMode, &dryRunMode, &programMode);
+        t_set_mode_switch(argSwitch, &quietMode, &dryRunMode, &programMode);
         argc = argc - 1;
     }
 

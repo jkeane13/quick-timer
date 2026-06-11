@@ -13,7 +13,7 @@ void convertTime24TimetoAmPm() {
     for (int i = 0; i < STR; i++){
         printf("Convert %s to %s 12 hour clock\n",
                 entryString[i], expectString[i]);
-        convert24ClockTo12(entryString[i]);
+        t_convert_24_hour_clock_to_12(entryString[i]);
         assertString(expectString[i], entryString[i]);
     }
 }

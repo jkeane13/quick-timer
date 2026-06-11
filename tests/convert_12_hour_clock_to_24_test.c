@@ -14,7 +14,7 @@ void convertTimeAmPmTimeto24() {
         printf("Convert %s to %s 24 hour clock\n",
                 entryString[i],
                 expectString[i]);
-        convertInputClockto24(entryString[i]);
+        t_convert_input_clock_to_24(entryString[i]);
         assertString(expectString[i], entryString[i]);
     }
 }

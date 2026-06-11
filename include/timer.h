@@ -9,6 +9,9 @@
 #define TEST_CHARACTER '?'
 #define RANDOM_TEST_VALUE 42
 
+#define MAX_CLOCK_12H 9 // Room for "12:00am\0"
+#define HOURS_IN_HALF_DAY 12
+
 #define QUIET_MODE_SWITCH "--quiet"
 #define DRY_RUN_MODE_SWITCH "--dry-run"
 #define FILE_DIVIDER '.'
@@ -27,7 +30,7 @@ int convert24ClockToSeconds(char* input);
 void checkFileExists(char* programLocation);
 
 // ../src/convert_clock.c
-void convert24ClockTo12(char* clockTime);
+void t_convert_24_hour_clock_to_12(char* clock_time);
 
 // ../src/play_sound.c
 void playSound(char* soundFile, int times);

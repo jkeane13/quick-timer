@@ -9,12 +9,12 @@ void printSecondsEndAsClock(int seconds, char* clockType){
 
    endTimeInfo = localtime(&endTime);
 
-   char output[7];
+   char output[MAX_CLOCK_12H];
 
    sprintf(output,"%02d:%02d", endTimeInfo->tm_hour, endTimeInfo->tm_min);
 
    if (strcmp(clockType,"24Hour") != 0)
-       convert24ClockTo12(output);
+       t_convert_24_hour_clock_to_12(output);
 
    printf("%s\n", output);
 

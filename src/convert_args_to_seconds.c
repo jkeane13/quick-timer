@@ -31,7 +31,7 @@ int convertArgsToSeconds(char* arg){
         hourminsec[1] = temp;
     }
 
-    seconds = convertHoursMinsToSeconds(hourminsec[0],
+    seconds = convert_hours_mins_to_seconds(hourminsec[0],
                                         hourminsec[1],
                                         hourminsec[2]);
 

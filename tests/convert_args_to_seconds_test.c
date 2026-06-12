@@ -3,7 +3,7 @@
 
 void hourMinsSeconds() {
     statement("Convert hours, mins, seconds to just seconds...");
-    assertInt(10921, convertHoursMinsToSeconds(3,2,1));
+    assertInt(10921, convert_hours_mins_to_seconds(3,2,1));
  }
 
 void argsSecToSeconds() {

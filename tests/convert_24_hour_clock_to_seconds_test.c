@@ -3,7 +3,7 @@
 
 void convert321HoursMinsToSeconds(){
     statement("Convert 3 Hours, 2 mins and 1 second to seconds");
-    assertInt(10921, convertHoursMinsToSeconds(3,2,1));
+    assertInt(10921, convert_hours_mins_to_seconds(3,2,1));
 }
 
 int main(int argc, char **argv) {

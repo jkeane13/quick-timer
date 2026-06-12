@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define SECONDS_IN_DAY 86400
-#define SECONDS_IN_HOUR 3600
-#define SECONDS_IN_MINUTE 60
-
-#define VALID 0
-#define INVALID 1
+#include "../include/timer.h"
 
 // 1. STRUCTURAL PATTERN CHECK ONLY
 static void validate_24_clock_format(const char* input){

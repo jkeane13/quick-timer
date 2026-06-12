@@ -22,11 +22,11 @@ int t_prompt_time_input(int seconds);
 void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int *execute_mode);
 int convertToSeconds(char* input);
 int convertArgsToSeconds(char* args);
-int convertHoursMinsToSeconds(int hours, int minutes, int seconds);
+int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
 void printTimerEndTime (int seconds);
 void runProgram(char* programLocation, int silentOutput);
-int convert24ClockToSeconds(char* input);
+int t_convert_24_clock_to_seconds(const char* input);
 void checkFileExists(char* programLocation);
 
 // ../src/convert_clock.c

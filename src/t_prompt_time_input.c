@@ -33,6 +33,6 @@ int t_prompt_time_input(int seconds){
     exit(EXIT_FAILURE);
   }
 
-  return convertHoursMinsToSeconds(hours, minutes, seconds);
+  return convert_hours_mins_to_seconds(hours, minutes, seconds);
 }
 

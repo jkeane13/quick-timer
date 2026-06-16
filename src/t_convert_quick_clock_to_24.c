@@ -29,8 +29,8 @@ void t_convert_quick_clock_to_24(char* input_time){
   if (current_hour > end_hour && current_hour < (end_hour + 12))
     end_hour += 12;
 
-  if (current_hour == end_hour || current_hour == (end_hour + 12 )
-      && current_minute < end_minute)
+  if (current_hour == end_hour || (current_hour == (end_hour + 12)
+      && current_minute < end_minute))
     end_hour += 12;
 
   if (end_hour == 24)

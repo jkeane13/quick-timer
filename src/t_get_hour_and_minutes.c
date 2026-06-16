@@ -22,7 +22,7 @@ int t_get_minutes(char* time_input){
        return 0;
 
    char min_string[3];
-   for(int i = 0; i< strlen(time_input); i++){
+   for(size_t i = 0; i< strlen(time_input); i++){
        if (time_input[i] == ':'){
           min_string[0] = time_input[i+1];
           min_string[1] = time_input[i+2];

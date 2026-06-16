@@ -1,23 +1,80 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
+#include <stdlib.h>
+#include <curses.h>
+#include <locale.h>
 #include "../include/timer.h"
 
-void t_seconds_countdown (int seconds){
-   time_t end_time = time(NULL) + seconds;
+int t_seconds_countdown (int seconds){
+    setlocale(LC_ALL, ""); // Enable UTF-8 support in the terminal
+    initscr();             // Start curses mode
+    cbreak();              // Line buffering disabled
+    noecho();              // Don't echo characters
+    keypad(stdscr, TRUE);  // Enable arrow keys, etc.
+    timeout(50);           // Non-blocking getch with 50ms timeout
 
-   int time_difference = end_time - time(NULL);
+    int remaining_seconds = seconds;
+    int paused = 0;
+    time_t next_tick = time(NULL) + 1;
 
-   while(time_difference > 0){
-       time_difference = end_time - time(NULL);
-       int h = time_difference / SECONDS_IN_HOUR;
-       int m = (time_difference % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;
-       int s = time_difference % SECONDS_IN_MINUTE;
+    while (remaining_seconds > 0) {
+        int h = remaining_seconds / SECONDS_IN_HOUR;
+        int m = (remaining_seconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;
+        int s = remaining_seconds % SECONDS_IN_MINUTE;
 
-       printf("\r%02d:%02d:%02d", h, m, s);
-       fflush(stdout);
-       sleep(1);
-   }
-   printf("\rTime's up!\n");
+        // Line 0: Countdown clock and controls
+        move(0, 0);
+        clrtoeol();
+        if (paused) {
+            printw("%02d:%02d:%02d [PAUSED - press Space to resume]", h, m, s);
+        } else {
+            printw("%02d:%02d:%02d [press Space to pause]", h, m, s);
+        }
+
+        // Line 1: Smooth Unicode progress bar
+        double ratio = (seconds > 0) ? (double)remaining_seconds / (double)seconds : 0.0;
+        int percentage = (int)(ratio * 100);
+        int bar_width = 30;
+        int filled = (int)(ratio * bar_width);
+        if (filled < 0) filled = 0;
+        if (filled > bar_width) filled = bar_width;
+        move(1, 0);
+        clrtoeol();
+        printw("[");
+        for (int i = 0; i < bar_width; i++) {
+            if (i < filled) {
+                printw("█"); // Full block
+            } else {
+                printw("░"); // Light shade
+            }
+        }
+        printw("] %d%%", percentage);
+
+        refresh(); // Print on physical screen
+
+        int ch = getch();
+        if (ch == ' ') {
+            paused = !paused;
+            if (!paused) {
+                next_tick = time(NULL) + 1;
+            }
+        } else if (ch == 'q' || ch == 'Q' || ch == 'c' || ch == 'C') {
+            endwin(); // End curses mode
+            printf("Timer cancelled.\n");
+            return 1; // Return 1 indicating cancelled
+        }
+
+        if (!paused) {
+            time_t now = time(NULL);
+            if (now >= next_tick) {
+                remaining_seconds--;
+                next_tick = now + 1;
+            }
+        }
+    }
+
+    endwin(); // End curses mode
+    printf("Time's up!\n");
+    return 0; // Return 0 indicating success
 }
-

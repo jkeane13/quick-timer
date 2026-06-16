@@ -24,12 +24,12 @@
 #define INVALID 1
 
 
-void t_convert_input_clock_to_24(char* time_input);
 int t_check_argument(char* input);
+int t_convert_args_to_seconds(char* args);
 int t_prompt_time_input(int seconds);
+void t_convert_input_clock_to_24(char* time_input);
 void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int *execute_mode);
 int convertToSeconds(char* input);
-int convertArgsToSeconds(char* args);
 int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
 void printTimerEndTime (int seconds);

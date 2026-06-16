@@ -3,37 +3,35 @@
 #include <string.h>
 #include "../include/timer.h"
 
-int convertArgsToSeconds(char* arg){
-    int hourminsec[] = {0,0,0};
-    int itemCount = 0;
-    char commandString[10];
-    int seconds = 0;
-    int temp;
-    char *token = strtok(arg, " ");
+int t_convert_args_to_seconds(char* arg){
+  int hourminsec[] = {0,0,0};
+  int item_count = 0;
+  char command_string[10];
+  int temp;
+  char *token = strtok(arg, " ");
 
-    while (token){
-        hourminsec[itemCount] = atoi(token);
-        itemCount++;
-        token = strtok(NULL, " ");
-    }
+  while (token){
+    hourminsec[item_count] = atoi(token);
+    item_count++;
+    token = strtok(NULL, " ");
+  }
 
-    if (itemCount == 1){
-        hourminsec[2] = hourminsec[0];
-        hourminsec[0] = 0;
-        snprintf(commandString,sizeof(commandString),"%d", hourminsec[2]);
-        hourminsec[2] = t_check_argument(arg);
-    }
+  if (item_count == 1){
+    hourminsec[2] = hourminsec[0];
+    hourminsec[0] = 0;
+    snprintf(command_string,sizeof(command_string),"%d", hourminsec[2]);
+    hourminsec[2] = t_check_argument(arg);
+  }
 
-    if (itemCount == 2){
-        temp = hourminsec[0];
-        hourminsec[0] = 0;
-        hourminsec[2] = hourminsec[1];
-        hourminsec[1] = temp;
-    }
+  if (item_count == 2){
+    temp = hourminsec[0];
+    hourminsec[0] = 0;
+    hourminsec[2] = hourminsec[1];
+    hourminsec[1] = temp;
+  }
 
-    seconds = convert_hours_mins_to_seconds(hourminsec[0],
-                                        hourminsec[1],
-                                        hourminsec[2]);
+  return convert_hours_mins_to_seconds(hourminsec[0],
+      hourminsec[1],
+      hourminsec[2]);
 
-    return seconds;
 }

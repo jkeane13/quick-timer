@@ -1,33 +1,33 @@
 #include "../include/timer.h"
 #include "../include/testing.h"
 
-void hourMinsSeconds() {
+void hour_mins_seconds() {
     statement("Convert hours, mins, seconds to just seconds...");
     assertInt(10921, convert_hours_mins_to_seconds(3,2,1));
  }
 
-void argsSecToSeconds() {
+void args_sec_to_seconds() {
     statement("Convert 50 seconds string argument to seconds...");
-    assertInt(50, convertArgsToSeconds("50"));
+    assertInt(50, t_convert_args_to_seconds("50"));
 }
 
-void argsMinToSeconds() {
-    char minArgs[] = "2 50";
+void args_min_to_seconds() {
+    char min_args[] = "2 50";
     statement("Convert 2 minutes and 50 seconds string argument to seconds...");
-    assertInt(170, convertArgsToSeconds(minArgs));
+    assertInt(170, t_convert_args_to_seconds(min_args));
 }
 
-void argsHourToSeconds() {
-    char hourArgs[] = "1 12 50";
+void args_hour_to_seconds() {
+    char hour_args[] = "1 12 50";
     statement("Convert 1 hour, 12 mins and 50 seconds args to just seconds...");
-    assertInt(4370, convertArgsToSeconds(hourArgs));
+    assertInt(4370, t_convert_args_to_seconds(hour_args));
 }
 
 void run_tests() {
-    hourMinsSeconds();
-    argsSecToSeconds();
-    argsMinToSeconds();
-    argsHourToSeconds();
+    hour_mins_seconds();
+    args_sec_to_seconds();
+    args_min_to_seconds();
+    args_hour_to_seconds();
 }
 
 int main(int argc, char **argv) {

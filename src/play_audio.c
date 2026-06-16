@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/timer.h"
+#include "../include/edit_characters.h"
 
 #define AF_PLAYER "afplay"
 #define MPG_PLAYER "mpg123"
@@ -34,7 +35,7 @@ void playSound(char *soundFile, int times){
     }
 
   #if defined(_WIN32)
-      replaceChar(soundCommand, '/', '\\');
+      replace_char(soundCommand, '/', '\\');
   #endif
     for (int i = 0; i < times; i++)
         system(soundCommand);

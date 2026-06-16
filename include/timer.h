@@ -33,6 +33,7 @@ int t_get_current_minute_number();
 int t_get_hour(char* time_input);
 int t_get_minutes(char* time_input);
 int t_prompt_time_input(int seconds);
+void t_convert_24_hour_clock_to_12(char* clock_time);
 void t_convert_input_clock_to_24(char* time_input);
 void t_convert_quick_clock_to_24(char* time_input);
 void t_seconds_countdown(int seconds);
@@ -43,10 +44,7 @@ void convertIntToDoubleString(int number, char stringNumber[]);
 void printTimerEndTime (int seconds);
 void runProgram(char* programLocation, int silentOutput);
 void checkFileExists(char* programLocation);
-void t_convert_24_hour_clock_to_12(char* clock_time);
 void playSound(char* soundFile, int times);
 void usage(int toggle);
-void replaceChar(char* str, char find, char replace);
-void removeChar(char *str, char keyCharacter) ;
 void printSecondsEndAsClock(int seconds, char* clockType);
 #endif

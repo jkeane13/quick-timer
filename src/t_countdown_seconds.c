@@ -24,8 +24,8 @@ int t_seconds_countdown (int seconds){
     int s = remaining_seconds % SECONDS_IN_MINUTE;
 
     // Line 0: Countdown clock and controls
-    move(0, 0);
-    clrtoeol();
+    move(0, 0);         // move to the start of the line
+    clrtoeol();         //clear to end of line.
     if (paused) {
       printw("%02d:%02d:%02d [PAUSED - press Space to resume]", h, m, s);
     } else {

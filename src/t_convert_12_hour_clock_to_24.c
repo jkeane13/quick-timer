@@ -19,8 +19,8 @@ static int convert_hour_pm(int hour){
 }
 
 void t_convert_12_hour_clock_to_24(char *time_input){
-  int hour = getHour(time_input);
-  int minutes = getMinutes(time_input);
+  int hour = t_get_hour(time_input);
+  int minutes = t_get_minutes(time_input);
   size_t time_length = strlen(time_input);
 
   if (time_length < 2){
@@ -43,7 +43,7 @@ void t_convert_input_clock_to_24(char* time_input){
     return;
   }
   if (time_input[time_length -3] == TIME_SEPARATOR_ARGUMENT){
-    convertQuickClockto24(time_input);
+    t_convert_quick_clock_to_24(time_input);
   }else {
     t_convert_12_hour_clock_to_24(time_input);
   }

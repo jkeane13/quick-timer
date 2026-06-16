@@ -15,7 +15,7 @@ int expectMinInt[ENTRIES] = {9, 30, 23, 0, 34, 0};
 void getHourofEntry() {
     for (int i = 0; i < ENTRIES; i++){
         printf("Get the hour %d from %s\n", expectInt[i], entryString[i]);
-        assertInt(expectInt[i], getHour(entryString[i]));
+        assertInt(expectInt[i], t_get_hour(entryString[i]));
     }
 }
 
@@ -23,7 +23,7 @@ void getMinuteofEntry() {
     for (int i = 0; i < ENTRIES; i++){
         printf("Get the minute %d from %s\n",
                 expectMinInt[i], entryMinString[i]);
-        assertInt(expectMinInt[i], getMinutes(entryMinString[i]));
+        assertInt(expectMinInt[i], t_get_minutes(entryMinString[i]));
     }
 }
 

@@ -7,8 +7,8 @@ void t_convert_24_hour_clock_to_12(char* clock_time){
     int hour, minutes;
     char temp_buffer[MAX_CLOCK_12H];
 
-    hour = getHour(clock_time);
-    minutes = getMinutes(clock_time);
+    hour = t_get_hour(clock_time);
+    minutes = t_get_minutes(clock_time);
 
     if (hour < HOURS_IN_HALF_DAY)
         clock_suffix = 'a';

@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
         strncat(timeString, argv[i], MAX_STRING - strlen(timeString) - 1);
         strncat(timeString, " ", MAX_STRING - strlen(timeString) - 1);
     }
-    seconds = convertArgsToSeconds(timeString);
+    seconds = t_convert_args_to_seconds(timeString);
     printTimerEndTime(seconds);
 
     if (dryRunMode == 0)

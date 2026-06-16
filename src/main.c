@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
     printTimerEndTime(seconds);
 
     if (dryRunMode == 0)
-        secondsCountdown(seconds);
+        t_seconds_countdown(seconds);
 
     if (quietMode == 0)
         playSound(soundFilePath, atoi(alertTimes));

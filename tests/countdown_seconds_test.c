@@ -3,7 +3,7 @@
 
 void timerExecutes() {
     statement("Seconds countdown executes");
-    secondsCountdown(1);
+    t_seconds_countdown(1);
     assertInt(1, 1);
 }
 

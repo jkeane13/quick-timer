@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 
     if (cancelled == 0) {
         if (quietMode == 0)
-            playSound(soundFilePath, atoi(alertTimes));
+            t_play_sound(soundFilePath, atoi(alertTimes));
 
         if (programMode)
             runProgram(argSwitch, DISPLAY_OUTPUT);

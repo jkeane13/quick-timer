@@ -10,6 +10,19 @@ WIN_EXEC = .exe
 
 C_TESTS := $(shell find $(TEST) -name '*_test.c' -exec basename {} \; | awk -F '_test.c' {'print $$1'})
 
+CFLAGS = -std=c99 -Wall -Wextra -D_DEFAULT_SOURCE
+
+ifeq ($(OS),Windows_NT)
+    LDLIBS = -lpdcurses
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Darwin)
+        LDLIBS = -lncurses
+    else
+        LDLIBS = -lncursesw
+    endif
+endif
+
 EXECUTABLE_SOURCE := $(SRC)/main.c
 COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
 
@@ -20,18 +33,18 @@ lint:
 
 build:
 	mkdir -p $(BIN)
-	$(CC) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
+	$(CC) $(CFLAGS) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES) $(LDLIBS)
 
 run:
 	./$(BIN)/$(TARGET)
 
 release: $(SRC)
-	@$(CC) $(CFLAGS) -O2 -o $(TARGET)$(RELEASE_TARGET) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES)
+	@$(CC) $(CFLAGS) -O2 -o $(TARGET)$(RELEASE_TARGET) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES) $(LDLIBS)
 
 test:
 	mkdir -p $(BIN)
 	for i in $(C_TESTS); do \
-	  $(CC) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c tests/testing.c $(COMMON_SOURCES); \
+	  $(CC) $(CFLAGS) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c tests/testing.c $(COMMON_SOURCES) $(LDLIBS); \
 	  $(BIN)/$${i}_test; \
 	  echo; \
 	  done

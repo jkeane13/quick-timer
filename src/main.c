@@ -40,14 +40,17 @@ int main(int argc, char *argv[]){
     seconds = t_convert_args_to_seconds(timeString);
     printTimerEndTime(seconds);
 
+    int cancelled = 0;
     if (dryRunMode == 0)
-        t_seconds_countdown(seconds);
+        cancelled = t_seconds_countdown(seconds);
 
-    if (quietMode == 0)
-        playSound(soundFilePath, atoi(alertTimes));
+    if (cancelled == 0) {
+        if (quietMode == 0)
+            playSound(soundFilePath, atoi(alertTimes));
 
-    if (programMode)
-        runProgram(argSwitch, DISPLAY_OUTPUT);
+        if (programMode)
+            runProgram(argSwitch, DISPLAY_OUTPUT);
+    }
 
     return 0;
 }

@@ -15,7 +15,12 @@ CFLAGS = -std=c99 -Wall -Wextra -D_DEFAULT_SOURCE
 ifeq ($(OS),Windows_NT)
     LDLIBS = -lpdcurses
 else
-    LDLIBS = -lncursesw
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Darwin)
+        LDLIBS = -lncurses
+    else
+        LDLIBS = -lncursesw
+    endif
 endif
 
 EXECUTABLE_SOURCE := $(SRC)/main.c

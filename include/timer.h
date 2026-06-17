@@ -21,6 +21,9 @@
 #define SECONDS_IN_HOUR 3600
 #define SECONDS_IN_MINUTE 60
 
+#define HIDE 0
+#define SHOW 1
+
 #define CLOCK_24_SIZE 6
 
 #define VALID 0

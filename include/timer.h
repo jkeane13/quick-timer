@@ -8,6 +8,7 @@
 #define TIME_SEPARATOR_ARGUMENT ':'
 #define TEST_CHARACTER '?'
 #define RANDOM_TEST_VALUE 42
+#define POLLING_WINDOW 50
 
 #define MAX_CLOCK_12H 9 // Room for "12:00am\0"
 #define HOURS_IN_HALF_DAY 12

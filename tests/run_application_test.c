@@ -6,7 +6,7 @@
 
 void runASystemProgram() {
     statement("Program should execute in silent output mode");
-    runProgram(TEST_FILE,0);
+    run_program(TEST_FILE,0);
     assertInt(1,1);
 }
 

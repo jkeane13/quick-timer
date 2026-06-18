@@ -29,9 +29,9 @@ int main(int argc, char *argv[]){
     }
 
     if (programMode)
-        checkFileExists(argSwitch);
+        check_file_exists(argSwitch);
 
-    checkFileExists(soundFilePath);
+    check_file_exists(soundFilePath);
 
     for (int i = 1; i < argc; i++){
         strncat(timeString, argv[i], MAX_STRING - strlen(timeString) - 1);
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]){
             t_play_sound(soundFilePath, atoi(alertTimes));
 
         if (programMode)
-            runProgram(argSwitch, DISPLAY_OUTPUT);
+            run_program(argSwitch, DISPLAY_OUTPUT);
     }
 
     return 0;

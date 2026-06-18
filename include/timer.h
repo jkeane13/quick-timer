@@ -37,6 +37,7 @@ int t_get_current_minute_number();
 int t_get_hour(char* time_input);
 int t_get_minutes(char* time_input);
 int t_prompt_time_input(int seconds);
+void t_print_timer_end_time (int seconds);
 int t_seconds_countdown(int seconds);
 void t_convert_24_hour_clock_to_12(char* clock_time);
 void t_convert_input_clock_to_24(char* time_input);
@@ -46,7 +47,6 @@ void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int 
 int convertToSeconds(char* input);
 int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
-void t_print_timer_end_time (int seconds);
 void runProgram(char* programLocation, int silentOutput);
 void checkFileExists(char* programLocation);
 void usage(int toggle);

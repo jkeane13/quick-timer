@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
         strncat(timeString, " ", MAX_STRING - strlen(timeString) - 1);
     }
     seconds = t_convert_args_to_seconds(timeString);
-    printTimerEndTime(seconds);
+    t_print_timer_end_time(seconds);
 
     int cancelled = 0;
     if (dryRunMode == 0)

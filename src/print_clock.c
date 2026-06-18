@@ -3,7 +3,7 @@
 #include <time.h>
 #include "../include/timer.h"
 
-void printSecondsEndAsClock(int seconds, char* clockType){
+static void print_seconds_end_as_clock(int seconds, char* clock_type){
    struct tm *endTimeInfo;
    time_t endTime = time(NULL) + seconds;
 
@@ -13,15 +13,15 @@ void printSecondsEndAsClock(int seconds, char* clockType){
 
    sprintf(output,"%02d:%02d", endTimeInfo->tm_hour, endTimeInfo->tm_min);
 
-   if (strcmp(clockType,"24Hour") != 0)
+   if (strcmp(clock_type,"24Hour") != 0)
        t_convert_24_hour_clock_to_12(output);
 
    printf("%s\n", output);
 
 }
 
-void printTimerEndTime (int seconds){
+void t_print_timer_end_time (int seconds){
    printf("Timer ends at ");
-   printSecondsEndAsClock(seconds,"12Hour");
+   print_seconds_end_as_clock(seconds,"12Hour");
 }
 

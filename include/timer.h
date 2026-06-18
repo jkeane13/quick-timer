@@ -46,9 +46,8 @@ void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int 
 int convertToSeconds(char* input);
 int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
 void convertIntToDoubleString(int number, char stringNumber[]);
-void printTimerEndTime (int seconds);
+void t_print_timer_end_time (int seconds);
 void runProgram(char* programLocation, int silentOutput);
 void checkFileExists(char* programLocation);
 void usage(int toggle);
-void printSecondsEndAsClock(int seconds, char* clockType);
 #endif

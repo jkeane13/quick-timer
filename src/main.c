@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     complete_home_folder_path(soundFilePath);
 
     if (argc <= 1 || argc > 5){
-        usage(1);
+        t_usage(1);
         return 1;
     }
 

@@ -5,12 +5,12 @@
 
 void executeUsage() {
     statement("Usage should be able to activate");
-    usage(0);
+    t_usage(0);
     assertInt(1,1);
 }
 
 int main(int argc, char **argv) {
-    testTitle("Testing usage function tests",__FILE__);
+    testTitle("Testing t_usage function tests",__FILE__);
     executeUsage();
 
     return 0;

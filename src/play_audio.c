@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/timer.h"
 #include "../include/edit_characters.h"
 
 #define AF_PLAYER "afplay"
@@ -35,7 +34,7 @@ void t_play_sound(char *sound_file, int times){
   }
 
   #if defined(_WIN32)
-    replace_char(soundCommand, '/', '\\');
+    replace_char(sound_command, '/', '\\');
   #endif
     for (int i = 0; i < times; i++)
         system(sound_command);

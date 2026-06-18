@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "../include/timer.h"
 
-void getConfigFromfileFile(char* filename,
+void t_get_config_from_file(char* filename,
                            char* soundFilePath,
                            char* alertTimes){
     FILE *file = fopen(filename, "r");

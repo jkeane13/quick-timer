@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../include/timer.h"
-#include "../include/get_timer_config.h"
 #include "../include/complete_home_folder_path.h"
 
 int main(int argc, char *argv[]){
@@ -13,7 +12,7 @@ int main(int argc, char *argv[]){
     char configFile[MAX_STRING] = "~/.local/config/timer.cfg";
 
     complete_home_folder_path(configFile);
-    getConfigFromfileFile(configFile, soundFilePath, alertTimes);
+    t_get_config_from_file(configFile, soundFilePath, alertTimes);
     complete_home_folder_path(soundFilePath);
 
     if (argc <= 1 || argc > 5){

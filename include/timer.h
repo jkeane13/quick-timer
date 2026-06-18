@@ -29,6 +29,8 @@
 #define VALID 0
 #define INVALID 1
 
+int convertToSeconds(char* input);
+int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
 int t_check_argument(char* input);
 int t_convert_24_clock_to_seconds(const char* input);
 int t_convert_args_to_seconds(char* args);
@@ -37,17 +39,15 @@ int t_get_current_minute_number();
 int t_get_hour(char* time_input);
 int t_get_minutes(char* time_input);
 int t_prompt_time_input(int seconds);
-void t_print_timer_end_time (int seconds);
 int t_seconds_countdown(int seconds);
+void check_file_exists(char* program_location);
+void convertIntToDoubleString(int number, char stringNumber[]);
+void run_program(char* program_location, int silent_output);
 void t_convert_24_hour_clock_to_12(char* clock_time);
 void t_convert_input_clock_to_24(char* time_input);
 void t_convert_quick_clock_to_24(char* time_input);
 void t_play_sound(char* sound_file, int times);
+void t_print_timer_end_time (int seconds);
 void t_set_mode_switch(const char* arg, int *quiet_mode, int *dry_run_mode, int *execute_mode);
-int convertToSeconds(char* input);
-int convert_hours_mins_to_seconds(int hours, int minutes, int seconds);
-void convertIntToDoubleString(int number, char stringNumber[]);
-void runProgram(char* programLocation, int silentOutput);
-void checkFileExists(char* programLocation);
 void usage(int toggle);
 #endif

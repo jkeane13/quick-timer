@@ -9,7 +9,7 @@ int main(int argc, char *argv[]){
     int seconds = 0;
     char timeString[MAX_STRING] = "";
     char argSwitch[MAX_STRING] = "";
-    char configFile[MAX_STRING] = "~/.local/config/timer.cfg";
+    char configFile[MAX_STRING] = TIMER_CONFIGURATION_FILE;
 
     complete_home_folder_path(configFile);
     t_get_config_from_file(configFile, soundFilePath, alertTimes);

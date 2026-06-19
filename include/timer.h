@@ -20,6 +20,7 @@
 #define SECONDS_IN_DAY 86400
 #define SECONDS_IN_HOUR 3600
 #define SECONDS_IN_MINUTE 60
+#define TIMER_CONFIGURATION_FILE "~/.local/config/timer.cfg"
 
 #define HIDE 0
 #define SHOW 1

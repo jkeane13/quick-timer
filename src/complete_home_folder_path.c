@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 #define MAX_COMMAND_LENGTH 1024
 
-void complete_home_folder_path(char* file_path){
+void complete_home_folder_path(char *file_path) {
   if (file_path[0] != '~') {
     return;
   }
@@ -19,14 +19,15 @@ void complete_home_folder_path(char* file_path){
   const char *home_path = getenv("HOMEPATH");
 
   if (home_drive == NULL || home_path == NULL) {
-    fprintf(stderr, "Error: HOMEDRIVE or HOMEPATH environment variable not set\n");
+    fprintf(stderr,
+            "Error: HOMEDRIVE or HOMEPATH environment variable not set\n");
     exit(EXIT_FAILURE);
   }
   snprintf(temp, MAX_COMMAND_LENGTH, "%s%s", home_drive, home_path);
   home = temp;
 #endif
 
-  if (home == NULL){
+  if (home == NULL) {
     fprintf(stderr, "Error: HOME environment variable not set\n");
     exit(EXIT_FAILURE);
   }
@@ -35,7 +36,8 @@ void complete_home_folder_path(char* file_path){
   size_t suffix_length = strlen(file_path + 1);
 
   if (home_length + suffix_length + 1 > MAX_COMMAND_LENGTH) {
-    fprintf(stderr, "Error: Path too long, more than %d bytes\n", MAX_COMMAND_LENGTH);
+    fprintf(stderr, "Error: Path too long, more than %d bytes\n",
+            MAX_COMMAND_LENGTH);
     exit(EXIT_FAILURE);
   }
 

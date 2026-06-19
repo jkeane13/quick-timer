@@ -1,9 +1,9 @@
-#include <string.h>
-#include <stdlib.h>
-#include "../include/timer.h"
 #include "../include/complete_home_folder_path.h"
+#include "../include/timer.h"
+#include <stdlib.h>
+#include <string.h>
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   char sound_file_path[MAX_STRING], alert_times[MAX_STRING];
   int quiet_mode = 0, dry_run_mode = 0, program_mode = 0;
   int seconds = 0;
@@ -15,13 +15,13 @@ int main(int argc, char *argv[]){
   t_get_config_from_file(config_file, sound_file_path, alert_times);
   complete_home_folder_path(sound_file_path);
 
-  if (argc <= 1 || argc > 5){
+  if (argc <= 1 || argc > 5) {
     t_usage(1);
     return 1;
   }
 
-  if (strstr(argv[argc-1],"--") != 0 || strstr(argv[argc-1],".") !=0){
-    strncpy(arg_switch,argv[argc-1], MAX_STRING - 1);
+  if (strstr(argv[argc - 1], "--") != 0 || strstr(argv[argc - 1], ".") != 0) {
+    strncpy(arg_switch, argv[argc - 1], MAX_STRING - 1);
     arg_switch[MAX_STRING - 1] = '\0';
     t_set_mode_switch(arg_switch, &quiet_mode, &dry_run_mode, &program_mode);
     argc = argc - 1;
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 
   check_file_exists(sound_file_path);
 
-  for (int i = 1; i < argc; i++){
+  for (int i = 1; i < argc; i++) {
     strncat(time_string, argv[i], MAX_STRING - strlen(time_string) - 1);
     strncat(time_string, " ", MAX_STRING - strlen(time_string) - 1);
   }

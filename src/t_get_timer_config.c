@@ -1,21 +1,20 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "../include/timer.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void t_get_config_from_file(char* filename,
-                           char* soundFilePath,
-                           char* alertTimes){
-    FILE *file = fopen(filename, "r");
-    char configType[MAX_STRING];
-    char line[MAX_STRING];
+void t_get_config_from_file(char *filename, char *soundFilePath,
+                            char *alertTimes) {
+  FILE *file = fopen(filename, "r");
+  char configType[MAX_STRING];
+  char line[MAX_STRING];
 
-    if (file == NULL) {
-        perror("Error opening configuration file");
-        exit(-1);
-    }
+  if (file == NULL) {
+    perror("Error opening configuration file");
+    exit(-1);
+  }
 
-    fscanf(file, "%101[^=]=%101s", configType, soundFilePath);
-    fgets(line, sizeof(line), file);
-    fscanf(file, "%101[^=]=%101s", configType, alertTimes);
-    fclose(file);
+  fscanf(file, "%101[^=]=%101s", configType, soundFilePath);
+  fgets(line, sizeof(line), file);
+  fscanf(file, "%101[^=]=%101s", configType, alertTimes);
+  fclose(file);
 }

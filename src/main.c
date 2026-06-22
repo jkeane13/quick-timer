@@ -2,6 +2,7 @@
 #include "../include/timer.h"
 #include <stdlib.h>
 #include <string.h>
+#include "../include/play_audio.h"
 
 int main(int argc, char *argv[]) {
   char sound_file_path[MAX_STRING], alert_times[MAX_STRING];
@@ -45,7 +46,7 @@ int main(int argc, char *argv[]) {
 
   if (cancelled == 0) {
     if (quiet_mode == 0)
-      t_play_sound(sound_file_path, atoi(alert_times));
+      play_sound(sound_file_path, atoi(alert_times));
 
     if (program_mode)
       run_program(arg_switch, DISPLAY_OUTPUT);

@@ -9,7 +9,7 @@
 #define WINDOWS_NULL_OUTPUT " > nul 2>&1"
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
 
-void t_play_sound(char *sound_file, int times) {
+void play_sound(char *sound_file, int times) {
   char sound_command[MAX_COMMAND_LENGTH];
   const char *player = NULL;
   const char *null_output = NULL;

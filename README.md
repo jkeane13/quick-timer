@@ -1,8 +1,11 @@
 ![Quick Timer](./img/quick_timer.png)
 
-Quick and easy timer with a duck quack alarm
+Quick and easy timer with a digital watchclock display and progress bar
 
 ## Features
+- Displays a real-time progress bar showing countdown progress
+- Digital watchclock display showing remaining time
+- Pause and quit the timer with keyboard controls
 - Starts a timer based on hours minutes and seconds, sequentially separated
   with spaces
 - Start a timer by clock finish time (eg. 4:30)
@@ -13,7 +16,7 @@ Quick and easy timer with a duck quack alarm
 - "Quick clock", is in a 12 hour cycle Eg: Running 9:30 after 9:30am will
   go to the next 12 hour block time of 9:30pm
 - Has a `--quiet` switch to not make a noise at the end of the timer
-  be able to play mp3 files
+- Able to play mp3 files
 
 ## Setup
 ### Prerequisites

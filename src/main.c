@@ -4,7 +4,15 @@
 #include <string.h>
 #include "../include/play_audio.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 int main(int argc, char *argv[]) {
+#ifdef _WIN32
+  SetConsoleCP(65001);
+  SetConsoleOutputCP(65001);
+#endif
   char sound_file_path[MAX_STRING], alert_times[MAX_STRING];
   int quiet_mode = 0, dry_run_mode = 0, program_mode = 0;
   int seconds = 0;

@@ -58,11 +58,19 @@ static void draw_progress_bar(int remaining, int total,
   clrtoeol();
   printw("[");
   for (int i = 0; i < bar_width; i++) {
+#ifdef _WIN32
+    if (i < filled) {
+      printw("=");
+    } else {
+      printw("-");
+    }
+#else
     if (i < filled) {
       printw("█");
     } else {
       printw("░");
     }
+#endif
   }
   printw("] %d%% (Ends at %s)", percentage, end_time_str);
 }

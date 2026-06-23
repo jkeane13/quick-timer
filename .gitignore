@@ -2,3 +2,4 @@ build/*
 timer
 *.tar.gz
 *.zip
+CLAUDE.md

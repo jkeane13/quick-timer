@@ -29,12 +29,8 @@ static int is_valid_time_range(int hour, int minute) {
 
 static void get_current_local_time(struct tm *result) {
   time_t current_time = time(NULL);
-
-#if defined(_WIN32) || defined(_WIN64)
-  localtime_s(result, &current_time);
-#else
-  localtime_r(&current_time, result);
-#endif
+  struct tm *tmp = localtime(&current_time);
+  *result = *tmp;
 }
 
 int t_convert_24_clock_to_seconds(const char *input) {

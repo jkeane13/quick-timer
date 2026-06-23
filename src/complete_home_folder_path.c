@@ -41,7 +41,9 @@ void complete_home_folder_path(char *file_path) {
     exit(EXIT_FAILURE);
   }
 
+#if defined(__linux__) || defined(__APPLE__)
   char temp[MAX_COMMAND_LENGTH];
+#endif
   snprintf(temp, MAX_COMMAND_LENGTH, "%s%s", home, file_path + 1);
   strncpy(file_path, temp, MAX_COMMAND_LENGTH - 1);
   file_path[MAX_COMMAND_LENGTH - 1] = '\0';

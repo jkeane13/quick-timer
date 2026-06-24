@@ -1,4 +1,3 @@
-#include "../include/edit_characters.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +7,17 @@
 #define MAX_COMMAND_LENGTH 1024
 #define WINDOWS_NULL_OUTPUT " > nul 2>&1"
 #define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static void replace_char(char *str, char find, char replace) {
+  char *current_pos = strchr(str, find);
+  while (current_pos) {
+    *current_pos = replace;
+    current_pos = strchr(current_pos, find);
+  }
+}
+#pragma GCC diagnostic pop
 
 void play_sound(char *sound_file, int times) {
   char sound_command[MAX_COMMAND_LENGTH];

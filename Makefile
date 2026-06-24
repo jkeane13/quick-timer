@@ -25,6 +25,7 @@ TEMP_DIR = $(HOME)/temp
 BUILD_DIR = $(HOME)/temp/build
 APP = ${TEMP_DIR}/${PROGRAM_NAME}
 DEPLOY_DIR = $(HOME)/.local/bin/
+WINDOWS_HOME = /mnt/c/Users/$(shell whoami)
 SOURCES = $(wildcard $(SOURCE_DIR)/*.c)
 OBJECTS = $(SOURCES:$(SOURCE_DIR)/%.c=$(BUILD_DIR)/%.o)
 
@@ -75,12 +76,21 @@ $(TEMP_DIR)/test_%: $(BUILD_DIR)/test_%.o $(filter-out $(BUILD_DIR)/main.o,$(OBJ
 	$(CC) $^ $(FAST_FLAG) $(LINK_FLAG) -o $@
 
 deploy: build-optimised
+ifeq ($(shell grep -qi microsoft /proc/version && echo true),true)
+	mkdir -p "$(WINDOWS_HOME)/.local"
+	rsync -av --include="src/" --include="src/**" --include="include/" --include="include/**" --include="config/" --include="config/**" --include="assets/" --include="assets/**" --include="windows_compile/" --include="windows_compile/**" --exclude="*" . "$(WINDOWS_HOME)/.local/quick-timer"
+	@echo "Repository copied to: $(WINDOWS_HOME)/.local/quick-timer"
+	@echo "To compile for Windows, run from cmd.exe:"
+	@echo "  cd %USERPROFILE%\.local\quick-timer"
+	@echo "  windows_compile\build_and_deploy.bat"
+else
 	mkdir -p $(HOME)/.local/assets
 	mkdir -p $(HOME)/.local/config
 	mkdir -p $(DEPLOY_DIR)
 	cp -f assets/*.mp3 $(HOME)/.local/assets/
 	cp -f config/*.cfg $(HOME)/.local/config/
 	mv $(APP) $(DEPLOY_DIR)$(PROGRAM_NAME)
+endif
 
 run: test build
 	$(APP)

@@ -1,38 +1,38 @@
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
 
-void hour_mins_seconds() {
-  statement("Convert hours, mins, seconds to just seconds...");
-  assertInt(10921, convert_hours_mins_to_seconds(3, 2, 1));
+void test_hour_mins_seconds(void) {
+  int actual = convert_hours_mins_to_seconds(3, 2, 1);
+  TEST_START("convert hours, minutes, seconds to seconds");
+  ASSERT_INT(actual, 10921);
 }
 
-void args_sec_to_seconds() {
-  statement("Convert 50 seconds string argument to seconds...");
-  assertInt(50, t_convert_args_to_seconds("50"));
+void test_args_sec_to_seconds(void) {
+  int actual = t_convert_args_to_seconds("50");
+  TEST_START("convert 50 seconds string argument to seconds");
+  ASSERT_INT(actual, 50);
 }
 
-void args_min_to_seconds() {
+void test_args_min_to_seconds(void) {
   char min_args[] = "2 50";
-  statement("Convert 2 minutes and 50 seconds string argument to seconds...");
-  assertInt(170, t_convert_args_to_seconds(min_args));
+  int actual = t_convert_args_to_seconds(min_args);
+  TEST_START("convert 2 minutes and 50 seconds string argument to seconds");
+  ASSERT_INT(actual, 170);
 }
 
-void args_hour_to_seconds() {
+void test_args_hour_to_seconds(void) {
   char hour_args[] = "1 12 50";
-  statement("Convert 1 hour, 12 mins and 50 seconds args to just seconds...");
-  assertInt(4370, t_convert_args_to_seconds(hour_args));
+  int actual = t_convert_args_to_seconds(hour_args);
+  TEST_START("convert 1 hour, 12 minutes and 50 seconds to seconds");
+  ASSERT_INT(actual, 4370);
 }
 
-void run_tests() {
-  hour_mins_seconds();
-  args_sec_to_seconds();
-  args_min_to_seconds();
-  args_hour_to_seconds();
+TEST_LIST {
+  TESTS_HEADER("convert arguments to seconds");
+  test_hour_mins_seconds();
+  test_args_sec_to_seconds();
+  test_args_min_to_seconds();
+  test_args_hour_to_seconds();
 }
 
-int main(int argc, char **argv) {
-  testTitle("Testing convert args to seconds functions", __FILE__);
-  run_tests();
-
-  return 0;
-}
+RUN_TESTS

@@ -1,14 +1,15 @@
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
 
-void checkArg() {
-  statement("Check if an argument can be added");
-  assertInt(42, t_check_argument("?"));
+void test_check_if_argument_can_be_added(void) {
+  int actual = t_check_argument("?");
+  TEST_START("check if argument can be added");
+  ASSERT_INT(actual, 42);
 }
 
-int main() {
-  testTitle("Testing argument handler", __FILE__);
-  checkArg();
-
-  return 0;
+TEST_LIST {
+  TESTS_HEADER("argument handler");
+  test_check_if_argument_can_be_added();
 }
+
+RUN_TESTS

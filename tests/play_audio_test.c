@@ -1,19 +1,18 @@
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
 #include "../include/play_audio.h"
 
-#define TEST_FILE "tests/example.sh"
 #define SOUND_FILE "assets/stopwatch.mp3"
 
-void play_chime_sound() {
-  statement("Function should play a stopwatch sound");
+void test_play_chime_sound(void) {
   play_sound(SOUND_FILE, 1);
-  assertInt(1, 1);
+  TEST_START("function plays a stopwatch sound");
+  ASSERT_INT(1, 1);
 }
 
-int main(int argc, char **argv) {
-  testTitle("Testing play audio function tests", __FILE__);
-  play_chime_sound();
-
-  return 0;
+TEST_LIST {
+  TESTS_HEADER("play audio function");
+  test_play_chime_sound();
 }
+
+RUN_TESTS

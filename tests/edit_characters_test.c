@@ -1,32 +1,28 @@
 #include "../include/edit_characters.h"
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
 #include <string.h>
 
 char inputString[MAX_STRING];
 
-void replace_characters_in_a_string() {
-  statement("Replace characters in a string");
+void test_replace_characters_in_a_string(void) {
   strcpy(inputString, "Testing123");
   replace_char(inputString, 'g', 'e');
-  assertString(inputString, "Testine123");
+  TEST_START("replace characters in a string");
+  ASSERT_STRING(inputString, "Testine123");
 }
 
-void removesCharactersInAString() {
-  statement("Remove characters in a string");
+void test_removes_characters_in_a_string(void) {
   strcpy(inputString, "Testing123");
   remove_char(inputString, 'e');
-  assertString(inputString, "Tsting123");
+  TEST_START("remove characters in a string");
+  ASSERT_STRING(inputString, "Tsting123");
 }
 
-void run_tests() {
-  replace_characters_in_a_string();
-  removesCharactersInAString();
+TEST_LIST {
+  TESTS_HEADER("edit characters function");
+  test_replace_characters_in_a_string();
+  test_removes_characters_in_a_string();
 }
 
-int main(void) {
-  testTitle("Testing run application function tests", __FILE__);
-  run_tests();
-
-  return 0;
-}
+RUN_TESTS

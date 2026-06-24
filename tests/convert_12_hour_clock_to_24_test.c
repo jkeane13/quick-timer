@@ -1,6 +1,5 @@
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
-#include <stdio.h>
 
 #define STR 8
 
@@ -9,19 +8,17 @@ char entryString[STR][STR] = {"7am",    "12am",    "12pm",   "7pm",
 char expectString[STR][STR] = {"07:00", "00:00", "12:00", "19:00",
                                "07:30", "00:30", "19:30", "12:30"};
 
-void convertTimeAmPmTimeto24() {
+void test_convert_time_am_pm_to_24(void) {
   for (int i = 0; i < STR; i++) {
-    printf("Convert %s to %s 24 hour clock\n", entryString[i], expectString[i]);
     t_convert_input_clock_to_24(entryString[i]);
-    assertString(expectString[i], entryString[i]);
+    TEST_START("convert 12 hour clock to 24 hour");
+    ASSERT_STRING(entryString[i], expectString[i]);
   }
 }
 
-void run_tests() { convertTimeAmPmTimeto24(); }
-
-int main() {
-  testTitle("Testing convert 12 clock to 24 tests", __FILE__);
-  run_tests();
-
-  return 0;
+TEST_LIST {
+  TESTS_HEADER("convert 12 hour clock to 24 hour");
+  test_convert_time_am_pm_to_24();
 }
+
+RUN_TESTS

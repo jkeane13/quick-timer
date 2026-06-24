@@ -3,3 +3,4 @@ timer
 *.tar.gz
 *.zip
 CLAUDE.md
+.claudeignore

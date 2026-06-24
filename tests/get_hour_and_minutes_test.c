@@ -1,6 +1,5 @@
-#include "../include/testing.h"
+#include "../include/test_framework.h"
 #include "../include/timer.h"
-#include <stdio.h>
 
 #define ENTRIES 6
 
@@ -12,28 +11,24 @@ char entryMinString[ENTRIES][7] = {"6:09", "7:30",  "12:23am",
                                    "12am", "11:34", "3pm"};
 int expectMinInt[ENTRIES] = {9, 30, 23, 0, 34, 0};
 
-void getHourofEntry() {
+void test_get_hour_of_entry(void) {
   for (int i = 0; i < ENTRIES; i++) {
-    printf("Get the hour %d from %s\n", expectInt[i], entryString[i]);
-    assertInt(expectInt[i], t_get_hour(entryString[i]));
+    TEST_START("get hour from entry");
+    ASSERT_INT(t_get_hour(entryString[i]), expectInt[i]);
   }
 }
 
-void getMinuteofEntry() {
+void test_get_minute_of_entry(void) {
   for (int i = 0; i < ENTRIES; i++) {
-    printf("Get the minute %d from %s\n", expectMinInt[i], entryMinString[i]);
-    assertInt(expectMinInt[i], t_get_minutes(entryMinString[i]));
+    TEST_START("get minute from entry");
+    ASSERT_INT(t_get_minutes(entryMinString[i]), expectMinInt[i]);
   }
 }
 
-void run_tests() {
-  getHourofEntry();
-  getMinuteofEntry();
+TEST_LIST {
+  TESTS_HEADER("hour and minutes function");
+  test_get_hour_of_entry();
+  test_get_minute_of_entry();
 }
 
-int main(int argc, char **argv) {
-  testTitle("Testing hour and minutes functions", __FILE__);
-  run_tests();
-
-  return 0;
-}
+RUN_TESTS

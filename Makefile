@@ -44,7 +44,7 @@ release: $(SRC)
 test:
 	mkdir -p $(BIN)
 	for i in $(C_TESTS); do \
-	  $(CC) $(CFLAGS) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c tests/testing.c $(COMMON_SOURCES) $(LDLIBS); \
+	  $(CC) $(CFLAGS) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c $(COMMON_SOURCES) $(LDLIBS); \
 	  $(BIN)/$${i}_test; \
 	  echo; \
 	  done

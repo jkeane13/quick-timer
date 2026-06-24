@@ -1,5 +1,7 @@
 ![Quick Timer](./img/quick_timer.png)
 
+![Timer Countdown](./img/timer_countdown.png)
+
 Quick and easy timer with a digital watchclock display and progress bar
 
 ## Features

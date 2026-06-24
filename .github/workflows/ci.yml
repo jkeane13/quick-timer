@@ -16,9 +16,6 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y libncursesw5-dev ccache
 
-      - name: Setup ccache
-        uses: hendrikmuhs/ccache-action@v1
-
       - name: Build
         run: make build
 

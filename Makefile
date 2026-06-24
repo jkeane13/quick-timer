@@ -1,16 +1,39 @@
+SHELL := /bin/bash
 .DEFAULT_GOAL := build
+.PHONY: build test deploy debug run-debug clean install lint
+.SILENT:
 
-CC = gcc
-APP_NAME = timer
-SRC = src
-TEST = tests
-TARGET= timer
-BIN = build
-WIN_EXEC = .exe
+# Parallel Configuration to speed up testing
+OS := $(shell uname)
+ifeq ($(OS),Darwin)
+  JOBS ?= $(shell sysctl -n hw.ncpu)
+else
+  JOBS ?= $(shell nproc)
+endif
+MAKEFLAGS += -j$(JOBS)
+CC = ccache gcc
 
-C_TESTS := $(shell find $(TEST) -name '*_test.c' -exec basename {} \; | awk -F '_test.c' {'print $$1'})
+CFLAGS = -Werror -Wall -Wextra -std=c99 -D_DEFAULT_SOURCE
+RELEASE_FLAG = -O2
+FAST_FLAG = -O0
+DEBUG_FLAG = -g
+LINK_FLAG = $(LDLIBS)
 
-CFLAGS = -std=c99 -Wall -Wextra -D_DEFAULT_SOURCE
+PROGRAM_NAME = timer
+SOURCE_DIR = src
+TEMP_DIR = $(HOME)/temp
+BUILD_DIR = $(HOME)/temp/build
+APP = ${TEMP_DIR}/${PROGRAM_NAME}
+DEPLOY_DIR = $(HOME)/.local/bin/
+SOURCES = $(wildcard $(SOURCE_DIR)/*.c)
+OBJECTS = $(SOURCES:$(SOURCE_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+TEST_DIR = tests
+TEST_SOURCES = $(wildcard $(TEST_DIR)/*_test.c)
+TEST_OBJECTS = $(TEST_SOURCES:$(TEST_DIR)/%_test.c=$(BUILD_DIR)/test_%.o)
+TEST_APPS = $(TEST_SOURCES:$(TEST_DIR)/%_test.c=$(TEMP_DIR)/test_%)
+
+HEADERS = $(wildcard include/*.h)
 
 ifeq ($(OS),Windows_NT)
     LDLIBS = -lpdcurses
@@ -23,49 +46,59 @@ else
     endif
 endif
 
-EXECUTABLE_SOURCE := $(SRC)/main.c
-COMMON_SOURCES := $(filter-out $(EXECUTABLE_SOURCE),$(wildcard $(SRC)/*.c))
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
+	mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 lint:
-	./assets/clinter src/ .c
-	echo
-	./assets/clinter tests/ .c
+	@./assets/clinter src/ .c
+	@echo
+	@./assets/clinter tests/ .c
 
-build:
-	mkdir -p $(BIN)
-	$(CC) $(CFLAGS) -o $(BIN)/$(APP_NAME) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES) $(LDLIBS)
+build: $(OBJECTS)
+	$(CC) $^ $(FAST_FLAG) $(LINK_FLAG) -o $(APP)
 
-run:
-	./$(BIN)/$(TARGET)
+build-optimised: $(OBJECTS)
+	$(CC) $^ $(RELEASE_FLAG) $(LINK_FLAG) -o $(APP)
 
-release: $(SRC)
-	@$(CC) $(CFLAGS) -O2 -o $(TARGET)$(RELEASE_TARGET) $(EXECUTABLE_SOURCE) $(COMMON_SOURCES) $(LDLIBS)
+test: $(TEST_APPS)
+	@for test_app in $(TEST_APPS); do \
+	  $$test_app || exit 1; \
+	done
 
-test:
-	mkdir -p $(BIN)
-	for i in $(C_TESTS); do \
-	  $(CC) $(CFLAGS) -o $(BIN)/$${i}_test $(TEST)/$${i}_test.c $(COMMON_SOURCES) $(LDLIBS); \
-	  $(BIN)/$${i}_test; \
-	  echo; \
-	  done
+$(BUILD_DIR)/test_%.o: $(TEST_DIR)/%_test.c $(HEADERS)
+	mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-linux-release: RELEASE_TARGET=
-linux-release: release
+$(TEMP_DIR)/test_%: $(BUILD_DIR)/test_%.o $(filter-out $(BUILD_DIR)/main.o,$(OBJECTS))
+	@mkdir -p $(TEMP_DIR)
+	$(CC) $^ $(FAST_FLAG) $(LINK_FLAG) -o $@
 
-windows-release: RELEASE_TARGET=$(WIN_EXEC)
-windows-release: release
+deploy: build-optimised
+	mkdir -p $(HOME)/.local/assets
+	mkdir -p $(HOME)/.local/config
+	mkdir -p $(DEPLOY_DIR)
+	cp -f assets/*.mp3 $(HOME)/.local/assets/
+	cp -f config/*.cfg $(HOME)/.local/config/
+	mv $(APP) $(DEPLOY_DIR)$(PROGRAM_NAME)
 
+run: test build
+	$(APP)
 
-deploy: build
-	 mkdir -p ${HOME}/.local
-	 mkdir -p ${HOME}/.local/bin
-	 mkdir -p ${HOME}/.local/assets
-	 mkdir -p ${HOME}/.local/config
-	 cp -f $(BIN)/$(APP_NAME) ${HOME}/.local/bin/
-	 cp -f assets/*.mp3 ${HOME}/.local/assets/
-	 cp -f config/*.cfg ${HOME}/.local/config/
+debug: $(OBJECTS)
+	$(CC) $^ $(CFLAGS) $(DEBUG_FLAG) $(LINK_FLAG) -o $(APP)
+
+run-debug: debug
+ifeq ($(OS),Darwin)
+	lldb $(APP)
+else
+	gdb $(APP)
+endif
 
 clean:
-	$(RM) $(BIN)/*
+	rm -rf $(BUILD_DIR)
+	rm -f $(APP)
 
-.PHONY: build run clean test release linux-release windows-release deploy lint
+install:
+	@mkdir -p $(DEPLOY_DIR)
+	@cp $(APP) $(DEPLOY_DIR)$(PROGRAM_NAME)

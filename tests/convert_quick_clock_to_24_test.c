@@ -29,7 +29,7 @@ void test_convert_12_quick_clock_to_24(void) {
     strcpy(expect_string, "12:00");
   if (t_get_current_hour_number() == 12 && t_get_current_minute_number() > 1)
     strcpy(expect_string, "00:00");
-  if (t_get_current_hour_number() == 12 && t_get_current_minute_number() > 1)
+  if (t_get_current_hour_number() == 12 && t_get_current_minute_number() == 0)
     strcpy(expect_string, "12:00");
 
   TEST_START("convert 12 quick clock to 12:00 or 00:00");

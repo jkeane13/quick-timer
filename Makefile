@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := build
-.PHONY: build test deploy debug run-debug clean install lint
+.PHONY: build test deploy debug run-debug clean install
 .SILENT:
 
 # Parallel Configuration to speed up testing
@@ -50,11 +50,6 @@ endif
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-lint:
-	@./assets/clinter src/ .c
-	@echo
-	@./assets/clinter tests/ .c
 
 build: $(OBJECTS)
 	$(CC) $^ $(FAST_FLAG) $(LINK_FLAG) -o $(APP)

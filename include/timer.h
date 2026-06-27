@@ -41,6 +41,7 @@ int t_get_hour(char *time_input);
 int t_get_minutes(char *time_input);
 int t_prompt_time_input(int seconds);
 int t_seconds_countdown(int seconds);
+void t_set_windows_console();
 void check_file_exists(char *program_location);
 void convertIntToDoubleString(int number, char stringNumber[]);
 void run_program(char *program_location, int silent_output);
@@ -52,5 +53,7 @@ void t_get_config_from_file(char *filename, char *sound_file,
 void t_print_timer_end_time(int seconds);
 void t_set_mode_switch(const char *arg, int *quiet_mode, int *dry_run_mode,
                        int *execute_mode);
+void t_set_windows_console();
+int t_start_timer(int argc, char **argv);
 void t_usage(int toggle);
 #endif

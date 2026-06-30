@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := build
-.PHONY: build test deploy debug run-debug clean install
+.PHONY: build test deploy debug run-debug clean install windows-release
 .SILENT:
 
 # Parallel Configuration to speed up testing
@@ -107,3 +107,6 @@ clean:
 install:
 	@mkdir -p $(DEPLOY_DIR)
 	@cp $(APP) $(DEPLOY_DIR)$(PROGRAM_NAME)
+
+windows-release:
+	powershell.exe -ExecutionPolicy Bypass -File ./scripts/windows_release.ps1

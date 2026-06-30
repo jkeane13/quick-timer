@@ -31,8 +31,8 @@ jobs:
             artifact: timer-linux-x86_64.tar.gz
           - os: windows-latest
             target: windows-release
-            script: scripts/windows_release.bat
-            artifact: timer-windows.zip
+            script: scripts/windows_release.ps1
+            artifact: build/timer-windows.zip
 
     runs-on: ${{ matrix.os }}
 
@@ -49,8 +49,8 @@ jobs:
 
       - name: Create release artifact (Windows)
         if: matrix.os == 'windows-latest'
-        shell: cmd
-        run: call ${{ matrix.script }}
+        shell: pwsh
+        run: & ${{ matrix.script }}
 
       - name: Upload release asset
         env:

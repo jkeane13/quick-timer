@@ -1,51 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/stopwatch_audio.h"
 
-#define AF_PLAYER "afplay"
-#define MPG_PLAYER "mpg123"
-#define MAX_COMMAND_LENGTH 1024
-#define WINDOWS_NULL_OUTPUT " > nul 2>&1"
-#define UNIX_NULL_OUTPUT " >/dev/null 2>&1"
-
-#ifdef _WIN32
-static void replace_char(char *str, char find, char replace) {
-  char *current_pos = strchr(str, find);
-  while (current_pos) {
-    *current_pos = replace;
-    current_pos = strchr(current_pos, find);
-  }
-}
-#endif
+#define MAX_BUFFER 4096
 
 void play_sound(char *sound_file, int times) {
-  char sound_command[MAX_COMMAND_LENGTH];
-  const char *player = NULL;
-  const char *null_output = NULL;
+  for (int i = 0; i < times; i++) {
+    FILE *pipe = popen("ffplay -nodisp -autoexit -", "w");
+    if (!pipe) {
+      fprintf(stderr, "Warning: ffplay not found or installed, using system beep instead\n");
+      fprintf(stderr, "\a");
+      continue;
+    }
 
-#if defined(__APPLE__)
-  player = AF_PLAYER;
-  null_output = UNIX_NULL_OUTPUT;
-#elif defined(__linux__)
-  player = MPG_PLAYER;
-  null_output = UNIX_NULL_OUTPUT;
-#elif defined(_WIN32)
-  player = MPG_PLAYER;
-  null_output = WINDOWS_NULL_OUTPUT;
-#else
-#error "Unsupported Platform"
-#endif
+    if (sound_file && sound_file[0] != '\0') {
+      FILE *f = fopen(sound_file, "rb");
+      if (!f) {
+        pclose(pipe);
+        continue;
+      }
 
-  int len = snprintf(sound_command, MAX_COMMAND_LENGTH, "%s %s%s", player,
-                     sound_file, null_output);
+      char buf[MAX_BUFFER];
+      size_t n;
+      while ((n = fread(buf, 1, sizeof(buf), f)) > 0)
+        fwrite(buf, 1, n, pipe);
+      fclose(f);
+    } else {
+      fwrite(assets_stopwatch_mp3, 1, assets_stopwatch_mp3_len, pipe);
+    }
 
-  if (len < 0 || len >= MAX_COMMAND_LENGTH) {
-    return;
+    pclose(pipe);
   }
-
-#if defined(_WIN32)
-  replace_char(sound_command, '/', '\\');
-#endif
-  for (int i = 0; i < times; i++)
-    system(sound_command);
 }

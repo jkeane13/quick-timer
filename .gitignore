@@ -4,3 +4,4 @@ timer
 *.zip
 CLAUDE.md
 .claudeignore
+include/stopwatch_audio.h

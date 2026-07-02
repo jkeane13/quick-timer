@@ -35,6 +35,7 @@ TEST_OBJECTS = $(TEST_SOURCES:$(TEST_DIR)/%_test.c=$(BUILD_DIR)/test_%.o)
 TEST_APPS = $(TEST_SOURCES:$(TEST_DIR)/%_test.c=$(TEMP_DIR)/test_%)
 
 HEADERS = $(wildcard include/*.h)
+STOPWATCH_AUDIO_HEADER = include/stopwatch_audio.h
 
 ifeq ($(OS),Windows_NT)
     LDLIBS = -lpdcurses
@@ -47,7 +48,11 @@ else
     endif
 endif
 
-$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c $(HEADERS)
+$(STOPWATCH_AUDIO_HEADER): assets/stopwatch.mp3
+	@mkdir -p $(dir $@)
+	xxd -i $< $@
+
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c $(HEADERS) $(STOPWATCH_AUDIO_HEADER)
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -103,6 +108,7 @@ endif
 clean:
 	rm -rf $(BUILD_DIR)
 	rm -f $(APP)
+	rm -f $(STOPWATCH_AUDIO_HEADER)
 
 install:
 	@mkdir -p $(DEPLOY_DIR)

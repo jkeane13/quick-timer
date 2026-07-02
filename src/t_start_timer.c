@@ -37,8 +37,6 @@ int t_start_timer(int argc, char **argv){
   if (program_mode)
     check_file_exists(arg_switch);
 
-  check_file_exists(sound_file_path);
-
   for (int i = 1; i < argc; i++) {
     size_t remaining = MAX_STRING - strlen(time_string) - 1;
     size_t arg_len = strlen(argv[i]);

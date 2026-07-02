@@ -3,11 +3,24 @@
 #include <string.h>
 #include "../include/stopwatch_audio.h"
 
-#define MAX_BUFFER 4096
+static char* load_file(const char *path, size_t *file_size) {
+  FILE *file = fopen(path, "rb");
+  if (!file) return NULL;
+
+  fseek(file, 0, SEEK_END);
+  *file_size = ftell(file);
+  rewind(file);
+
+  char *buffer = malloc(*file_size);
+  if (buffer)
+    fread(buffer, 1, *file_size, file);
+  fclose(file);
+  return buffer;
+}
 
 void play_sound(char *sound_file, int times) {
   for (int i = 0; i < times; i++) {
-    FILE *pipe = popen("ffplay -nodisp -autoexit -", "w");
+    FILE *pipe = popen("ffplay -nodisp -autoexit - 2>/dev/null", "w");
     if (!pipe) {
       fprintf(stderr, "Warning: ffplay not found or installed, using system beep instead\n");
       fprintf(stderr, "\a");
@@ -15,17 +28,12 @@ void play_sound(char *sound_file, int times) {
     }
 
     if (sound_file && sound_file[0] != '\0') {
-      FILE *f = fopen(sound_file, "rb");
-      if (!f) {
-        pclose(pipe);
-        continue;
+      size_t file_size = 0;
+      char *buffer = load_file(sound_file, &file_size);
+      if (buffer) {
+        fwrite(buffer, 1, file_size, pipe);
+        free(buffer);
       }
-
-      char buf[MAX_BUFFER];
-      size_t n;
-      while ((n = fread(buf, 1, sizeof(buf), f)) > 0)
-        fwrite(buf, 1, n, pipe);
-      fclose(f);
     } else {
       fwrite(assets_stopwatch_mp3, 1, assets_stopwatch_mp3_len, pipe);
     }

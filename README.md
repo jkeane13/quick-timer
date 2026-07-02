@@ -18,31 +18,28 @@ Quick and easy timer with a digital watchclock display and progress bar
 - "Quick clock", is in a 12 hour cycle Eg: Running 9:30 after 9:30am will
   go to the next 12 hour block time of 9:30pm
 - Has a `--quiet` switch to not make a noise at the end of the timer
-- Able to play mp3 files
 
 ## Setup
 ### Prerequisites
-- For Windows and Linux alerts to work, `mpg123` will need to be installed. Mac
-will work fine, since `afplay` is default with the operating system
+- `ffplay` (part of ffmpeg) for audio alerts. If not installed, the timer will use a system beep instead
 
 ### Linux and Mac
 Download the repo and run `make` to build the binary
 
 ### Installation
-Running `make deploy` will copy the binary and assets into the `~/.local/bin`
-directory. One will be created, if it doesn't exist. In order to run as a
+Running `make deploy` will copy the binary to `~/.local/bin`. In order to run as a
 local app, `~/.local/bin` will have to be added to your PATH
 
 ### Windows
 Has to be run inside Windows Terminal (`cmd.exe`)
 
 Run the `deploy.bat` script in the `windows_compile` directory. This will move
-the assets to `~/.local/ directory`. This will require Administrator mode on the
+the binary to `~/.local/bin`. This will require Administrator mode on the
 command line to be able to execute
 
-### Alert notication
-In order to play the alert, the sound mp3 must be located in
-`assets/stopwatch.mp3`
+### Alert notification
+The timer includes an embedded audio alert. Audio playback requires `ffplay` (part of ffmpeg).
+If `ffplay` is not installed, the timer will use a system beep instead
 
 ## Usage examples
 For seconds, 15 seconds

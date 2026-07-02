@@ -20,7 +20,7 @@
 #define SECONDS_IN_DAY 86400
 #define SECONDS_IN_HOUR 3600
 #define SECONDS_IN_MINUTE 60
-#define TIMER_CONFIGURATION_FILE "~/.local/config/timer.cfg"
+#define ALERT_TIMES 2
 
 #define HIDE 0
 #define SHOW 1
@@ -48,8 +48,6 @@ void run_program(char *program_location, int silent_output);
 void t_convert_24_hour_clock_to_12(char *clock_time);
 void t_convert_input_clock_to_24(char *time_input);
 void t_convert_quick_clock_to_24(char *time_input);
-void t_get_config_from_file(char *filename, char *sound_file,
-                            char *alert_times);
 void t_print_timer_end_time(int seconds);
 void t_set_mode_switch(const char *arg, int *quiet_mode, int *dry_run_mode,
                        int *execute_mode);

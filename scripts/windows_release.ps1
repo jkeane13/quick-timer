@@ -3,8 +3,8 @@
 .SYNOPSIS
     Builds and packages the quick-timer application for Windows.
 .DESCRIPTION
-    Compiles the timer using MINGW gcc, then packages the binary, assets, and config
-    into a distributable zip file.
+    Compiles the timer using MINGW gcc, then packages the binary into a
+    distributable zip file.
 .EXAMPLE
     .\windows_release.ps1
     .\windows_release.ps1 -Clean
@@ -29,8 +29,6 @@ $INCLUDE_DIR = "include"
 $BUILD_DIR = "build"
 $APP_NAME = "timer-windows"
 $OUTPUT_ZIP = Join-Path $BUILD_DIR "$APP_NAME.zip"
-$ASSETS_DIR = "assets"
-$CONFIG_DIR = "config"
 $CC = "gcc"
 $CFLAGS = @("-Werror", "-Wall", "-Wextra", "-std=c99", "-D_DEFAULT_SOURCE", "-O2")
 $LDLIBS = "-lpdcurses"
@@ -131,27 +129,11 @@ function CreateReleasePackage {
     Write-Host "Creating release package..." -ForegroundColor Yellow
 
     New-Item -ItemType Directory -Path "$APP_NAME\bin" -Force | Out-Null
-    New-Item -ItemType Directory -Path "$APP_NAME\assets" -Force | Out-Null
-    New-Item -ItemType Directory -Path "$APP_NAME\config" -Force | Out-Null
 
     $BINARY = Join-Path $BUILD_DIR "$PROGRAM_NAME.exe"
 
     Write-Host "  Copying binary..."
     Copy-Item -Path $BINARY -Destination "$APP_NAME\bin\"
-
-    Write-Host "  Copying assets..."
-    if (Test-Path $ASSETS_DIR) {
-        Get-ChildItem -Path $ASSETS_DIR -Filter "*.mp3" | ForEach-Object {
-            Copy-Item -Path $_.FullName -Destination "$APP_NAME\assets\"
-        }
-    }
-
-    Write-Host "  Copying config..."
-    if (Test-Path $CONFIG_DIR) {
-        Get-ChildItem -Path $CONFIG_DIR -Filter "*.cfg" | ForEach-Object {
-            Copy-Item -Path $_.FullName -Destination "$APP_NAME\config\"
-        }
-    }
 }
 
 function CreateZipArchive {

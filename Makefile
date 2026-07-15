@@ -76,7 +76,7 @@ $(TEMP_DIR)/test_%: $(BUILD_DIR)/test_%.o $(filter-out $(BUILD_DIR)/main.o,$(OBJ
 	$(CC) $^ $(FAST_FLAG) $(LINK_FLAG) -o $@
 
 deploy: build-optimised
-ifeq ($(shell grep -qi microsoft /proc/version && echo true),true)
+ifeq ($(shell grep -qi microsoft /proc/version 2>/dev/null && echo true),true)
 	mkdir -p "$(WINDOWS_HOME)/.local"
 	rsync -av --include="src/" --include="src/**" --include="include/" --include="include/**" --include="config/" --include="config/**" --include="assets/" --include="assets/**" --include="windows_compile/" --include="windows_compile/**" --exclude="*" . "$(WINDOWS_HOME)/.local/quick-timer"
 	@echo "Repository copied to: $(WINDOWS_HOME)/.local/quick-timer"
@@ -110,7 +110,7 @@ clean:
 	rm -f $(APP)
 	rm -f $(STOPWATCH_AUDIO_HEADER)
 
-install:
+install: build-optimised
 	@mkdir -p $(DEPLOY_DIR)
 	@cp $(APP) $(DEPLOY_DIR)$(PROGRAM_NAME)
 

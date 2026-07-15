@@ -50,7 +50,7 @@ jobs:
       - name: Create release artifact (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
-        run: & './${{ matrix.script }}'
+        run: & "${{ matrix.script }}"
 
       - name: Upload release asset
         env:

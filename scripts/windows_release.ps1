@@ -86,27 +86,17 @@ function GenerateHeaders {
         New-Item -ItemType Directory -Path $INCLUDE_DIR -Force | Out-Null
 
         $bytes = [System.IO.File]::ReadAllBytes($AUDIO_FILE)
-        $varName = ([System.IO.Path]::GetFileName($AUDIO_FILE) -replace '[^a-zA-Z0-9_]', '_')
+        $hexBytes = ($bytes | ForEach-Object { "0x{0:x2}" -f $_ }) -join ", "
+        $bytesLen = $bytes.Length
 
-        $header = @("unsigned char $varName`[] = {")
-        $line = ""
+        $header = @(
+            "unsigned char assets_stopwatch_mp3[] = {",
+            "  $hexBytes",
+            "};",
+            "unsigned int assets_stopwatch_mp3_len = $bytesLen;"
+        )
 
-        for ($i = 0; $i -lt $bytes.Length; $i++) {
-            $line += "0x$($bytes[$i].ToString('x2'))"
-
-            if ($i -lt $bytes.Length - 1) {
-                $line += ", "
-            }
-
-            if (($i + 1) % 12 -eq 0 -or $i -eq $bytes.Length - 1) {
-                $header += "  $line"
-                $line = ""
-            }
-        }
-
-        $header += "};`nunsigned int $varName`_len = $($bytes.Length);"
-
-        [System.IO.File]::WriteAllText($AUDIO_HEADER, ($header -join "`n"))
+        [System.IO.File]::WriteAllLines($AUDIO_HEADER, $header)
         Write-Host "Generated: $AUDIO_HEADER" -ForegroundColor Green
     } else {
         Write-Error "Audio file not found: $AUDIO_FILE"

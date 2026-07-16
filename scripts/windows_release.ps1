@@ -42,6 +42,7 @@ function Main-TimerBuild {
         CleanBuild
     }
 
+    GenerateHeaders
     VerifySourceFiles
     CompileSourceFiles
     LinkExecutable
@@ -72,6 +73,45 @@ function CleanBuild {
     }
 
     Write-Host "Clean complete." -ForegroundColor Green
+    Write-Host ""
+}
+
+function GenerateHeaders {
+    Write-Host "Generating headers..." -ForegroundColor Yellow
+
+    $AUDIO_HEADER = Join-Path $INCLUDE_DIR "stopwatch_audio.h"
+    $AUDIO_FILE = "assets/stopwatch.mp3"
+
+    if (Test-Path $AUDIO_FILE) {
+        New-Item -ItemType Directory -Path $INCLUDE_DIR -Force | Out-Null
+
+        $bytes = [System.IO.File]::ReadAllBytes($AUDIO_FILE)
+        $varName = ([System.IO.Path]::GetFileName($AUDIO_FILE) -replace '[^a-zA-Z0-9_]', '_')
+
+        $header = @("unsigned char $varName`[] = {")
+        $line = ""
+
+        for ($i = 0; $i -lt $bytes.Length; $i++) {
+            $line += "0x$($bytes[$i].ToString('x2'))"
+
+            if ($i -lt $bytes.Length - 1) {
+                $line += ", "
+            }
+
+            if (($i + 1) % 12 -eq 0 -or $i -eq $bytes.Length - 1) {
+                $header += "  $line"
+                $line = ""
+            }
+        }
+
+        $header += "};`nunsigned int $varName`_len = $($bytes.Length);"
+
+        [System.IO.File]::WriteAllText($AUDIO_HEADER, ($header -join "`n"))
+        Write-Host "Generated: $AUDIO_HEADER" -ForegroundColor Green
+    } else {
+        Write-Error "Audio file not found: $AUDIO_FILE"
+    }
+
     Write-Host ""
 }
 

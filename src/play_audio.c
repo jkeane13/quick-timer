@@ -3,10 +3,17 @@
 #include <string.h>
 #include "../include/stopwatch_audio.h"
 
+#ifdef _WIN32
+#define SYSTEM_BEEP "timeout /t 0 > nul"
+#else
 #define SYSTEM_BEEP "\a"
+#endif
 
 void play_sound(unsigned int times) {
   for (unsigned int i = 0; i < times; i++) {
+#ifdef _WIN32
+    system("ffplay -nodisp -autoexit assets\\stopwatch.mp3 >nul 2>&1");
+#else
     FILE *pipe = popen("ffplay -nodisp -autoexit - 2>/dev/null", "w");
     if (!pipe) {
       fprintf(stderr, "Warning: ffplay not found or installed, using system beep instead\n");
@@ -16,5 +23,6 @@ void play_sound(unsigned int times) {
 
     fwrite(assets_stopwatch_mp3, 1, assets_stopwatch_mp3_len, pipe);
     pclose(pipe);
+#endif
   }
 }

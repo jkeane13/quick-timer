@@ -17,7 +17,8 @@
 #>
 
 param(
-    [switch]$CLEAN_BUILD = $false
+    [switch]$CLEAN_BUILD = $false,
+    [switch]$Deploy = $false
 )
 
 $ErrorActionPreference = "Stop"
@@ -33,7 +34,7 @@ $CC = "gcc"
 $CFLAGS = @("-Werror", "-Wall", "-Wextra", "-std=c99", "-D_DEFAULT_SOURCE", "-O2")
 $LDLIBS = "-lpdcurses"
 
-$OBJECT_FILES = @()
+$global:OBJECT_FILES = @()
 
 function Main-TimerBuild {
     Write-Header
@@ -45,9 +46,14 @@ function Main-TimerBuild {
     VerifySourceFiles
     CompileSourceFiles
     LinkExecutable
-    CreateReleasePackage
-    CreateZipArchive
-    CleanupTemporaryFiles
+
+    if ($Deploy) {
+        DeployLocally
+    } else {
+        CreateReleasePackage
+        CreateZipArchive
+        CleanupTemporaryFiles
+    }
 
     Write-Success
 }
@@ -112,7 +118,8 @@ function LinkExecutable {
     Write-Host "Linking executable..." -ForegroundColor Yellow
 
     $BINARY = Join-Path $BUILD_DIR "$PROGRAM_NAME.exe"
-    $LINK_CMD = "$CC $($OBJECT_FILES -join ' ') $LDLIBS -o `"$BINARY`""
+    $OBJECTS_STRING = $global:OBJECT_FILES -join ' '
+    $LINK_CMD = "$CC $OBJECTS_STRING $LDLIBS -o `"$BINARY`""
 
     Write-Host "Link command: $LINK_CMD" -ForegroundColor Gray
     $OUTPUT = Invoke-Expression $LINK_CMD 2>&1
@@ -129,11 +136,46 @@ function CreateReleasePackage {
     Write-Host "Creating release package..." -ForegroundColor Yellow
 
     New-Item -ItemType Directory -Path "$APP_NAME\bin" -Force | Out-Null
+    New-Item -ItemType Directory -Path "$APP_NAME\assets" -Force | Out-Null
 
     $BINARY = Join-Path $BUILD_DIR "$PROGRAM_NAME.exe"
 
     Write-Host "  Copying binary..."
     Copy-Item -Path $BINARY -Destination "$APP_NAME\bin\"
+
+    Write-Host "  Copying assets..."
+    Copy-Item -Path "assets\*" -Destination "$APP_NAME\assets\" -Force
+}
+
+function DeployLocally {
+    Write-Host ""
+    Write-Host "Installing to local system..." -ForegroundColor Yellow
+
+    $LocalBin = "$env:USERPROFILE\.local\bin"
+    $LocalAssets = "$env:USERPROFILE\.local\assets"
+    $LocalConfig = "$env:USERPROFILE\.local\config"
+
+    New-Item -ItemType Directory -Path $LocalBin -Force | Out-Null
+    New-Item -ItemType Directory -Path $LocalAssets -Force | Out-Null
+    New-Item -ItemType Directory -Path $LocalConfig -Force | Out-Null
+
+    $BINARY = Join-Path $BUILD_DIR "$PROGRAM_NAME.exe"
+
+    Write-Host "  Copying binary to $LocalBin..."
+    Copy-Item -Path $BINARY -Destination "$LocalBin\$PROGRAM_NAME.exe" -Force
+
+    Write-Host "  Copying assets..."
+    Copy-Item -Path "assets\*" -Destination $LocalAssets -Force
+
+    Write-Host "  Copying config..."
+    Copy-Item -Path "config\*" -Destination $LocalConfig -Force
+
+    Write-Host ""
+    Write-Host "Installation complete!" -ForegroundColor Green
+    Write-Host "Timer installed to: $LocalBin\$PROGRAM_NAME.exe" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "To use from any command prompt, add to your PATH:" -ForegroundColor Yellow
+    Write-Host "  $LocalBin" -ForegroundColor Gray
 }
 
 function CreateZipArchive {
@@ -154,8 +196,12 @@ function CleanupTemporaryFiles {
 
 function Write-Success {
     Write-Host ""
-    Write-Host "Build successful!" -ForegroundColor Green
-    Write-Host "Release package: $OUTPUT_ZIP" -ForegroundColor Cyan
+    if ($Deploy) {
+        Write-Host "Build and deployment successful!" -ForegroundColor Green
+    } else {
+        Write-Host "Build successful!" -ForegroundColor Green
+        Write-Host "Release package: $OUTPUT_ZIP" -ForegroundColor Cyan
+    }
 }
 
 Main-TimerBuild
